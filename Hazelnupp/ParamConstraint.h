@@ -6,6 +6,18 @@
 struct ParamConstraint
 {
 public:
+	ParamConstraint() = default;
+	ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
+		:
+		key { key },
+		constrainType { constrainType },
+		wantedType { wantedType },
+		defaultValue { defaultValue },
+		required{ required }
+	{
+		return;
+	}
+
 	//! The key of the parameter to constrain
 	std::string key;
 	
