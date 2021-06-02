@@ -48,6 +48,45 @@ namespace TestHazelnupp
 			return;
 		}
 
+		// Edgecase test: We begin with an actual value, instead of an argument.
+		TEST_METHOD(Weird_Case_1)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"dummy"
+			});
+
+			// Exercise
+			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
+
+			// Verify (no exception)
+
+			return;
+		}
+
+		// Edgecase test: We begin with first an actual value, and then an argument.
+		TEST_METHOD(Weird_Case_2)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"dummy",
+				"--dummy"
+			});
+
+			// Exercise
+			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
+
+			// Verify
+			Assert::IsTrue(nupp.HasParam("--dummy"), L"Failed has-param");
+			Assert::IsTrue(nupp["--dummy"].GetDataType() == DATA_TYPE::VOID, L"Failed type");
+
+			return;
+		}
+
 		// Tests keys exist after parsing
 		TEST_METHOD(KeysExist)
 		{
