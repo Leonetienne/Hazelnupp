@@ -6,6 +6,8 @@
 #include "ListValue.h"
 #include "HazelnuppException.h"
 #include "StringTools.h"
+#include <iostream>
+#include <cstdlib>
 
 Hazelnupp::Hazelnupp()
 {
@@ -30,31 +32,44 @@ Hazelnupp::~Hazelnupp()
 
 void Hazelnupp::Parse(const int argc, const char* const* argv)
 {
-	// Populate raw arguments
-	PopulateRawArgs(argc, argv);
-
-	// Expand abbreviations
-	ExpandAbbreviations();
-
-	executableName = std::string(rawArgs[0]);
-
-	std::size_t i = 1;
-	while (i < rawArgs.size())
+	try
 	{
-		if ((rawArgs[i].length() > 2) && (rawArgs[i].substr(0, 2) == "--"))
-		{
-			Parameter* param = nullptr;
-			i = ParseNextParameter(i, param);
-			
-			parameters.insert(std::pair<std::string, Parameter*>(param->Key(), param));
-		}
-		else
-			i++;
-	}
+		// Populate raw arguments
+		PopulateRawArgs(argc, argv);
 
-	// Apply constraints such as default values, and required parameters.
-	// Types have already been enforced.
-	ApplyConstraints();
+		// Expand abbreviations
+		ExpandAbbreviations();
+
+		executableName = std::string(rawArgs[0]);
+
+		std::size_t i = 1;
+		while (i < rawArgs.size())
+		{
+			if ((rawArgs[i].length() > 2) && (rawArgs[i].substr(0, 2) == "--"))
+			{
+				Parameter* param = nullptr;
+				i = ParseNextParameter(i, param);
+
+				parameters.insert(std::pair<std::string, Parameter*>(param->Key(), param));
+			}
+			else
+				i++;
+		}
+
+		// Apply constraints such as default values, and required parameters.
+		// Types have already been enforced.
+		ApplyConstraints();
+	}
+	catch (HazelnuppConstraintTypeMissmatch hctm)
+	{
+		std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
+		quick_exit(-1009);
+	}
+	catch (HazelnuppConstraintMissingValue hctm)
+	{
+		std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
+		quick_exit(-1010);
+	}
 
 	return;
 }
@@ -149,7 +164,7 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 		if ((constrainType) &&
 			(constraint->wantedType != DATA_TYPE::LIST))
 		{
-			throw HazelnutConstraintMissmatch();
+			throw HazelnuppConstraintTypeMissmatch(values[0] + " " + values[1]);
 		}
 
 		ListValue* newList = new ListValue();
@@ -185,7 +200,7 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 			}
 			// Else it not possible to convert to a numeric
 			else
-				throw HazelnutConstraintMissmatch();
+				throw HazelnuppConstraintTypeMissmatch(val);
 		}
 
 		return new StringValue(val);
@@ -267,7 +282,7 @@ void Hazelnupp::ApplyConstraints()
 				// Is it important to have the missing parameter?
 				if (pc.second.required)
 					// Throw an error message then
-					throw HazelnutConstraintMissmatch();
+					throw HazelnuppConstraintMissingValue(pc.second.key);
 			}
 		}
 

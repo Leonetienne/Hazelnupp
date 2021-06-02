@@ -14,7 +14,7 @@ public:
 	bool constrainType = false;
 
 	//! Constrain the parameter to this value. Requires `constrainType` to be set to true.
-	DATA_TYPE wantedType;
+	DATA_TYPE wantedType = DATA_TYPE::VOID;
 
 	//! The default value for this parameter.  
 	//! Gets applied if this parameter was not given.

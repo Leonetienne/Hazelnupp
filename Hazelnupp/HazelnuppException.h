@@ -1,5 +1,41 @@
 #pragma once
 #include <stdexcept>
 
-class HazelnutException : public std::exception {};
-class HazelnutConstraintMissmatch : public HazelnutException {};
+/** Generic hazelnupp exception
+*/
+class HazelnuppException : public std::exception 
+{
+public:
+	HazelnuppException() {};
+	HazelnuppException(const std::string& msg) : message{ msg } {};
+
+	//! Will return an error message
+	const std::string& What() const
+	{
+		return message;
+	}
+
+protected:
+	std::string message;
+};
+
+class HazelnuppConstraintException : public HazelnuppException
+{
+public:
+	HazelnuppConstraintException() : HazelnuppException() {};
+	HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
+};
+
+class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
+{
+public:
+	HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
+	HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
+};
+
+class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
+{
+public:
+	HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
+	HazelnuppConstraintMissingValue(const std::string& msg) : HazelnuppConstraintException(msg) {};
+};
