@@ -139,7 +139,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FloatValue.cpp" />
+    <ClCompile Include="Hazelnupp.cpp" />
+    <ClCompile Include="IntValue.cpp" />
+    <ClCompile Include="ListValue.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="StringValue.cpp" />
+    <ClCompile Include="Value.cpp" />
+    <ClCompile Include="VoidValue.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="FloatValue.h" />
+    <ClInclude Include="Hazelnupp.h" />
+    <ClInclude Include="IntValue.h" />
+    <ClInclude Include="ListValue.h" />
+    <ClInclude Include="Parameter.h" />
+    <ClInclude Include="DataType.h" />
+    <ClInclude Include="StringValue.h" />
+    <ClInclude Include="Value.h" />
+    <ClInclude Include="VoidValue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
