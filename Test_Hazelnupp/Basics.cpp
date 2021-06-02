@@ -1,6 +1,7 @@
 #include "CppUnitTest.h"
 #include "helper.h"
 #include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -16,10 +17,11 @@ namespace TestHazelnupp
 			// Setup
 			ArgList args({
 				"/my/fake/path/wahoo.out"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
 
 			// Verify
 			Assert::AreEqual(std::string("/my/fake/path/wahoo.out"), nupp.GetExecutableName());
@@ -27,8 +29,27 @@ namespace TestHazelnupp
 			return;
 		}
 
+		// Edgecase test: We only have one param.
+		TEST_METHOD(Only_One_Param)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy"
+				});
+
+			// Exercise
+			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
+
+			// Verify
+			Assert::IsTrue(nupp.HasParam("--dummy"));
+
+			return;
+		}
+
 		// Tests keys exist after parsing
-		TEST_METHOD(BasicParsing_KeysExist)
+		TEST_METHOD(KeysExist)
 		{
 			// Setup
 			ArgList args({
@@ -49,10 +70,11 @@ namespace TestHazelnupp
 				"apple",
 				"banana",
 				"pumpkin",
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
 
 			// Verify
 			Assert::IsTrue(nupp.HasParam("--my_string"));
@@ -66,7 +88,7 @@ namespace TestHazelnupp
 		}
 
 		// Tests keys are of the correct type after parsing
-		TEST_METHOD(BasicParsing_CorrectType)
+		TEST_METHOD(CorrectType)
 		{
 			// Setup
 			ArgList args({
@@ -87,10 +109,11 @@ namespace TestHazelnupp
 				"apple",
 				"banana",
 				"pumpkin",
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
 
 			// Verify
 			Assert::IsTrue(nupp["--my_string"].GetDataType() == DATA_TYPE::STRING);
@@ -104,7 +127,7 @@ namespace TestHazelnupp
 		}
 
 		// Tests keys have the correct value after parsing
-		TEST_METHOD(BasicParsing_CorrectValues)
+		TEST_METHOD(CorrectValues)
 		{
 			// Setup
 			ArgList args({
@@ -125,10 +148,11 @@ namespace TestHazelnupp
 				"apple",
 				"banana",
 				"pumpkin",
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
 
 			// Verify
 			Assert::AreEqual(nupp["--my_string"].GetString(), std::string("billybob"));
@@ -141,6 +165,45 @@ namespace TestHazelnupp
 			Assert::AreEqual(nupp["--my_str_list"].GetList()[0]->GetString(), std::string("apple"));
 			Assert::AreEqual(nupp["--my_str_list"].GetList()[1]->GetString(), std::string("banana"));
 			Assert::AreEqual(nupp["--my_str_list"].GetList()[2]->GetString(), std::string("pumpkin"));
+
+			return;
+		}
+
+		// Tests that an HazelnuppInvalidKeyException gets raised, if an invalid gey is tried to access
+		TEST_METHOD(Exception_On_Invalid_Key)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--my_string",
+				"billybob",
+				"--my_void",
+				"--my_float",
+				"-23.199",
+				"--my_int",
+				"199",
+				"--my_num_list",
+				"1",
+				"2",
+				"3",
+				"4",
+				"--my_str_list",
+				"apple",
+				"banana",
+				"pumpkin",
+			});
+
+			Hazelnupp nupp(C_Ify(args));
+			nupp.SetCrashOnFail(false);
+
+			// Exercise, Verify
+			Assert::ExpectException<HazelnuppInvalidKeyException>(
+				[args]
+				{
+					Hazelnupp nupp(C_Ify(args));
+					nupp["--borrnana"];
+				}
+			);
 
 			return;
 		}

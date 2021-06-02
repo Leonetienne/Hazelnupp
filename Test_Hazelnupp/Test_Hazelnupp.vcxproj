@@ -156,7 +156,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Test_Hazelnupp.cpp" />
+    <ClCompile Include="Abbreviations.cpp" />
+    <ClCompile Include="Basics.cpp" />
+    <ClCompile Include="Constraints.cpp" />
+    <ClCompile Include="Conversion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hazelnupp\Hazelnupp.vcxproj">
@@ -164,6 +167,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Constraints.h" />
     <ClInclude Include="helper.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
