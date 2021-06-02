@@ -296,6 +296,10 @@ const std::string& Hazelnupp::GetExecutableName() const
 
 const Value& Hazelnupp::operator[](const std::string& key) const
 {
+	// Throw exception if param is unknown
+	if (!HasParam(key))
+		throw HazelnuppInvalidKeyException();
+
 	return *parameters.find(key)->second->GetValue();
 }
 

@@ -19,6 +19,13 @@ protected:
 	std::string message;
 };
 
+class HazelnuppInvalidKeyException : public HazelnuppException
+{
+public:
+	HazelnuppInvalidKeyException() : HazelnuppException() {};
+	HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
+};
+
 class HazelnuppConstraintException : public HazelnuppException
 {
 public:
