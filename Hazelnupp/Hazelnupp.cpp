@@ -23,6 +23,8 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 	// Populate raw arguments
 	PopulateRawArgs(argc, argv);
 
+	// Expand abbreviations
+	ExpandAbbreviations();
 
 	executableName = std::string(rawArgs[0]);
 
@@ -75,6 +77,22 @@ void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
 	rawArgs.reserve(argc);
 	for (int i = 0; i < argc; i++)
 		rawArgs.emplace_back(std::string(argv[i]));
+
+	return;
+}
+
+void Hazelnupp::ExpandAbbreviations()
+{
+	for (std::string& arg : rawArgs)
+	{
+		// Is arg registered as an abbreviation?
+		auto abbr = abbreviations.find(arg);
+		if (abbr != abbreviations.end())
+		{
+			// Yes: replace arg with the long form
+			arg = abbr->second;
+		}
+	}
 
 	return;
 }
@@ -135,7 +153,23 @@ const std::string& Hazelnupp::GetExecutableName() const
 	return executableName;
 }
 
-const Value* Hazelnupp::operator[](const std::string& key)
+const Value* Hazelnupp::operator[](const std::string& key) const
 {
-	return parameters[key]->Value();
+	return parameters.find(key)->second->Value();
+}
+
+void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::string& target)
+{
+	abbreviations.insert(std::pair<std::string, std::string>(abbrev, target));
+	return;
+}
+
+const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
+{
+	return abbreviations.find(abbrev)->second;
+}
+
+bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
+{
+	return abbreviations.find(abbrev) != abbreviations.end();
 }

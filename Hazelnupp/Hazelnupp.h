@@ -16,14 +16,27 @@ public:
 	const std::string& GetExecutableName() const;
 
 	//! Will return the value given a key
-	const Value* operator[](const std::string& key);
+	const Value* operator[](const std::string& key) const;
 
 	//! Will check wether a parameter exists given a key, or not
 	bool HasParam(const std::string& key) const;
 
+	// Abbreviations
+	//! Will register an abbreviation (like -f for --force)
+	void RegisterAbbreviation(const std::string& abbrev, const std::string& target);
+
+	//! Will return the long form of an abbreviation (like --force for -f)
+	const std::string& GetAbbreviation(const std::string& abbrev) const;
+
+	//! Will check wether or not an abbreviation is registered
+	bool HasAbbreviation(const std::string& abbrev) const;
+
 private:
 	//! Will translate the c-like args to an std::vector
 	void PopulateRawArgs(const int argc, const char* const* argv);
+
+	//! Will replace all args matching an abbreviation with their long form (like -f for --force)
+	void ExpandAbbreviations();
 
 	//! Will parse the next parameter. Returns the index of the next parameter.
 	std::size_t ParseNextParameter(const std::size_t parIndex, Parameter*& out_Par);
@@ -33,6 +46,9 @@ private:
 
 	std::string executableName; //! The path of the executable. Always argv[0]
 	std::unordered_map<std::string, Parameter*> parameters;
+
+	// These are abbreviations. Like, -f for --force.
+	std::unordered_map<std::string, std::string> abbreviations;
 
 	std::vector<std::string> rawArgs;
 

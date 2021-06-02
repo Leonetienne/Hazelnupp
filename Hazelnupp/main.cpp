@@ -6,7 +6,7 @@
 int main(int argc, char** argv)
 {
 	std::string arg0 = "meinpfad";
-	std::string arg1 = "--word";
+	std::string arg1 = "-w";
 	std::string arg2 = "6669";
 	std::string arg3 = "--alfred";
 	std::string arg4 = "banane7";
@@ -19,11 +19,22 @@ int main(int argc, char** argv)
 		arg4.data()
 	};
 
-	Hazelnupp args(testArgv.size(), testArgv.data());
-	//Hazelnupp args(argc, argv);
+	Hazelnupp args;
 
-	int i = *(IntValue*)args["--word"];
-	std::cout << i << std::endl;
+	args.RegisterAbbreviation("-w", "--word");
+
+	//args.Parse(testArgv.size(), testArgv.data());
+	args.Parse(argc, argv);
+
+	if (args.HasParam("--word"))
+	{
+		int i = *(IntValue*)args["--word"];
+		std::cout << i << std::endl;
+	}
+	else
+	{
+		std::cout << "No --word!" << std::endl;
+	}
 
 	//std::cout << args.GetExecutableName() << std::endl;
 
