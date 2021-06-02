@@ -1,4 +1,5 @@
 #include "StringValue.h"
+#include "HazelnuppException.h"
 #include <sstream>
 
 StringValue::StringValue(const std::string& value)
@@ -35,22 +36,22 @@ StringValue::operator std::string() const
 
 long long int StringValue::GetInt64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 int StringValue::GetInt32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 long double StringValue::GetFloat64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 double StringValue::GetFloat32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 std::string StringValue::GetString() const
@@ -60,5 +61,5 @@ std::string StringValue::GetString() const
 
 const std::vector<Value*>& StringValue::GetList() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }

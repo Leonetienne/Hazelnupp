@@ -26,6 +26,13 @@ public:
 	HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
 };
 
+class HazelnuppValueNotConvertibleException : public HazelnuppException
+{
+public:
+	HazelnuppValueNotConvertibleException() : HazelnuppException() {};
+	HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
+};
+
 class HazelnuppConstraintException : public HazelnuppException
 {
 public:

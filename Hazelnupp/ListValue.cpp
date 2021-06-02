@@ -1,4 +1,5 @@
 #include "ListValue.h"
+#include "HazelnuppException.h"
 #include <sstream>
 
 ListValue::ListValue() :
@@ -65,27 +66,27 @@ ListValue::operator std::vector<Value*>() const
 
 long long int ListValue::GetInt64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 int ListValue::GetInt32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 long double ListValue::GetFloat64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 double ListValue::GetFloat32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 std::string ListValue::GetString() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 const std::vector<Value*>& ListValue::GetList() const

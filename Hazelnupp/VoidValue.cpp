@@ -1,4 +1,5 @@
 #include "VoidValue.h"
+#include "HazelnuppException.h"
 
 VoidValue::VoidValue()
 	:
@@ -21,30 +22,30 @@ std::string VoidValue::GetAsOsString() const
 
 long long int VoidValue::GetInt64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 int VoidValue::GetInt32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 long double VoidValue::GetFloat64() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 double VoidValue::GetFloat32() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 std::string VoidValue::GetString() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }
 
 const std::vector<Value*>& VoidValue::GetList() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }

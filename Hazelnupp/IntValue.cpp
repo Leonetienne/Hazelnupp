@@ -1,4 +1,5 @@
 #include "IntValue.h"
+#include "HazelnuppException.h"
 #include <sstream>
 
 IntValue::IntValue(const long long int& value)
@@ -68,5 +69,5 @@ std::string IntValue::GetString() const
 
 const std::vector<Value*>& IntValue::GetList() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }

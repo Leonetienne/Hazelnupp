@@ -1,4 +1,5 @@
 #include "FloatValue.h"
+#include "HazelnuppException.h"
 #include <sstream>
 
 FloatValue::FloatValue(const long double& value)
@@ -68,5 +69,5 @@ std::string FloatValue::GetString() const
 
 const std::vector<Value*>& FloatValue::GetList() const
 {
-	throw std::bad_cast();
+	throw HazelnuppValueNotConvertibleException();
 }

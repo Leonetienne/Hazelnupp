@@ -19,20 +19,20 @@ public:
 
 	operator std::string() const;
 
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	long long int GetInt64() const override;
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	int GetInt32() const override;
 
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	long double GetFloat64() const override;
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	double GetFloat32() const override;
 
 	//! Will return this value as a string
 	std::string GetString() const override;
 
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	const std::vector<Value*>& GetList() const override;
 
 private:

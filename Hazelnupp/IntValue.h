@@ -33,7 +33,7 @@ public:
 	//! Will return the data as a string
 	std::string GetString() const override;
 
-	//! Throws std::bad_cast
+	//! Throws HazelnuppValueNotConvertibleException
 	const std::vector<Value*>& GetList() const override;
 
 private:
