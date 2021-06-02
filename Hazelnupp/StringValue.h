@@ -6,6 +6,7 @@ class StringValue : public Value
 {
 public:
 	StringValue(const std::string& value);
+	~StringValue() override {};
 
 	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;

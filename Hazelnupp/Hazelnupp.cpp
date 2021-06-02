@@ -5,7 +5,6 @@
 #include "StringValue.h"
 #include "ListValue.h"
 #include "StringTools.h"
-#include <iostream>
 
 Hazelnupp::Hazelnupp()
 {
@@ -15,6 +14,16 @@ Hazelnupp::Hazelnupp()
 Hazelnupp::Hazelnupp(const int argc, const char* const* argv)
 {
 	Parse(argc, argv);
+	return;
+}
+
+Hazelnupp::~Hazelnupp()
+{
+	for (auto& it : parameters)
+		delete it.second;
+
+	parameters.clear();
+
 	return;
 }
 
@@ -42,8 +51,6 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 			i++;
 	}
 
-	std::cout << "Terminated." << std::endl;
-
 	return;
 }
 
@@ -64,17 +71,24 @@ std::size_t Hazelnupp::ParseNextParameter(const std::size_t parIndex, Parameter*
 		}
 
 	Value* parsedVal = ParseValue(values);
-	out_Par = new Parameter(key, parsedVal);
+	if (parsedVal != nullptr)
+	{
+		out_Par = new Parameter(key, parsedVal);
 
-	delete parsedVal;
-	parsedVal = nullptr;
+		delete parsedVal;
+		parsedVal = nullptr;
+	}
+	else
+		throw std::runtime_error("Unable to parse parameter!");
 
 	return i;
 }
 
 void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
 {
+	rawArgs.clear();
 	rawArgs.reserve(argc);
+	
 	for (int i = 0; i < argc; i++)
 		rawArgs.emplace_back(std::string(argv[i]));
 

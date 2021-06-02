@@ -6,6 +6,8 @@
 class Value
 {
 public:
+	virtual ~Value() {};
+
 	//! Will return a deeopopy of this object
 	virtual Value* Deepcopy() const = 0;
 

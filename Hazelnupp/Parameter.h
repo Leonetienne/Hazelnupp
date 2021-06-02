@@ -7,6 +7,7 @@ class Parameter
 {
 public:
 	explicit Parameter(const std::string& key, const Value* value);
+	~Parameter();
 	
 	//! Will return the key of this parameter
 	const std::string& Key() const;

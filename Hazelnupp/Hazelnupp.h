@@ -9,6 +9,8 @@ public:
 	Hazelnupp();
 	Hazelnupp(const int argc, const char* const* argv);
 
+	~Hazelnupp();
+
 	//! Will parse command line arguments
 	void Parse(const int argc, const char* const* argv);
 
@@ -51,7 +53,4 @@ private:
 	std::unordered_map<std::string, std::string> abbreviations;
 
 	std::vector<std::string> rawArgs;
-
-	// EvaluateValues
-	friend class ListValue;
 };

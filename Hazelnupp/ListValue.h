@@ -6,7 +6,7 @@ class ListValue : public Value
 {
 public:
 	ListValue();
-	~ListValue();
+	~ListValue() override;
 
 	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;

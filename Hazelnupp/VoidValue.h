@@ -5,6 +5,7 @@ class VoidValue : public Value
 {
 public:
 	VoidValue();
+	~VoidValue() override {};
 
 	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;

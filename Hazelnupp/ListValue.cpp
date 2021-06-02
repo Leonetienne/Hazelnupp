@@ -1,5 +1,4 @@
 #include "ListValue.h"
-#include "Hazelnupp.h"
 #include <sstream>
 
 ListValue::ListValue() :

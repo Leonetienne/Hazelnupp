@@ -8,6 +8,14 @@ Parameter::Parameter(const std::string& key, const ::Value* value)
 	return;
 }
 
+Parameter::~Parameter()
+{
+	delete value;
+	value = nullptr;
+
+	return;
+}
+
 const std::string& Parameter::Key() const
 {
 	return key;

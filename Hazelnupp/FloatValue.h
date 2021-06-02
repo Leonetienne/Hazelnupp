@@ -6,6 +6,7 @@ class FloatValue : public Value
 {
 public:
 	FloatValue(const long double& value);
+	~FloatValue() override {};
 
 	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;

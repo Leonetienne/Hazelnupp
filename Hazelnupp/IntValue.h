@@ -5,6 +5,7 @@ class IntValue : public Value
 {
 public:
 	IntValue(const long long int& value);
+	~IntValue() override {};
 
 	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;
