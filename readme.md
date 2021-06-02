@@ -25,6 +25,16 @@ Hazelnupp args;
 args.SetCrashOnFail(false);
 ```
 
+## Importing into a project
+> How do i actually import this into my existing project?
+
+I am working on a proper way to make this a fast-and-easy include.  
+I am probably going to make it a single-header--single-cpp file solution.
+A namespace will obviously also be used.  
+  
+If you want to use it NOW, the best idea would probably be to either compile a lib from source
+or set the entire Visual Studio project as a dependency, if you are using VS.
+
 ## What's the concept?
 The concept is that each parameter must be one of five types. These are:
 * Void
@@ -106,7 +116,7 @@ int main(int argc, char** argv)
 {
 	Hazelnupp args(argc, argv);
 
-	const auto& myList = args["--my-list"]->GetList(); // std::vector<Value*>
+	const auto& myList = args["--my-list.GetList(); // std::vector<Value*>
 	
 	for (const auto* it : myList)
 	{
