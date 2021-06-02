@@ -35,3 +35,38 @@ FloatValue::operator double() const
 {
 	return (double)value;
 }
+
+
+
+long long int FloatValue::GetInt64() const
+{
+	return (long long int)value;
+}
+
+int FloatValue::GetInt32() const
+{
+	return (int)value;
+}
+
+long double FloatValue::GetFloat64() const
+{
+	return value;
+}
+
+double FloatValue::GetFloat32() const
+{
+	return (double)value;
+}
+
+std::string FloatValue::GetString() const
+{
+	std::stringstream ss;
+	ss << value;
+
+	return ss.str();
+}
+
+const std::vector<Value*>& FloatValue::GetList() const
+{
+	throw std::bad_cast();
+}

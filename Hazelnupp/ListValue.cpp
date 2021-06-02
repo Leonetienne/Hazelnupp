@@ -60,3 +60,35 @@ ListValue::operator std::vector<Value*>() const
 {
 	return value;
 }
+
+
+
+long long int ListValue::GetInt64() const
+{
+	throw std::bad_cast();
+}
+
+int ListValue::GetInt32() const
+{
+	throw std::bad_cast();
+}
+
+long double ListValue::GetFloat64() const
+{
+	throw std::bad_cast();
+}
+
+double ListValue::GetFloat32() const
+{
+	throw std::bad_cast();
+}
+
+std::string ListValue::GetString() const
+{
+	throw std::bad_cast();
+}
+
+const std::vector<Value*>& ListValue::GetList() const
+{
+	return value;
+}

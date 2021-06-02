@@ -22,21 +22,21 @@ public:
 		return os << v.GetAsOsString();
 	}
 
-	//! Will attempt to return the integer data (long long), if the type matches
-	long long int GetInt64() const;
-	//! Will attempt to return the integer data (int), if the type matches
-	int GetInt32() const;
+	//! Will attempt to return the integer data (long long)
+	virtual long long int GetInt64() const = 0;
+	//! Will attempt to return the integer data (int)
+	virtual int GetInt32() const = 0;
 
-	//! Will attempt to return the floating-point data (long double), if the type matches
-	long double GetFloat64() const;
-	//! Will attempt to return the floating-point data (double), if the type matches
-	double GetFloat32() const;
+	//! Will attempt to return the floating-point data (long double)
+	virtual long double GetFloat64() const = 0;
+	//! Will attempt to return the floating-point data (double)
+	virtual double GetFloat32() const = 0;
 
-	//! Will attempt to return the string-data, if the type matches
-	const std::string& GetString() const;
+	//! Will attempt to return the string-data
+	virtual std::string GetString() const = 0;
 
-	//! Will attempt to return the list-data, if the type matches
-	const std::vector<Value*>& GetList() const;
+	//! Will attempt to return the list-data
+	virtual const std::vector<Value*>& GetList() const = 0;
 
 protected:
 	Value(DATA_TYPE type);

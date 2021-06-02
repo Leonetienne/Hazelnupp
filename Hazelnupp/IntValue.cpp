@@ -35,3 +35,38 @@ IntValue::operator int() const
 {
 	return (int)value;
 }
+
+
+
+long long int IntValue::GetInt64() const
+{
+	return value;
+}
+
+int IntValue::GetInt32() const
+{
+	return (int)value;
+}
+
+long double IntValue::GetFloat64() const
+{
+	return (long double)value;
+}
+
+double IntValue::GetFloat32() const
+{
+	return (double)value;
+}
+
+std::string IntValue::GetString() const
+{
+	std::stringstream ss;
+	ss << value;
+
+	return ss.str();
+}
+
+const std::vector<Value*>& IntValue::GetList() const
+{
+	throw std::bad_cast();
+}

@@ -20,6 +20,22 @@ public:
 	operator long double () const;
 	operator double() const;
 
+	//! Will return the data as a long long int
+	long long int GetInt64() const override;
+	//! Will return the data as an int
+	int GetInt32() const override;
+
+	//! Will return the data as a long double
+	long double GetFloat64() const override;
+	//! Will return the data as a double
+	double GetFloat32() const override;
+
+	//! Will return the data as a string
+	std::string GetString() const override;
+
+	//! Throws std::bad_cast
+	const std::vector<Value*>& GetList() const override;
+
 private:
 	long double value;
 };

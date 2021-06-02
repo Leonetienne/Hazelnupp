@@ -22,6 +22,22 @@ public:
 
 	operator std::vector<Value*>() const;
 
+	//! Throws std::bad_cast
+	long long int GetInt64() const override;
+	//! Throws std::bad_cast
+	int GetInt32() const override;
+
+	//! Throws std::bad_cast
+	long double GetFloat64() const override;
+	//! Throws std::bad_cast
+	double GetFloat32() const override;
+
+	//! Throws std::bad_cast
+	std::string GetString() const override;
+
+	//! Will return this values list
+	const std::vector<Value*>& GetList() const override;
+
 private:
 	std::vector<Value*> value;
 };

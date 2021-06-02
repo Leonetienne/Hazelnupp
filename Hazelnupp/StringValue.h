@@ -19,6 +19,22 @@ public:
 
 	operator std::string() const;
 
+	//! Throws std::bad_cast
+	long long int GetInt64() const override;
+	//! Throws std::bad_cast
+	int GetInt32() const override;
+
+	//! Throws std::bad_cast
+	long double GetFloat64() const override;
+	//! Throws std::bad_cast
+	double GetFloat32() const override;
+
+	//! Will return this value as a string
+	std::string GetString() const override;
+
+	//! Throws std::bad_cast
+	const std::vector<Value*>& GetList() const override;
+
 private:
 	std::string value;
 };

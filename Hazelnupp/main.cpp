@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 		std::vector<const char*> testArgv = {
 			"meinpfad",
 			"-w",
-			"hallo",
+			"123",
 			"--alfred",
 			"apfel",
 			"banane",
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 		
 		if (args.HasParam("--word"))
 		{
-			std::cout << *args["--word"] << std::endl;
+			std::cout << args["--word"]->GetString() << std::endl;
 		}
 		else
 		{
