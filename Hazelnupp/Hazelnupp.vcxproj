@@ -145,6 +145,7 @@
     <ClCompile Include="ListValue.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parameter.cpp" />
+    <ClCompile Include="StringTools.cpp" />
     <ClCompile Include="StringValue.cpp" />
     <ClCompile Include="Value.cpp" />
     <ClCompile Include="VoidValue.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="ListValue.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="DataType.h" />
+    <ClInclude Include="StringTools.h" />
     <ClInclude Include="StringValue.h" />
     <ClInclude Include="Value.h" />
     <ClInclude Include="VoidValue.h" />
