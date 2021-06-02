@@ -43,6 +43,13 @@ public:
 	//! Will delete all constraints
 	void ClearConstraints();
 
+	//! Sets whether to crash the application, and print to stderr, when an exception is 
+	//! raised whilst parsing, or not.
+	void SetCrashOnFail(bool crashOnFail);
+
+	//! Gets whether the application crashes on an exception whilst parsing, and prints to stderr.
+	bool GetCrashOnFail() const;
+
 private:
 	//! Will translate the c-like args to an std::vector
 	void PopulateRawArgs(const int argc, const char* const* argv);
@@ -72,4 +79,7 @@ private:
 	std::unordered_map<std::string, ParamConstraint> constraints;
 
 	std::vector<std::string> rawArgs;
+
+	//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
+	bool crashOnFail = true;
 };

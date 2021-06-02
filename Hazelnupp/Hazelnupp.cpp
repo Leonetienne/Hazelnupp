@@ -62,13 +62,23 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 	}
 	catch (const HazelnuppConstraintTypeMissmatch& hctm)
 	{
-		std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
-		quick_exit(-1009);
+		if (crashOnFail)
+		{
+			std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
+			quick_exit(-1009);
+		}
+		else
+			throw hctm; // yeet
 	}
 	catch (const HazelnuppConstraintMissingValue& hctm)
 	{
-		std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
-		quick_exit(-1010);
+		if (crashOnFail)
+		{
+			std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
+			quick_exit(-1010);
+		}
+		else
+			throw hctm; // yeet
 	}
 
 	return;
@@ -259,6 +269,11 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	return nullptr;
 }
 
+bool Hazelnupp::GetCrashOnFail() const
+{
+	return crashOnFail;
+}
+
 void Hazelnupp::ApplyConstraints()
 {
 	// Enforce required parameters / default values
@@ -353,6 +368,12 @@ void Hazelnupp::RegisterConstraints(const std::vector<ParamConstraint>& constrai
 void Hazelnupp::ClearConstraints()
 {
 	constraints.clear();
+	return;
+}
+
+void Hazelnupp::SetCrashOnFail(bool crashOnFail)
+{
+	this->crashOnFail = crashOnFail;
 	return;
 }
 
