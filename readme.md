@@ -85,7 +85,7 @@ int main(int argc, char** argv)
 	// Either check via HasParam(), or do a try-catch
 	try
 	{
-		int myInt              = args["--my-int"].GetInt32();
+		int myInt          = args["--my-int"].GetInt32();
 		double myInt       = args["--my-float"].GetFloat32();
 		std::string myStr  = args["--my-string"].GetString();
 	}
@@ -184,7 +184,7 @@ These conversions are:
 * float ->[int, string, list]
 * string -> [list],
 
-The conversions 'to list' just create a list with a single entry.
+The conversions 'to-list' just create a list with a single entry.
 
 Minimal working example:
 ```cpp
@@ -196,7 +196,7 @@ int main(int argc, char** argv)
 	
 	// Register constraints
 	args.RegisterConstraints({
-			ParamConstraint::TypeSafety("--this-must-be-int", DATA_TYPE::INT)
+		ParamConstraint::TypeSafety("--this-must-be-int", DATA_TYPE::INT)
 	});
 	
 	// Parse
@@ -210,7 +210,7 @@ If it was passed, for example, as a string, it would throw an exception.
 
 ---
 Note that you can also combine these two constraint-types by populating the struct yourself:
-```
+```cpp
 ParamConstraint pc;
 pc.key = "--my-key";
 pc.constrainType = true;
