@@ -6,6 +6,7 @@ int main(int argc, char** argv)
 {
 	while (1)
 	{
+		// Mock command-line params
 		std::vector<const char*> testArgv = {
 			"meinpfad",
 			"-w",
@@ -22,6 +23,10 @@ int main(int argc, char** argv)
 			"5",
 		};
 
+		argc = testArgv.size();
+		argv = const_cast<char**>(testArgv.data());
+
+		// Prepare Hazelnupp parser
 		Hazelnupp args;
 
 		ParamConstraint pc;
@@ -37,9 +42,10 @@ int main(int argc, char** argv)
 
 		args.RegisterAbbreviation("-w", "--word");
 
-		args.Parse(testArgv.size(), testArgv.data());
-		//args.Parse(argc, argv);
+		// Parse
+		args.Parse(argc, argv);
 		
+		// Use
 		if (args.HasParam("--alfredo"))
 		{
 			std::cout << args["--alfredo"] << std::endl;

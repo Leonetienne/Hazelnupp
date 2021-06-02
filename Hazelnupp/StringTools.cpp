@@ -79,13 +79,9 @@ bool StringTools::IsNumeric(const std::string& str, const bool allowDecimalPoint
 
 bool StringTools::ParseNumber(const std::string& str, bool& out_isInt, long double& out_number)
 {
-    bool isNormalNum = true;
-
-    bool isNegative = false;
     bool isDecimal = false;
 
     if (str.length() == 0) return false;
-    if (str[0] == '-') isNegative = true;
     if (Contains(str, '.')) isDecimal = true;
 
     if (isDecimal)
@@ -95,11 +91,11 @@ bool StringTools::ParseNumber(const std::string& str, bool& out_isInt, long doub
             out_number = std::stold(str);
             out_isInt = false;
         }
-        catch (std::invalid_argument)
+        catch (std::invalid_argument&)
         {
             return false;
         }
-        catch (std::out_of_range)
+        catch (std::out_of_range&)
         {
             return false;
         }
@@ -111,11 +107,11 @@ bool StringTools::ParseNumber(const std::string& str, bool& out_isInt, long doub
             out_number = (long double)std::stoll(str);
             out_isInt = true;
         }
-        catch (std::invalid_argument)
+        catch (std::invalid_argument&)
         {
             return false;
         }
-        catch (std::out_of_range)
+        catch (std::out_of_range&)
         {
             return false;
         }

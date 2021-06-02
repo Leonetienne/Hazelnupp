@@ -60,12 +60,12 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 		// Types have already been enforced.
 		ApplyConstraints();
 	}
-	catch (HazelnuppConstraintTypeMissmatch hctm)
+	catch (const HazelnuppConstraintTypeMissmatch& hctm)
 	{
 		std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
 		quick_exit(-1009);
 	}
-	catch (HazelnuppConstraintMissingValue hctm)
+	catch (const HazelnuppConstraintMissingValue& hctm)
 	{
 		std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
 		quick_exit(-1010);
