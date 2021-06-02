@@ -163,8 +163,8 @@ int main(int argc, char** argv)
 	
 	// Register constraints
 	args.RegisterConstraints({
-			ParamConstraint::Require("--this-is-required"), // This missing throws an exception
-			ParamConstraint::Require("--also-required-but-defaulted", {"122"}), // This will default to 122
+		ParamConstraint::Require("--this-is-required"), // This missing throws an exception
+		ParamConstraint::Require("--also-required-but-defaulted", {"122"}), // This will default to 122
 	});
 	
 	// Parse
