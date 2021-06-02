@@ -28,7 +28,8 @@ private:
 	//! Will parse the next parameter. Returns the index of the next parameter.
 	std::size_t ParseNextParameter(const std::size_t parIndex, Parameter*& out_Par);
 
-	Value* EvaluateValues(const std::vector<std::string>& values);
+	//! Will convert a vector of string-values to an actual Value
+	Value* ParseValue(const std::vector<std::string>& values);
 
 	std::string executableName; //! The path of the executable. Always argv[0]
 	std::unordered_map<std::string, Parameter*> parameters;
