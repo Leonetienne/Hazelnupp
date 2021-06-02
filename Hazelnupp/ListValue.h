@@ -17,6 +17,9 @@ public:
 	//! Will add this value to the list
 	void AddValue(const Value* value);
 
+	//! Will return the raw value
+	const std::vector<Value*>& GetValue() const;
+
 	operator std::vector<Value*>() const;
 
 private:

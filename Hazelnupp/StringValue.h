@@ -13,6 +13,9 @@ public:
 	//! Will return a string suitable for an std::ostream;
 	std::string GetAsOsString() const override;
 
+	//! Will return the raw value
+	const std::string& GetValue() const;
+
 	operator std::string() const;
 
 private:

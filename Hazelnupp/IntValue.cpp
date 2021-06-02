@@ -21,14 +21,14 @@ std::string IntValue::GetAsOsString() const
 	return ss.str();
 }
 
-IntValue::operator long long int() const
+const long long int& IntValue::GetValue() const
 {
 	return value;
 }
 
-IntValue::operator long int() const
+IntValue::operator long long int() const
 {
-	return (long int)value;
+	return value;
 }
 
 IntValue::operator int() const

@@ -28,7 +28,7 @@ int main(int argc, char** argv)
 
 	if (args.HasParam("--word"))
 	{
-		int i = *(IntValue*)args["--word"];
+		int i = args["--word"]->GetInt32();
 		std::cout << i << std::endl;
 	}
 	else

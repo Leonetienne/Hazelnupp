@@ -21,6 +21,11 @@ std::string StringValue::GetAsOsString() const
 	return ss.str();
 }
 
+const std::string& StringValue::GetValue() const
+{
+	return value;
+}
+
 StringValue::operator std::string() const
 {
 	return value;

@@ -12,8 +12,10 @@ public:
 	//! Will return a string suitable for an std::ostream;
 	std::string GetAsOsString() const override;
 
+	//! Will return the raw value
+	const long long int& GetValue() const;
+
 	operator long long int() const;
-	operator long int() const;
 	operator int() const;
 
 private:

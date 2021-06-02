@@ -13,6 +13,9 @@ public:
 	//! Will return a string suitable for an std::ostream;
 	std::string GetAsOsString() const override;
 
+	//! Will return the raw value
+	const long double& GetValue() const;
+
 	operator long double () const;
 	operator double() const;
 

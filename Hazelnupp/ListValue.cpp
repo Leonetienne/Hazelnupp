@@ -34,6 +34,11 @@ void ListValue::AddValue(const Value* value)
 	return;
 }
 
+const std::vector<Value*>& ListValue::GetValue() const
+{
+	return value;
+}
+
 std::string ListValue::GetAsOsString() const
 {
 	std::stringstream ss;

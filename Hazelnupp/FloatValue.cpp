@@ -21,6 +21,11 @@ std::string FloatValue::GetAsOsString() const
 	return ss.str();
 }
 
+const long double& FloatValue::GetValue() const
+{
+	return value;
+}
+
 FloatValue::operator long double() const
 {
 	return value;
