@@ -6,13 +6,36 @@
 struct ParamConstraint
 {
 public:
+	//! Empty constructor
 	ParamConstraint() = default;
+
+	//! Whole constructor
 	ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
 		:
 		key { key },
 		constrainType { constrainType },
 		wantedType { wantedType },
 		defaultValue { defaultValue },
+		required{ required }
+	{
+		return;
+	}
+
+	//! Type-Constraint constructor
+	ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType)
+		:
+		key{ key },
+		constrainType{ constrainType },
+		wantedType{ wantedType }
+	{
+		return;
+	}
+
+	//! Require-Constraint constructor
+	ParamConstraint(const std::string& key, const std::vector<std::string>& defaultValue, bool required = false)
+		:
+		key{ key },
+		defaultValue{ defaultValue },
 		required{ required }
 	{
 		return;
