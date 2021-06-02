@@ -225,6 +225,13 @@ args.RegisterConstraints({pc});
 Check out the unit tests! They may help you out!  
 Also make sure to check out the [doxygen docs](https://www.google.de/search?q=doxygen%20TBD)!
 
+## Further notes
+This is still in alpha! There is no guarantee at all that this actually works.  
+Whilst i did my best do make sure it does, i bet there are still a few flaws i did overlook.  
+Please know that i am not obliged to work on fixes. I do have other stuff to do.
+This does not mean that i won't do it, but i'm not sure when.  
+Feel free to submit a PR if you fixed something :)
+
 ## What is not supported?
 Chaining abbreviated parameters, like this:
 ```
