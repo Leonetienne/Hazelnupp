@@ -19,6 +19,8 @@ protected:
 	std::string message;
 };
 
+/** Gets thrown when an non-existent key gets dereferenced
+*/
 class HazelnuppInvalidKeyException : public HazelnuppException
 {
 public:
@@ -26,6 +28,8 @@ public:
 	HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
 };
 
+/** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible
+*/
 class HazelnuppValueNotConvertibleException : public HazelnuppException
 {
 public:
@@ -33,6 +37,8 @@ public:
 	HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
 };
 
+/** Gets thrown something bad happens because of parameter constraints
+*/
 class HazelnuppConstraintException : public HazelnuppException
 {
 public:
@@ -40,6 +46,8 @@ public:
 	HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
 };
 
+/** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it
+*/
 class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
 {
 public:
@@ -47,6 +55,8 @@ public:
 	HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
 };
 
+/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
+*/
 class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
 {
 public:
