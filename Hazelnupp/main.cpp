@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 		std::vector<const char*> testArgv = {
 			"meinpfad",
 			"-w",
-			"123",
+			"-99",
 			"--alfred",
 			"apfel",
 			"banane",
@@ -24,6 +24,16 @@ int main(int argc, char** argv)
 
 		Hazelnupp args;
 
+		ParamConstraint pc;
+		pc.key = "--word";
+		pc.constrainType = true;
+		pc.wantedType = DATA_TYPE::INT;
+		pc.required = true;
+
+		args.AddConstraints({
+			pc
+		});
+
 		args.RegisterAbbreviation("-w", "--word");
 
 		args.Parse(testArgv.size(), testArgv.data());
@@ -31,7 +41,7 @@ int main(int argc, char** argv)
 		
 		if (args.HasParam("--word"))
 		{
-			std::cout << args["--word"]->GetString() << std::endl;
+			std::cout << *args["--word"] << std::endl;
 		}
 		else
 		{

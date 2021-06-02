@@ -1,5 +1,6 @@
 #pragma once
 #include "Parameter.h"
+#include "ParamConstraint.h"
 #include <unordered_map>
 #include <vector>
 
@@ -33,6 +34,8 @@ public:
 	//! Will check wether or not an abbreviation is registered
 	bool HasAbbreviation(const std::string& abbrev) const;
 
+	void AddConstraints(const std::vector<ParamConstraint>& constraints);
+
 private:
 	//! Will translate the c-like args to an std::vector
 	void PopulateRawArgs(const int argc, const char* const* argv);
@@ -44,13 +47,22 @@ private:
 	std::size_t ParseNextParameter(const std::size_t parIndex, Parameter*& out_Par);
 
 	//! Will convert a vector of string-values to an actual Value
-	Value* ParseValue(const std::vector<std::string>& values);
+	Value* ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint = nullptr);
+
+	//! Will apply the loaded constraints on the loaded values.
+	void ApplyConstraints();
+
+	//! Will return a pointer to a paramConstraint given a key. If there is no, it returns nullptr
+	const ParamConstraint* GetConstraintForKey(const std::string& key) const;
 
 	std::string executableName; //! The path of the executable. Always argv[0]
 	std::unordered_map<std::string, Parameter*> parameters;
 
 	// These are abbreviations. Like, -f for --force.
 	std::unordered_map<std::string, std::string> abbreviations;
+
+	// Parameter constraints, mapped to keys
+	std::unordered_map<std::string, ParamConstraint> constraints;
 
 	std::vector<std::string> rawArgs;
 };

@@ -153,8 +153,10 @@
   <ItemGroup>
     <ClInclude Include="FloatValue.h" />
     <ClInclude Include="Hazelnupp.h" />
+    <ClInclude Include="HazelnuppException.h" />
     <ClInclude Include="IntValue.h" />
     <ClInclude Include="ListValue.h" />
+    <ClInclude Include="ParamConstraint.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="DataType.h" />
     <ClInclude Include="StringTools.h" />

@@ -4,6 +4,7 @@
 #include "FloatValue.h"
 #include "StringValue.h"
 #include "ListValue.h"
+#include "HazelnuppException.h"
 #include "StringTools.h"
 
 Hazelnupp::Hazelnupp()
@@ -70,7 +71,10 @@ std::size_t Hazelnupp::ParseNextParameter(const std::size_t parIndex, Parameter*
 			break;
 		}
 
-	Value* parsedVal = ParseValue(values);
+	// Fetch constraint info
+	const ParamConstraint* pcn = GetConstraintForKey(key);
+
+	Value* parsedVal = ParseValue(values, pcn);
 	if (parsedVal != nullptr)
 	{
 		out_Par = new Parameter(key, parsedVal);
@@ -116,10 +120,20 @@ bool Hazelnupp::HasParam(const std::string& key) const
 	return parameters.find(key) != parameters.end();
 }
 
-Value* Hazelnupp::ParseValue(const std::vector<std::string>& values)
+Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint)
 {
+	// Constraint values
+	const bool constrainType = (constraint != nullptr) && (constraint->constrainType);
+
 	// Void-type
 	if (values.size() == 0)
+	{
+		return new VoidValue;
+	}
+
+	// Force void type by constraint
+	if ((constrainType) &&
+		(constraint->wantedType == DATA_TYPE::VOID))
 	{
 		return new VoidValue;
 	}
@@ -127,10 +141,17 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values)
 	// List-type
 	else if (values.size() > 1)
 	{
+		// Should the type be something other than list?
+		if ((constrainType) &&
+			(constraint->wantedType != DATA_TYPE::LIST))
+		{
+			throw HazelnutConstraintMissmatch();
+		}
+
 		ListValue* newList = new ListValue();
 		for (const std::string& val : values)
 		{
-			Value* tmp = ParseValue(std::vector<std::string>({ val }));
+			Value* tmp = ParseValue({ val });
 			newList->AddValue(tmp);
 			delete tmp;
 		}
@@ -142,6 +163,34 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values)
 	
 	// String
 	if (!StringTools::IsNumeric(val, true))
+	{
+		// Is the type not supposed to be a string?
+		// void and list are already sorted out
+		if ((constrainType) &&
+			(constraint->wantedType != DATA_TYPE::STRING))
+		{
+			// We can only force a list-value from here
+			if (constraint->wantedType == DATA_TYPE::LIST)
+			{
+				ListValue* list = new ListValue();
+				Value* tmp = ParseValue({ val });
+				list->AddValue(tmp);
+				delete tmp;
+				tmp = nullptr;
+				return list;
+			}
+			// Else it not possible to convert to a numeric
+			else
+				throw HazelnutConstraintMissmatch();
+		}
+
+		return new StringValue(val);
+	}
+
+	// In this case we have a numeric value.
+	// We should still produce a string if requested
+	if ((constrainType) &&
+		(constraint->wantedType == DATA_TYPE::STRING))
 		return new StringValue(val);
 
 	// Numeric
@@ -150,12 +199,37 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values)
 	
 	if (StringTools::ParseNumber(val, isInt, num))
 	{
-		// Integer
-		if (isInt)
-			return new IntValue((long long int)num);
+		// Is the type constrained?
+		// (only int and float left)
+		if (constrainType)
+		{
+			// Must it be an integer?
+			if (constraint->wantedType == DATA_TYPE::INT)
+				return new IntValue((long long int)num);
+			// Must it be a floating point?
+			else if (constraint->wantedType == DATA_TYPE::FLOAT)
+				return new FloatValue(num);
+			// Else it must be a List
+			else
+			{
+				ListValue* list = new ListValue();
+				Value* tmp = ParseValue({ val });
+				list->AddValue(tmp);
+				delete tmp;
+				tmp = nullptr;
+				return list;
+			}
+		}
+		// Type is not constrained
+		else
+		{
+			// Integer
+			if (isInt)
+				return new IntValue((long long int)num);
 
-		// Double
-		return new FloatValue(num);
+			// Double
+			return new FloatValue(num);
+		}
 	}
 
 	// Failed
@@ -186,4 +260,23 @@ const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
 bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
 {
 	return abbreviations.find(abbrev) != abbreviations.end();
+}
+
+void Hazelnupp::AddConstraints(const std::vector<ParamConstraint>& constraints)
+{
+	for (const ParamConstraint& pc : constraints)
+		this->constraints.insert(std::pair<std::string, ParamConstraint>(
+			pc.key,
+			pc
+		));
+}
+
+const ParamConstraint* Hazelnupp::GetConstraintForKey(const std::string& key) const
+{
+	const auto constraint = constraints.find(key);
+
+	if (constraint == constraints.end())
+		return nullptr;
+
+	return &constraint->second;
 }
