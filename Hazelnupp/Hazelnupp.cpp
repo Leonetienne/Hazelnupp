@@ -120,6 +120,10 @@ void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
 
 void Hazelnupp::ExpandAbbreviations()
 {
+	// Abort if no abbreviations
+	if (abbreviations.size() == 0)
+		return;
+
 	for (std::string& arg : rawArgs)
 	{
 		// Is arg registered as an abbreviation?
