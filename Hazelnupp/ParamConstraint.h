@@ -9,6 +9,28 @@ public:
 	//! Empty constructor
 	ParamConstraint() = default;
 
+	//! Constructs a require constraint
+	static ParamConstraint Require(const std::string& key, const std::vector<std::string>& defaultValue = {}, bool required = true)
+	{
+		ParamConstraint pc;
+		pc.key = key;
+		pc.defaultValue = defaultValue;
+		pc.required = required;
+
+		return pc;
+	}
+
+	//! Constructs a type-safety constraint
+	static ParamConstraint TypeSafety(const std::string& key, DATA_TYPE wantedType, bool constrainType = true)
+	{
+		ParamConstraint pc;
+		pc.key = key;
+		pc.constrainType = constrainType;
+		pc.wantedType = wantedType;
+
+		return pc;
+	}
+
 	//! Whole constructor
 	ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
 		:
@@ -16,26 +38,6 @@ public:
 		constrainType { constrainType },
 		wantedType { wantedType },
 		defaultValue { defaultValue },
-		required{ required }
-	{
-		return;
-	}
-
-	//! Type-Constraint constructor
-	ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType)
-		:
-		key{ key },
-		constrainType{ constrainType },
-		wantedType{ wantedType }
-	{
-		return;
-	}
-
-	//! Require-Constraint constructor
-	ParamConstraint(const std::string& key, const std::vector<std::string>& defaultValue, bool required = false)
-		:
-		key{ key },
-		defaultValue{ defaultValue },
 		required{ required }
 	{
 		return;

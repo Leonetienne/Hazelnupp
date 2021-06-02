@@ -48,7 +48,7 @@ int main(int argc, char** argv)
 		// Use
 		if (args.HasParam("--alfredo"))
 		{
-			std::cout << args["--alfredo"] << std::endl;
+			std::cout << args["--alfredo"].GetInt32() << std::endl;
 		}
 		else
 		{

@@ -18,9 +18,6 @@
     <ClInclude Include="helper.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Constraints.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Basics.cpp">
