@@ -161,6 +161,11 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	// Void-type
 	if (values.size() == 0)
 	{
+		// Is a list forced via a constraint? If yes, return an empty list
+		if ((constrainType) &&
+			(constraint->wantedType == DATA_TYPE::LIST))
+			return new ListValue();
+
 		return new VoidValue;
 	}
 

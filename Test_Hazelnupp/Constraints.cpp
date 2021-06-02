@@ -19,7 +19,7 @@ namespace TestHazelnupp
 				"/my/fake/path/wahoo.out",
 				"--dummy",
 				"123"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp;
@@ -30,7 +30,7 @@ namespace TestHazelnupp
 				ParamConstraint::Require("--federich-float", {"420.69"}),
 				ParamConstraint::Require("--siegbert-string", {"banana"}),
 				ParamConstraint::Require("--lieber-liste", {"banana", "apple", "59"})
-				});
+			});
 
 			nupp.Parse(C_Ify(args));
 
@@ -73,7 +73,7 @@ namespace TestHazelnupp
 				"banana",
 				"apple",
 				"59"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp;
@@ -84,7 +84,7 @@ namespace TestHazelnupp
 				ParamConstraint::Require("--federich-float", {"-199.44"}),
 				ParamConstraint::Require("--siegbert-string", {"bornana"}),
 				ParamConstraint::Require("--lieber-liste", {"bornana", "ollpe", "5"})
-				});
+			});
 
 			nupp.Parse(C_Ify(args));
 
@@ -129,7 +129,7 @@ namespace TestHazelnupp
 				"9",
 				"--force",
 				"plsdontuseme"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp;
@@ -142,7 +142,7 @@ namespace TestHazelnupp
 				ParamConstraint::TypeSafety("--fav-fruits", DATA_TYPE::LIST),
 				ParamConstraint::TypeSafety("--indices", DATA_TYPE::LIST),
 				ParamConstraint::TypeSafety("--force", DATA_TYPE::VOID),
-				});
+			});
 
 			nupp.Parse(C_Ify(args));
 
@@ -189,7 +189,7 @@ namespace TestHazelnupp
 				"banana",
 				"apple",
 				"59"
-				});
+			});
 
 			Assert::ExpectException<HazelnuppConstraintMissingValue>(
 				[args]
@@ -203,7 +203,7 @@ namespace TestHazelnupp
 
 					nupp.Parse(C_Ify(args));
 				}
-				);
+			);
 
 			return;
 		}
@@ -226,7 +226,7 @@ namespace TestHazelnupp
 				"banana",
 				"apple",
 				"59"
-				});
+			});
 
 			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>(
 				[args]
@@ -236,11 +236,83 @@ namespace TestHazelnupp
 
 					nupp.RegisterConstraints({
 						ParamConstraint::TypeSafety("--elenor-int", DATA_TYPE::INT),
-						});
+					});
 
 					nupp.Parse(C_Ify(args));
 				}
-				);
+			);
+
+			return;
+		}
+
+		// Tests that everything can be converted to void
+		TEST_METHOD(Weird_Load_Conversions_ToVoid)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--void1",
+				"--void2",
+				"12",
+				"--void3",
+				"9.5",
+				"--void4",
+				"hello",
+				"--void5",
+				"foo",
+				"baz"
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraints({
+				ParamConstraint::TypeSafety("--void1", DATA_TYPE::VOID),
+				ParamConstraint::TypeSafety("--void2", DATA_TYPE::VOID),
+				ParamConstraint::TypeSafety("--void3", DATA_TYPE::VOID),
+				ParamConstraint::TypeSafety("--void4", DATA_TYPE::VOID),
+				ParamConstraint::TypeSafety("--void5", DATA_TYPE::VOID)
+			});
+
+
+			// Exercise
+			nupp.Parse(C_Ify(args));
+
+			// Verify
+			Assert::IsTrue(nupp["--void1"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(nupp["--void2"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(nupp["--void3"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(nupp["--void4"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(nupp["--void5"].GetDataType() == DATA_TYPE::VOID);
+
+			return;
+		}
+
+		// Tests that everything a void can be converted to an empty list
+		TEST_METHOD(Weird_Load_Conversions_VoidToEmptyList)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-list",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraints({
+				ParamConstraint::TypeSafety("--empty-list", DATA_TYPE::LIST),
+			});
+
+
+			// Exercise
+			nupp.Parse(C_Ify(args));
+
+			// Verify
+			Assert::IsTrue(nupp["--empty-list"].GetDataType() == DATA_TYPE::LIST);
+			Assert::AreEqual(std::size_t(0), nupp["--empty-list"].GetList().size());
 
 			return;
 		}
