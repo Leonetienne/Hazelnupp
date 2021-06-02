@@ -34,7 +34,14 @@ public:
 	//! Will check wether or not an abbreviation is registered
 	bool HasAbbreviation(const std::string& abbrev) const;
 
-	void AddConstraints(const std::vector<ParamConstraint>& constraints);
+	//! Will delete all abbreviations
+	void ClearAbbreviations();
+
+	//! Will register parameter constraints
+	void RegisterConstraints(const std::vector<ParamConstraint>& constraints);
+
+	//! Will delete all constraints
+	void ClearConstraints();
 
 private:
 	//! Will translate the c-like args to an std::vector
@@ -49,7 +56,7 @@ private:
 	//! Will convert a vector of string-values to an actual Value
 	Value* ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint = nullptr);
 
-	//! Will apply the loaded constraints on the loaded values.
+	//! Will apply the loaded constraints on the loaded values, exluding types.
 	void ApplyConstraints();
 
 	//! Will return a pointer to a paramConstraint given a key. If there is no, it returns nullptr

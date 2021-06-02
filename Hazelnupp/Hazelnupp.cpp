@@ -52,6 +52,10 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 			i++;
 	}
 
+	// Apply constraints such as default values, and required parameters.
+	// Types have already been enforced.
+	ApplyConstraints();
+
 	return;
 }
 
@@ -236,6 +240,40 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	return nullptr;
 }
 
+void Hazelnupp::ApplyConstraints()
+{
+	// Enforce required parameters / default values
+	for (const auto& pc : constraints)
+		// Parameter in question is not supplied
+		if (!HasParam(pc.second.key))
+		{
+			// Do we have a default value?
+			if (pc.second.defaultValue.size() > 0)
+			{
+				// Then create it now, by its default value
+
+				Value* tmp = ParseValue(pc.second.defaultValue, &pc.second);
+				parameters.insert(std::pair<std::string, Parameter*>(
+					pc.second.key,
+					new Parameter(pc.second.key, tmp)
+				));
+
+				delete tmp;
+				tmp = nullptr;
+			}
+			// So we do not have a default value...
+			else
+			{
+				// Is it important to have the missing parameter?
+				if (pc.second.required)
+					// Throw an error message then
+					throw HazelnutConstraintMissmatch();
+			}
+		}
+
+	return;
+}
+
 const std::string& Hazelnupp::GetExecutableName() const
 {
 	return executableName;
@@ -262,13 +300,37 @@ bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
 	return abbreviations.find(abbrev) != abbreviations.end();
 }
 
-void Hazelnupp::AddConstraints(const std::vector<ParamConstraint>& constraints)
+void Hazelnupp::ClearAbbreviations()
+{
+	abbreviations.clear();
+	return;
+}
+
+void Hazelnupp::RegisterConstraints(const std::vector<ParamConstraint>& constraints)
 {
 	for (const ParamConstraint& pc : constraints)
-		this->constraints.insert(std::pair<std::string, ParamConstraint>(
-			pc.key,
-			pc
-		));
+	{
+		// Does this constraint already exist?
+		const auto constraint = this->constraints.find(pc.key);
+		// If yes, replace it.
+		if (constraint != this->constraints.end())
+			constraint->second = pc;
+
+		// Else, create a new pair
+		else
+			this->constraints.insert(std::pair<std::string, ParamConstraint>(
+				pc.key,
+				pc
+			));
+	}
+
+	return;
+}
+
+void Hazelnupp::ClearConstraints()
+{
+	constraints.clear();
+	return;
 }
 
 const ParamConstraint* Hazelnupp::GetConstraintForKey(const std::string& key) const

@@ -1,6 +1,7 @@
 #pragma once
 #include "DataType.h"
 #include <string>
+#include <vector>
 
 struct ParamConstraint
 {
@@ -17,7 +18,7 @@ public:
 
 	//! The default value for this parameter.  
 	//! Gets applied if this parameter was not given.
-	std::string defaultValue;
+	std::vector<std::string> defaultValue;
 
 	//! If set to true, and no default value set,
 	//! an error will be produced if this parameter is not supplied by the user.

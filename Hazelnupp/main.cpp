@@ -25,12 +25,13 @@ int main(int argc, char** argv)
 		Hazelnupp args;
 
 		ParamConstraint pc;
-		pc.key = "--word";
+		pc.key = "--alfredo";
 		pc.constrainType = true;
-		pc.wantedType = DATA_TYPE::INT;
+		pc.wantedType = DATA_TYPE::LIST;
 		pc.required = true;
+		pc.defaultValue = { "coca cola", "fanta" };
 
-		args.AddConstraints({
+		args.RegisterConstraints({
 			pc
 		});
 
@@ -39,13 +40,13 @@ int main(int argc, char** argv)
 		args.Parse(testArgv.size(), testArgv.data());
 		//args.Parse(argc, argv);
 		
-		if (args.HasParam("--word"))
+		if (args.HasParam("--alfredo"))
 		{
-			std::cout << *args["--word"] << std::endl;
+			std::cout << *args["--alfredo"] << std::endl;
 		}
 		else
 		{
-			std::cout << "No --word!" << std::endl;
+			std::cout << "No --alfredo!" << std::endl;
 		}
 	}
 
