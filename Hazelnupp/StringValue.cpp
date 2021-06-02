@@ -20,3 +20,8 @@ std::string StringValue::GetAsOsString() const
 	ss << "StringValue: " << value;
 	return ss.str();
 }
+
+StringValue::operator std::string() const
+{
+	return value;
+}

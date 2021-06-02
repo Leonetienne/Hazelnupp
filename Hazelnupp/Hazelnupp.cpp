@@ -61,7 +61,7 @@ std::size_t Hazelnupp::ParseNextParameter(const std::size_t parIndex, Parameter*
 			break;
 		}
 
-	Value* parsedVal = EvaluateValues(values);
+	Value* parsedVal = ParseValue(values);
 	out_Par = new Parameter(key, parsedVal);
 
 	delete parsedVal;
@@ -84,7 +84,7 @@ bool Hazelnupp::HasParam(const std::string& key) const
 	return parameters.find(key) != parameters.end();
 }
 
-Value* Hazelnupp::EvaluateValues(const std::vector<std::string>& values)
+Value* Hazelnupp::ParseValue(const std::vector<std::string>& values)
 {
 	// Void-type
 	if (values.size() == 0)
@@ -98,7 +98,7 @@ Value* Hazelnupp::EvaluateValues(const std::vector<std::string>& values)
 		ListValue* newList = new ListValue();
 		for (const std::string& val : values)
 		{
-			Value* tmp = EvaluateValues(std::vector<std::string>({ val }));
+			Value* tmp = ParseValue(std::vector<std::string>({ val }));
 			newList->AddValue(tmp);
 			delete tmp;
 		}

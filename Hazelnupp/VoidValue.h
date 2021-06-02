@@ -6,12 +6,9 @@ class VoidValue : public Value
 public:
 	VoidValue();
 
+	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;
 
-	friend std::ostream& operator<< (std::ostream& os, const VoidValue& v)
-	{
-		return os << "VoidValue";
-	}
-
+	//! Will return a string suitable for an std::ostream;
 	std::string GetAsOsString() const override;
 };

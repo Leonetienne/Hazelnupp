@@ -51,3 +51,8 @@ std::string ListValue::GetAsOsString() const
 
 	return ss.str();
 }
+
+ListValue::operator std::vector<Value*>() const
+{
+	return value;
+}

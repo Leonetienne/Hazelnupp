@@ -8,17 +8,16 @@ public:
 	ListValue();
 	~ListValue();
 
+	//! Will return a deeopopy of this object
 	Value* Deepcopy() const override;
+
+	//! Will return a string suitable for an std::ostream;
+	std::string GetAsOsString() const override;
 
 	//! Will add this value to the list
 	void AddValue(const Value* value);
 
-	std::string GetAsOsString() const override;
-
-	friend std::ostream& operator<< (std::ostream& os, const ListValue& v)
-	{
-		return os << v.GetAsOsString();
-	}
+	operator std::vector<Value*>() const;
 
 private:
 	std::vector<Value*> value;

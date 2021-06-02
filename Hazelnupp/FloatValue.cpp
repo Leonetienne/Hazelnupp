@@ -20,3 +20,13 @@ std::string FloatValue::GetAsOsString() const
 	ss << "FloatValue: " << value;
 	return ss.str();
 }
+
+FloatValue::operator long double() const
+{
+	return value;
+}
+
+FloatValue::operator double() const
+{
+	return (double)value;
+}
