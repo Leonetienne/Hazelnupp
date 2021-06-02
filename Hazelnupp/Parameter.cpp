@@ -21,7 +21,7 @@ const std::string& Parameter::Key() const
 	return key;
 }
 
-const ::Value* Parameter::Value() const
+const ::Value* Parameter::GetValue() const
 {
 	return value;
 }

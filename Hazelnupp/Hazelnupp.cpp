@@ -294,9 +294,9 @@ const std::string& Hazelnupp::GetExecutableName() const
 	return executableName;
 }
 
-const Value* Hazelnupp::operator[](const std::string& key) const
+const Value& Hazelnupp::operator[](const std::string& key) const
 {
-	return parameters.find(key)->second->Value();
+	return *parameters.find(key)->second->GetValue();
 }
 
 void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::string& target)

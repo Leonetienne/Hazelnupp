@@ -13,7 +13,7 @@ public:
 	const std::string& Key() const;
 
 	//! Will return the value of this parameter
-	const Value* Value() const;
+	const Value* GetValue() const;
 
 	friend std::ostream& operator<< (std::ostream& os, const Parameter& p)
 	{

@@ -42,7 +42,7 @@ int main(int argc, char** argv)
 		
 		if (args.HasParam("--alfredo"))
 		{
-			std::cout << *args["--alfredo"] << std::endl;
+			std::cout << args["--alfredo"] << std::endl;
 		}
 		else
 		{

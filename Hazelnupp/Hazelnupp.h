@@ -19,7 +19,7 @@ public:
 	const std::string& GetExecutableName() const;
 
 	//! Will return the value given a key
-	const Value* operator[](const std::string& key) const;
+	const Value& operator[](const std::string& key) const;
 
 	//! Will check wether a parameter exists given a key, or not
 	bool HasParam(const std::string& key) const;
