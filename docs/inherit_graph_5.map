@@ -1,0 +1,8 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classValue.html" title="Abstract class for values." alt="" coords="5,107,64,133"/>
+<area shape="rect" id="node2" href="$classFloatValue.html" title="Specializations for floating point values (uses long double)" alt="" coords="115,5,205,32"/>
+<area shape="rect" id="node3" href="$classIntValue.html" title="Specializations for integer values (uses long long int)" alt="" coords="123,56,197,83"/>
+<area shape="rect" id="node4" href="$classListValue.html" title="Specializations for list values (uses std::vector&lt;Value*&gt;)" alt="" coords="119,107,201,133"/>
+<area shape="rect" id="node5" href="$classStringValue.html" title="Specializations for string values (uses std::string)" alt="" coords="112,157,208,184"/>
+<area shape="rect" id="node6" href="$classVoidValue.html" title="Specializations for void values." alt="" coords="117,208,203,235"/>
+</map>

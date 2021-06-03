@@ -1,0 +1,8 @@
+<map id="Value" name="Value">
+<area shape="rect" id="node1" title="Abstract class for values." alt="" coords="231,5,289,32"/>
+<area shape="rect" id="node2" href="$classFloatValue.html" title="Specializations for floating point values (uses long double)" alt="" coords="5,80,96,107"/>
+<area shape="rect" id="node3" href="$classIntValue.html" title="Specializations for integer values (uses long long int)" alt="" coords="120,80,195,107"/>
+<area shape="rect" id="node4" href="$classListValue.html" title="Specializations for list values (uses std::vector&lt;Value*&gt;)" alt="" coords="219,80,301,107"/>
+<area shape="rect" id="node5" href="$classStringValue.html" title="Specializations for string values (uses std::string)" alt="" coords="325,80,421,107"/>
+<area shape="rect" id="node6" href="$classVoidValue.html" title="Specializations for void values." alt="" coords="446,80,533,107"/>
+</map>

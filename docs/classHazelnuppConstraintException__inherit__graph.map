@@ -1,0 +1,7 @@
+<map id="HazelnuppConstraintException" name="HazelnuppConstraintException">
+<area shape="rect" id="node1" title="Gets thrown something bad happens because of parameter constraints." alt="" coords="126,155,349,181"/>
+<area shape="rect" id="node4" href="$classHazelnuppConstraintMissingValue.html" title="Gets thrown when a parameter constrained to be required is not provided, and has no default value set..." alt="" coords="5,229,213,271"/>
+<area shape="rect" id="node5" href="$classHazelnuppConstraintTypeMissmatch.html" title="Gets thrown when a parameter is of a type that does not match the required type, and is not convertib..." alt="" coords="237,237,496,263"/>
+<area shape="rect" id="node2" href="$classHazelnuppException.html" title="Generic hazelnupp exception." alt="" coords="160,80,315,107"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="180,5,295,32"/>
+</map>
