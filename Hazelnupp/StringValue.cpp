@@ -2,6 +2,8 @@
 #include "HazelnuppException.h"
 #include <sstream>
 
+using namespace Hazelnp;
+
 StringValue::StringValue(const std::string& value)
 	:
 	Value(DATA_TYPE::STRING),

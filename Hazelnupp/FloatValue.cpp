@@ -2,6 +2,8 @@
 #include "HazelnuppException.h"
 #include <sstream>
 
+using namespace Hazelnp;
+
 FloatValue::FloatValue(const long double& value)
 	:
 	Value(DATA_TYPE::FLOAT),

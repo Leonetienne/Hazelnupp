@@ -1,5 +1,7 @@
 #include "Parameter.h"
 
+using namespace Hazelnp;
+
 Parameter::Parameter(const std::string& key, const ::Value* value)
 	:
 	key{ key }

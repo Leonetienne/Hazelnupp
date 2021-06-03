@@ -4,6 +4,7 @@
 #include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace Hazelnp;
 
 namespace TestHazelnupp
 {

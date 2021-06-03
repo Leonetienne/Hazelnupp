@@ -2,6 +2,8 @@
 #include "Hazelnupp.h"
 #include "IntValue.h"
 
+using namespace Hazelnp;
+
 int main(int argc, char** argv)
 {
 	while (1)

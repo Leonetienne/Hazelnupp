@@ -2,6 +2,8 @@
 #include "HazelnuppException.h"
 #include <sstream>
 
+using namespace Hazelnp;
+
 ListValue::ListValue() :
 	Value(DATA_TYPE::LIST)
 {

@@ -3,6 +3,7 @@
 #include "../Hazelnupp/Hazelnupp.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace Hazelnp;
 
 namespace TestHazelnupp
 {

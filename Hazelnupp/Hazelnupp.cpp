@@ -9,6 +9,8 @@
 #include <iostream>
 #include <cstdlib>
 
+using namespace Hazelnp;
+
 Hazelnupp::Hazelnupp()
 {
 	return;

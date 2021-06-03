@@ -1,5 +1,7 @@
 #include "StringTools.h"
 
+using namespace Hazelnp;
+
 bool StringTools::Contains(const std::string& str, const char c)
 {
     for (const char& i : str)

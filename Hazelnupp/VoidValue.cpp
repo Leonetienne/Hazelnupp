@@ -1,6 +1,8 @@
 #include "VoidValue.h"
 #include "HazelnuppException.h"
 
+using namespace Hazelnp;
+
 VoidValue::VoidValue()
 	:
 	Value(DATA_TYPE::VOID)

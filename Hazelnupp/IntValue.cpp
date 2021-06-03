@@ -2,6 +2,8 @@
 #include "HazelnuppException.h"
 #include <sstream>
 
+using namespace Hazelnp;
+
 IntValue::IntValue(const long long int& value)
 	:
 	Value(DATA_TYPE::INT),
