@@ -29,7 +29,7 @@ args.SetCrashOnFail(false);
 ## Importing into a project
 > How do i actually import this into my existing project?
 
-Super easily! Just grab the latest files (2) from [/INCLUDE](https://github.com/Leonetienne/Hazelnupp/tree/master/INCLUDE) and put then into your project!
+Super easily! Just grab the latest files (2) from [/INCLUDE](https://github.com/Leonetienne/Hazelnupp/tree/master/INCLUDE) and put them into your project!
 You may have to add the .cpp to your compile list, but most IDEs should do this automatically.
 
 ## What's the concept?
