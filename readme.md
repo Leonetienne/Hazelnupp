@@ -1,4 +1,4 @@
-[![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/GithubMedia/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
+[![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/Brand/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
 
 # [Documentation](https://leonetienne.github.io/Hazelnupp/)
 ## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classHazelnupp.html)
