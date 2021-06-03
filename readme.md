@@ -1,6 +1,7 @@
 [![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/GithubMedia/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
 
-# [Documentation](https://www.google.de/search?q=doxygen%20to%20be%20done) 
+# [Documentation](https://leonetienne.github.io/Hazelnupp/)
+## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classHazelnupp.html)
 
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
@@ -238,7 +239,7 @@ What doesn't work is inserting multiple constraints for one key. It will just di
 
 ## More examples?
 Check out the unit tests! They may help you out!  
-Also make sure to check out the [doxygen docs](https://www.google.de/search?q=doxygen%20TBD)!
+Also make sure to check out the [doxygen docs](https://leonetienne.github.io/Hazelnupp/)!
 
 ## Further notes
 This is still in alpha! There is no guarantee at all that this actually works.  
