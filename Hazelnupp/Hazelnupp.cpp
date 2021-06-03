@@ -60,12 +60,15 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 
 		// Apply constraints such as default values, and required parameters.
 		// Types have already been enforced.
-		ApplyConstraints();
+		// Dont apply constraints when we are just printind the param docs
+		if ((!catchHelp) || (!HasParam("--help")))
+			ApplyConstraints();
 	}
 	catch (const HazelnuppConstraintTypeMissmatch& hctm)
 	{
 		if (crashOnFail)
 		{
+			std::cout << GenerateDocumentation() << std::endl;
 			std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
 			quick_exit(-1009);
 		}
@@ -76,11 +79,19 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 	{
 		if (crashOnFail)
 		{
+			std::cout << GenerateDocumentation() << std::endl;
 			std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
 			quick_exit(-1010);
 		}
 		else
 			throw hctm; // yeet
+	}
+
+	// Catch --help parameter
+	if ((catchHelp) && (HasParam("--help")))
+	{
+		std::cout << GenerateDocumentation() << std::endl;
+		quick_exit(0);
 	}
 
 	return;
@@ -279,6 +290,162 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 bool Hazelnupp::GetCrashOnFail() const
 {
 	return crashOnFail;
+}
+
+void Hazelnupp::SetCatchHelp(bool catchHelp)
+{
+	this->catchHelp = catchHelp;
+	return;
+}
+
+bool Hazelnupp::GetCatchHelp() const
+{
+	return catchHelp;
+}
+
+void Hazelnupp::SetBriefDescription(const std::string& description)
+{
+	briefDescription = description;
+	return;
+}
+
+const std::string& Hazelnupp::GetBriefDescription()
+{
+	return briefDescription;
+}
+
+void Hazelnp::Hazelnupp::RegisterDescription(const std::string& parameter, const std::string& description)
+{
+	parameterDescriptions[parameter] = description;
+	return;
+}
+
+const std::string Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
+{
+	// Do we already have a description for this parameter?
+	const auto par = parameterDescriptions.find(parameter);
+	if (par == parameterDescriptions.end())
+		// No? Then return ""
+		return "";
+
+	// We do? Then return it
+	return par->second;
+}
+
+void Hazelnp::Hazelnupp::ClearDescription(const std::string& parameter)
+{
+	// This will just do nothing if the entry does not exist
+	parameterDescriptions.erase(parameter);
+	return;
+}
+
+std::string Hazelnupp::GenerateDocumentation() const
+{
+	std::stringstream ss;
+
+	// Add brief, if available
+	if (briefDescription.length() > 0)
+		ss << briefDescription << std::endl;
+
+	// Collect parameter information
+	struct ParamDocEntry
+	{
+		std::string abbreviation;
+		std::string description;
+		std::string type;
+		bool required = false;
+		bool typeIsForced = false;
+		std::string defaultVal;
+	};
+	std::unordered_map<std::string, ParamDocEntry> paramInfos;
+
+	// Collect descriptions
+	for (const auto& it : parameterDescriptions)
+	{
+		// Do we already have that param in the paramInfo set?
+		if (paramInfos.find(it.first) == paramInfos.end())
+			// No? Create it.
+			paramInfos[it.first] = ParamDocEntry();
+
+		paramInfos[it.first].description = it.second;
+	}
+
+	// Collect abbreviations
+	// first value is abbreviation, second is long form
+	for (const auto& it : abbreviations)
+	{
+		// Do we already have that param in the paramInfo set?
+		if (paramInfos.find(it.second) == paramInfos.end())
+			// No? Create it.
+			paramInfos[it.second] = ParamDocEntry();
+
+		paramInfos[it.second].abbreviation = it.first;
+	}
+
+	// Collect constraints
+	for (const auto& it : constraints)
+	{
+		// Do we already have that param in the paramInfo set?
+		if (paramInfos.find(it.first) == paramInfos.end())
+			// No? Create it.
+			paramInfos[it.first] = ParamDocEntry();
+
+		ParamDocEntry& cached = paramInfos[it.first];
+		cached.required = it.second.required;
+		cached.typeIsForced = it.second.constrainType;
+		cached.type = DataTypeToString(it.second.wantedType);
+		
+		std::stringstream defaultValueSs;
+		for (const std::string& s : it.second.defaultValue)
+		{
+			defaultValueSs << '\'' << s << '\'';
+
+			// Add a space if we are not at the last entry
+			if ((void*)&s != (void*)&it.second.defaultValue.back())
+				defaultValueSs << " ";
+		}
+		cached.defaultVal = defaultValueSs.str();
+	}
+
+	// Now generate the documentatino body
+	if (paramInfos.size() > 0)
+	{
+		ss << std::endl 
+			<< "==== AVAILABLE PARAMETERS ====" 
+			<< std::endl << std::endl;
+
+		for (const auto& it : paramInfos)
+		{
+			const ParamDocEntry& pde = it.second;
+
+			// Put name
+			ss << it.first << "   ";
+
+			// Put abbreviation
+			if (pde.abbreviation.length() > 0)
+				ss << pde.abbreviation << "   ";
+
+			// Put type
+			if (pde.typeIsForced)
+				ss << pde.type << "   ";
+
+			// Put default value
+			if (pde.defaultVal.length() > 0)
+				ss << "default=[" << pde.defaultVal << "]   ";
+
+			// Put required tag, but only if no default value
+			if ((pde.required) && (pde.defaultVal.length() == 0))
+				ss << "[[REQUIRED]]    ";
+
+			// Put brief description
+			if (pde.description.length() > 0)
+				ss << pde.description;
+
+			ss << std::endl << std::endl;
+		}
+	}
+
+	return ss.str();
 }
 
 void Hazelnupp::ApplyConstraints()

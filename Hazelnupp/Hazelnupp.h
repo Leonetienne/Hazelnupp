@@ -54,6 +54,32 @@ namespace Hazelnp
 		//! Gets whether the application crashes on an exception whilst parsing, and prints to stderr.
 		bool GetCrashOnFail() const;
 
+		//! Sets whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		void SetCatchHelp(bool catchHelp);
+
+		//! Retruns whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		bool GetCatchHelp() const;
+
+		//! Sets a brief description of the application to be automatically added to the documentation.
+		void SetBriefDescription(const std::string& description);
+
+		//! Returns the brief description of the application to be automatically added to the documentation.
+		const std::string& GetBriefDescription();
+
+		//! Willl register a short description for a parameter.  
+		//! Will overwrite existing descriptions for that parameter.
+		void RegisterDescription(const std::string& parameter, const std::string& description);
+
+		//! Will return a short description for a parameter, if it exists.  
+		//! Empty string if it does not exist.
+		const std::string GetDescription(const std::string& parameter) const;
+
+		//! Will delete the description of a parameter if it exists.
+		void ClearDescription(const std::string& parameter);
+
+		//! Will generate a text-based documentation suited to show the user, for example on --help.
+		std::string GenerateDocumentation() const;
+
 	private:
 		//! Will translate the c-like args to an std::vector
 		void PopulateRawArgs(const int argc, const char* const* argv);
@@ -76,13 +102,23 @@ namespace Hazelnp
 		std::string executableName; //! The path of the executable. Always argv[0]
 		std::unordered_map<std::string, Parameter*> parameters;
 
-		// These are abbreviations. Like, -f for --force.
+		//! These are abbreviations. Like, -f for --force.
 		std::unordered_map<std::string, std::string> abbreviations;
 
-		// Parameter constraints, mapped to keys
+		//! Parameter constraints, mapped to keys
 		std::unordered_map<std::string, ParamConstraint> constraints;
 
+		//! Raw argv
 		std::vector<std::string> rawArgs;
+
+		//! Short descriptions for parameters
+		std::unordered_map<std::string, std::string> parameterDescriptions;
+
+		//! A brief description of the application to be added to the generated documentation. Optional.
+		std::string briefDescription;
+
+		//! If set to true, Hazelnupp will automatically catch the --help parameter, print the parameter documentation to stdout and exit.
+		bool catchHelp = true;
 
 		//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
 		bool crashOnFail = true;
