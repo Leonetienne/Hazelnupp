@@ -2,6 +2,8 @@
 #include "Value.h"
 #include <ostream>
 
+/** Specializations for floating point values (uses long double)
+*/
 class FloatValue : public Value
 {
 public:

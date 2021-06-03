@@ -9,7 +9,8 @@ public:
 	//! Empty constructor
 	ParamConstraint() = default;
 
-	//! Constructs a require constraint
+	//! Constructs a require constraint.  
+	//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
 	static ParamConstraint Require(const std::string& key, const std::vector<std::string>& defaultValue = {}, bool required = true)
 	{
 		ParamConstraint pc;
@@ -54,7 +55,8 @@ public:
 	DATA_TYPE wantedType = DATA_TYPE::VOID;
 
 	//! The default value for this parameter.  
-	//! Gets applied if this parameter was not given.
+	//! Gets applied if this parameter was not given.  
+	//! Think of this like a list of parameters. Like {"--width", "800"}
 	std::vector<std::string> defaultValue;
 
 	//! If set to true, and no default value set,

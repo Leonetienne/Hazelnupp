@@ -2,6 +2,8 @@
 #include "Value.h"
 #include <vector>
 
+/** Specializations for list values (uses std::vector<Value*>)
+*/
 class ListValue : public Value
 {
 public:

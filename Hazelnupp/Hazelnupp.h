@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <vector>
 
+/** The main class to interface with
+*/
 class Hazelnupp
 {
 public:

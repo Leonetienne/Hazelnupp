@@ -1,6 +1,8 @@
 #pragma once
 #include "Value.h"
 
+/** Specializations for void values. These house no value whatsoever, but only communicate information by merely existing.
+*/
 class VoidValue : public Value
 {
 public:

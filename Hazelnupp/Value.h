@@ -3,6 +3,8 @@
 #include <ostream>
 #include <vector>
 
+/** Abstract class for values
+*/
 class Value
 {
 public:

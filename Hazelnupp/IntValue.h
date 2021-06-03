@@ -1,6 +1,8 @@
 #pragma once
 #include "Value.h"
 
+/** Specializations for integer values (uses long long int)
+*/
 class IntValue : public Value
 {
 public:

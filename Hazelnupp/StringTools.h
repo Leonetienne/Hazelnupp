@@ -4,9 +4,8 @@
 #include <vector>
 #include <cmath>
 
-/// <summary>
-/// Internal helper class. Feel free to use it tho, lol
-/// </summary>
+/** Internal helper class. Feel free to use it tho.
+*/
 class StringTools
 {
 public:

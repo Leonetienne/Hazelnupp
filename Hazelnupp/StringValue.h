@@ -2,6 +2,8 @@
 #include "Value.h"
 #include <string>
 
+/** Specializations for string values (uses std::string)
+*/
 class StringValue : public Value
 {
 public:
