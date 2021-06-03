@@ -4,9 +4,9 @@
 
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
-Hazelnupp does not support windows-, or bsd-style arguments. Only unix-style.  
+Hazelnupp does not support windows-, or bsd-style arguments. Only linux-style.  
   
-What is the unix-style? This:
+What is the linux-style? This:
 ```
 # Using a long parameter
 a.out --long-parameter 1234
@@ -108,7 +108,7 @@ int main(int argc, char** argv)
 }
 ```
 
-What about these lists?
+What about lists?
 ```cpp
 #include "Hazelnupp.h"
 
@@ -116,7 +116,7 @@ int main(int argc, char** argv)
 {
 	Hazelnupp args(argc, argv);
 
-	const auto& myList = args["--my-list.GetList(); // std::vector<Value*>
+	const auto& myList = args["--my-list"].GetList(); // std::vector<Value*>
 	
 	for (const auto* it : myList)
 	{
@@ -156,12 +156,12 @@ int main(int argc, char** argv)
 ## Constraints
 > That's all cool and stuff, but this looks like a **LOT** of error-checking and not elegant at all! How would i *actually* use this?
 
-For exactly this reason, there are constraints. With this, you can control what the data looks like! Constraints serve mainly two purposes:
+For exactly this reason, there are constraints. With this, you can control what the data looks like! Constraints serve two main purposes:
 
 ### Requiring data
 With `ParamConstraint::Require()` you can declare that a paramater must either always be present, or provide a default value.  
 * If a parameter is not present, but has a default value, it will be automatically created.
-* If a parameter is not present, but has no default value, an exception will be thrown.
+* If a parameter is not present, and has no default value, an exception will be thrown.
 
 Minimal working example:
 ```cpp
@@ -185,16 +185,20 @@ int main(int argc, char** argv)
 ```
 
 ### Type safety
-With type safety you can always be sure that you are working with the correct type!  
+With type safety you can always be certain that you are working with the correct type!  
 By creating a type-constraint you force Hazelnupp to use a certain type.  
 If a supplied type does not match, but is convertible, it will be converted.  
+If it is not convertible, an exception will be thrown.
 
 These conversions are:
-* int -> [float, string, list]
-* float ->[int, string, list]
-* string -> [list],
+* int -> [float, string, list, void]
+* float ->[int, string, list, void]
+* string -> [list, void]
+* list -> [void]
+* void -> [list]
 
-The conversions 'to-list' just create a list with a single entry.
+The conversions `*->list` just create a list with a single entry (except for `void->list` which produces an empty list).  
+The `*->void` conversions just drop their value.
 
 Minimal working example:
 ```cpp
@@ -230,6 +234,7 @@ pc.required = true;
 
 args.RegisterConstraints({pc});
 ```
+What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
 ## More examples?
 Check out the unit tests! They may help you out!  
