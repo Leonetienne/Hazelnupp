@@ -71,6 +71,7 @@ These parameters can then be accessed via a simple lookup!
 So what's the simplest way to use Hazelnupp to work with command-line parameters? See:
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
@@ -88,6 +89,7 @@ int main(int argc, char** argv)
 Looks super easy! But what about actual values?
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
@@ -97,7 +99,7 @@ int main(int argc, char** argv)
 	try
 	{
 		int myInt          = args["--my-int"].GetInt32();
-		double myInt       = args["--my-float"].GetFloat32();
+		double myFlt       = args["--my-float"].GetFloat32();
 		std::string myStr  = args["--my-string"].GetString();
 	}
 	catch (HazelnuppInvalidKeyException&)
@@ -112,6 +114,7 @@ int main(int argc, char** argv)
 What about lists?
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
@@ -134,6 +137,7 @@ Abbreviations are a very important part of command line arguments. Like, typing 
 Here's how to use them in Hazelnupp:
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
@@ -167,6 +171,7 @@ With `ParamConstraint::Require()` you can declare that a paramater must either a
 Minimal working example:
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
@@ -204,6 +209,7 @@ The `*->void` conversions just drop their value.
 Minimal working example:
 ```cpp
 #include "Hazelnupp.h"
+using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
