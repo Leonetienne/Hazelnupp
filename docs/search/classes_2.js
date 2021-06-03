@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['intvalue_110',['IntValue',['../classIntValue.html',1,'']]]
+  ['intvalue_111',['IntValue',['../classHazelnp_1_1IntValue.html',1,'Hazelnp']]]
 ];

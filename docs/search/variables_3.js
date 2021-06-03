@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['message_208',['message',['../classHazelnuppException.html#a4d80f59d2732975461ee480642c4addf',1,'HazelnuppException']]]
+  ['message_210',['message',['../classHazelnp_1_1HazelnuppException.html#aa905cabcd12f542dfc67638732737e88',1,'Hazelnp::HazelnuppException']]]
 ];

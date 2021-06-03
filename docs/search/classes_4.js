@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['paramconstraint_112',['ParamConstraint',['../structParamConstraint.html',1,'']]],
-  ['parameter_113',['Parameter',['../classParameter.html',1,'']]]
+  ['paramconstraint_113',['ParamConstraint',['../structHazelnp_1_1ParamConstraint.html',1,'Hazelnp']]],
+  ['parameter_114',['Parameter',['../classHazelnp_1_1Parameter.html',1,'Hazelnp']]]
 ];

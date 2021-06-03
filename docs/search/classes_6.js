@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['value_116',['Value',['../classValue.html',1,'']]],
-  ['voidvalue_117',['VoidValue',['../classVoidValue.html',1,'']]]
+  ['value_117',['Value',['../classHazelnp_1_1Value.html',1,'Hazelnp']]],
+  ['voidvalue_118',['VoidValue',['../classHazelnp_1_1VoidValue.html',1,'Hazelnp']]]
 ];

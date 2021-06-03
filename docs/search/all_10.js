@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wantedtype_92',['wantedType',['../structParamConstraint.html#ae8875e054a074241f0c0bf3328a0915a',1,'ParamConstraint']]],
-  ['what_93',['What',['../classHazelnuppException.html#ac087d5190a9b3f6964120cc35321c3a6',1,'HazelnuppException']]]
+  ['wantedtype_93',['wantedType',['../structHazelnp_1_1ParamConstraint.html#ac07a0c0555431d4b1e0bc6afdba41329',1,'Hazelnp::ParamConstraint']]],
+  ['what_94',['What',['../classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e',1,'Hazelnp::HazelnuppException']]]
 ];

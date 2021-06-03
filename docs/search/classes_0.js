@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['floatvalue_102',['FloatValue',['../classFloatValue.html',1,'']]]
+  ['floatvalue_103',['FloatValue',['../classHazelnp_1_1FloatValue.html',1,'Hazelnp']]]
 ];
