@@ -78,9 +78,10 @@ $(function() {
  Hazelnupp does not support windows-, or bsd-style arguments. Only linux-style. <br  />
 </p>
 <p>What is the linux-style? This: </p><div class="fragment"><div class="line"># Using a long parameter</div>
-<div class="line">a.out --long-parameter 1234</div>
-</div><!-- fragment --><div class="fragment"><div class="line"># Using an abbreviated parameter</div>
-<div class="line">a.out -lp 1234</div>
+<div class="line">$ a.out --long-parameter 1234</div>
+<div class="line"> </div>
+<div class="line"># Using an abbreviated parameter</div>
+<div class="line">$ a.out -lp 1234</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md1"></a>
 Note</h1>
 <p>These examples reference exceptions. These are not enabled by default. The default behaviour for user-fault exceptions is to produce output to <code>stderr</code> and kill the process. <br  />
@@ -102,22 +103,22 @@ What's the concept?</h1>
 <li>List (non-recursive)</li>
 </ul>
 <p>Here are examples on how to create them </p><div class="fragment"><div class="line"># Void</div>
-<div class="line">a.out --foo</div>
+<div class="line">$ a.out --foo</div>
 <div class="line"> </div>
 <div class="line"># Int</div>
-<div class="line">a.out --foo 5</div>
+<div class="line">$ a.out --foo 5</div>
 <div class="line"> </div>
 <div class="line"># Float</div>
-<div class="line">a.out --foo 5.5</div>
+<div class="line">$ a.out --foo 5.5</div>
 <div class="line"> </div>
 <div class="line"># String</div>
-<div class="line">a.out --foo peter</div>
+<div class="line">$ a.out --foo peter</div>
 <div class="line"> </div>
 <div class="line"># List (any type above works)</div>
-<div class="line">a.out --foo peter jake jeff billy</div>
+<div class="line">$ a.out --foo peter jake jeff billy</div>
 <div class="line"> </div>
 <div class="line"># List, mixed types</div>
-<div class="line">a.out --foo 1 2 3 4 peter willy billy bob 3</div>
+<div class="line">$ a.out --foo 1 2 3 4 peter willy billy bob 3</div>
 </div><!-- fragment --><p>These parameters can then be accessed via a simple lookup!</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 Minimal working example</h1>
@@ -282,7 +283,7 @@ Automatic parameter documentation</h1>
 <div class="line"> </div>
 <div class="line">--help   This will display the parameter documentation.</div>
 <div class="line"> </div>
-<div class="line">--name   LIST   default=[&#39;peter&#39; &#39;hannes&#39;]   The names to target</div>
+<div class="line">--names   LIST   default=[&#39;peter&#39; &#39;hannes&#39;]   The names to target</div>
 <div class="line"> </div>
 <div class="line">--force   -f   Just forces it.</div>
 <div class="line"> </div>
@@ -299,22 +300,46 @@ Automatic parameter documentation</h1>
 </div><!-- fragment --><p>If you want to display this information somewhere else, you can always access it as a string via <code>args.GenerateDocumentation()</code>.</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 More examples?</h1>
-<p>Check out the unit tests! They may help you out! <br  />
+<p>Check out the <a href="https://github.com/Leonetienne/Hazelnupp/tree/master/Test_Hazelnupp">tests</a>! They may help you out! <br  />
  Also make sure to check out the <a href="https://leonetienne.github.io/Hazelnupp/">doxygen docs</a>!</p>
 <h1><a class="anchor" id="autotoc_md12"></a>
-Further notes</h1>
-<p>This is still in alpha! There is no guarantee at all that this actually works. <br  />
- Whilst i did my best do make sure it does, i bet there are still a few flaws i did overlook. <br  />
- Please know that i am not obliged to work on fixes. I do have other stuff to do. This does not mean that i won't do it, but i'm not sure when. <br  />
- Feel free to submit a PR if you fixed something :)</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
 What is not supported?</h1>
 <p>Chaining abbreviated parameters, like this: </p><div class="fragment"><div class="line"># This is not supported. It would think -ltr is one parameter.</div>
-<div class="line">a.out -ltr</div>
+<div class="line">$ a.out -ltr</div>
 <div class="line"> </div>
 <div class="line"># Instead do this</div>
-<div class="line">a.out -l -t -r</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md14"></a>
+<div class="line">$ a.out -l -t -r</div>
+</div><!-- fragment --><p>Using parameters multiple times </p><div class="fragment"><div class="line"># This is not supported.</div>
+<div class="line"># Let&#39;s say -i is short for --input</div>
+<div class="line">$ a.out -i hello.txt -i shoe.txt -i somsang.txt</div>
+<div class="line"> </div>
+<div class="line"># Instead do this</div>
+<div class="line">$ a.out -i hello.txt shoe.txt somsang.txt</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+Further notes</h1>
+<p>This is still in alpha! There is no guarantee at all that this actually works. <br  />
+ Whilst i did my best do make sure it does, i bet there are still a few flaws i've overlooked. <br  />
+ Please know that i am not obliged to work on fixes. I do have other stuff to do. This does not mean that i won't, but i'm not sure when. <br  />
+ Feel free to submit a PR if you think you improved it in any way :)</p>
+<h1><a class="anchor" id="autotoc_md14"></a>
+Contributing</h1>
+<p>If you want to contribute, feel free to fork the repository, and submit a pull request. <br  />
+ Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests. <br  />
+ Just create an issue with the tag <code>feature request</code>. Don't forget to update the UML <code>Hazelnupp.vpp</code> aswell! The (free) modelling software used is <a href="https://www.visual-paradigm.com">Visual Paradigm</a>. <br  />
+</p>
+<p>Any code added must match the existing style!</p><ul>
+<li>Objects begin with a lowercase initial</li>
+<li>Classifiers and Functions/Methods begin with an uppercase initial</li>
+<li>Classifiers are camel-case</li>
+<li>Classifiers get documented via <code>/** */</code> for doxygen. See existing classifiers</li>
+<li>Members (methods and objects) get documented via <code>//!</code> for doxygen. See existing definitions.</li>
+<li><code>{</code> always gets a new line</li>
+<li>Enumerations (and their values) and macros are all-upper case snake-case</li>
+<li>No <code>using namespace std</code></li>
+<li>Do <code>using namespace <a class="el" href="namespaceHazelnp.html">Hazelnp</a></code> in cpp files. Don't do <code><a class="el" href="namespaceHazelnp.html">Hazelnp</a>::</code> if possible</li>
+<li>Files outside the project (like STL) have to be included with <code>#include &lt;&gt;</code>. Not <code>""</code></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md15"></a>
 LICENSE</h1>
 <div class="fragment"><div class="line">Copyright (c) 2021, Leon Etienne</div>
 <div class="line"> </div>
@@ -341,7 +366,7 @@ LICENSE</h1>
 <div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_ab85210bb37bbace962ff08fcccdafaf2"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#ab85210bb37bbace962ff08fcccdafaf2">Hazelnp::ParamConstraint::TypeSafety</a></div><div class="ttdeci">static ParamConstraint TypeSafety(const std::string &amp;key, DATA_TYPE wantedType, bool constrainType=true)</div><div class="ttdoc">Constructs a type-safety constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00027">ParamConstraint.h:27</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 02:48:02 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 13:53:39 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
