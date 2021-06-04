@@ -38,12 +38,14 @@ args.SetCrashOnFail(false);
 1. [Contributing](#contributing)
 1. [LICENSE](#license)
 
+<span id="importing-into-a-project"></span>
 ## Importing into a project
 > How do i actually import this into my existing project?
 
 Super easily! Just grab the latest files (2) from [/INCLUDE](https://github.com/Leonetienne/Hazelnupp/tree/master/INCLUDE) and put them into your project!
 You may have to add the .cpp to your compile list, but most IDEs should do this automatically.
 
+<span id="whats-the-concept"></span>
 ## What's the concept?
 The concept is that each parameter must be one of five types. These are:
 * Void
@@ -344,6 +346,7 @@ Any code added must match the existing style!
 * Do `using namespace Hazelnp` in cpp files. Don't do `Hazelnp::` if possible
 * Files outside the project (like STL) have to be included with `#include <>`. Not `""`
 
+<span id="license"></span>
 ## LICENSE
 ```
 Copyright (c) 2021, Leon Etienne
