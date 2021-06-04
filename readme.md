@@ -24,6 +24,20 @@ Hazelnupp args;
 args.SetCrashOnFail(false);
 ```
 
+## Index
+1. [Importing into a project](#importing-into-a-project)
+1. [What's the concept?](#whats-the-concept)
+1. [Minimal working example](#minimal-working-example)
+1. [Abbreviations](#abbreviations)
+1. [Constraints](#constraints)
+1. [Minimal working example](#minimal-working-example)
+1. [Automatic parameter documentation](#automatic-parameter-documentation)
+1. [More examples?](#more-examples)
+1. [What is not supported?](#what-is-not-supported)
+1. [Further notes](#further-notes)
+1. [Contributing](#contributing)
+1. [LICENSE](#license)
+
 ## Importing into a project
 > How do i actually import this into my existing project?
 
@@ -316,7 +330,7 @@ Feel free to submit a PR if you think you improved it in any way :)
 ## Contributing
 If you want to contribute, feel free to fork the repository, and submit a pull request.  
 Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests.  
-Just create an issue with the tag `feature request`. Don't forget to update the UML `Hazelnupp.vpp` aswell! The (free) modelling software used is [Visual Paradigm](https://www.visual-paradigm.com).  
+Just create an issue with the tag `feature request`. Don't forget to update the UML (`Hazelnupp.vpp`)! The (free) modelling software used is [Visual Paradigm](https://www.visual-paradigm.com).  
   
 Any code added must match the existing style!
 * Objects begin with a lowercase initial
