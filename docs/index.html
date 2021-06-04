@@ -88,12 +88,49 @@ Note</h1>
  To enable exceptions, call this method: </p><div class="fragment"><div class="line">Hazelnupp args;</div>
 <div class="line">args.SetCrashOnFail(<span class="keyword">false</span>);</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md2"></a>
+Index</h1>
+<ol type="1">
+<li><a href="#importing-into-a-project">Importing into a project</a></li>
+</ol>
+<ol type="1">
+<li><a href="#whats-the-concept">What's the concept?</a></li>
+</ol>
+<ol type="1">
+<li><a href="#minimal-working-example">Minimal working example</a></li>
+</ol>
+<ol type="1">
+<li><a href="#abbreviations">Abbreviations</a></li>
+</ol>
+<ol type="1">
+<li><a href="#constraints">Constraints</a></li>
+</ol>
+<ol type="1">
+<li><a href="#automatic-parameter-documentation">Automatic parameter documentation</a></li>
+</ol>
+<ol type="1">
+<li><a href="#more-examples">More examples?</a></li>
+</ol>
+<ol type="1">
+<li><a href="#what-is-not-supported">What is not supported?</a></li>
+</ol>
+<ol type="1">
+<li><a href="#further-notes">Further notes</a></li>
+</ol>
+<ol type="1">
+<li><a href="#contributing">Contributing</a></li>
+</ol>
+<ol type="1">
+<li><a href="#license">LICENSE</a></li>
+</ol>
+<p><span id="importing-into-a-project"></span> </p>
+<h1><a class="anchor" id="autotoc_md3"></a>
 Importing into a project</h1>
 <blockquote class="doxtable">
 <p>How do i actually import this into my existing project? </p>
 </blockquote>
 <p>Super easily! Just grab the latest files (2) from <a href="https://github.com/Leonetienne/Hazelnupp/tree/master/INCLUDE">/INCLUDE</a> and put them into your project! You may have to add the .cpp to your compile list, but most IDEs should do this automatically.</p>
-<h1><a class="anchor" id="autotoc_md3"></a>
+<p><span id="whats-the-concept"></span> </p>
+<h1><a class="anchor" id="autotoc_md4"></a>
 What's the concept?</h1>
 <p>The concept is that each parameter must be one of five types. These are:</p><ul>
 <li>Void</li>
@@ -120,7 +157,8 @@ What's the concept?</h1>
 <div class="line"># List, mixed types</div>
 <div class="line">$ a.out --foo 1 2 3 4 peter willy billy bob 3</div>
 </div><!-- fragment --><p>These parameters can then be accessed via a simple lookup!</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
+<p><span id="minimal-working-example"></span> </p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 Minimal working example</h1>
 <p>So what's the simplest way to use Hazelnupp to work with command-line parameters? See: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Hazelnupp_8h.html">Hazelnupp.h</a>&quot;</span></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceHazelnp.html">Hazelnp</a>;</div>
@@ -174,7 +212,8 @@ Minimal working example</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md5"></a>
+</div><!-- fragment --><p><span id="abbreviations"></span> </p>
+<h1><a class="anchor" id="autotoc_md6"></a>
 Abbreviations</h1>
 <p>Abbreviations are a very important part of command line arguments. Like, typing <code>-f</code> instead of <code>--force</code>. Here's how to use them in Hazelnupp: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Hazelnupp_8h.html">Hazelnupp.h</a>&quot;</span></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceHazelnp.html">Hazelnp</a>;</div>
@@ -196,13 +235,14 @@ Abbreviations</h1>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md6"></a>
+</div><!-- fragment --><p><span id="constraints"></span> </p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 Constraints</h1>
 <blockquote class="doxtable">
 <p>That's all cool and stuff, but this looks like a <b>LOT</b> of error-checking and not elegant at all! How would i <em>actually</em> use this? </p>
 </blockquote>
 <p>For exactly this reason, there are constraints. With this, you can control what the data looks like! Constraints serve two main purposes:</p>
-<h2><a class="anchor" id="autotoc_md7"></a>
+<h2><a class="anchor" id="autotoc_md8"></a>
 Requiring data</h2>
 <p>With <code>ParamConstraint::Require()</code> you can declare that a paramater must either always be present, or provide a default value. <br  />
 </p><ul>
@@ -227,7 +267,7 @@ Requiring data</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md8"></a>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md9"></a>
 Type safety</h2>
 <p>With type safety you can always be certain that you are working with the correct type! <br  />
  By creating a type-constraint you force Hazelnupp to use a certain type. <br  />
@@ -270,7 +310,8 @@ Type safety</h2>
 <div class="line"> </div>
 <div class="line">args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">RegisterConstraints</a>({pc});</div>
 </div><!-- fragment --><p>What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in <b>one</b> struct.</p>
-<h1><a class="anchor" id="autotoc_md10"></a>
+<p><span id="automatic-parameter-documentation"></span> </p>
+<h1><a class="anchor" id="autotoc_md11"></a>
 Automatic parameter documentation</h1>
 <p>Hazelnupp does automatically create a parameter documentation, accessible via <code>--help</code>. <br  />
  If you want to use <code>--help</code> yourself, just turn it off. </p><div class="fragment"><div class="line">Hazelnupp args;</div>
@@ -298,11 +339,13 @@ Automatic parameter documentation</h1>
 </div><!-- fragment --><p>Additionally you can provide a brief description of your application to be added right above the parameter list. </p><div class="fragment"><div class="line">Hazelnupp args;</div>
 <div class="line">args.SetBriefDescription(<span class="stringliteral">&quot;This is the testing application for Hazelnupp.&quot;</span>);</div>
 </div><!-- fragment --><p>If you want to display this information somewhere else, you can always access it as a string via <code>args.GenerateDocumentation()</code>.</p>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<p><span id="more-examples"></span> </p>
+<h1><a class="anchor" id="autotoc_md12"></a>
 More examples?</h1>
 <p>Check out the <a href="https://github.com/Leonetienne/Hazelnupp/tree/master/Test_Hazelnupp">tests</a>! They may help you out! <br  />
  Also make sure to check out the <a href="https://leonetienne.github.io/Hazelnupp/">doxygen docs</a>!</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<p><span id="what-is-not-supported"></span> </p>
+<h1><a class="anchor" id="autotoc_md13"></a>
 What is not supported?</h1>
 <p>Chaining abbreviated parameters, like this: </p><div class="fragment"><div class="line"># This is not supported. It would think -ltr is one parameter.</div>
 <div class="line">$ a.out -ltr</div>
@@ -315,17 +358,19 @@ What is not supported?</h1>
 <div class="line"> </div>
 <div class="line"># Instead do this</div>
 <div class="line">$ a.out -i hello.txt shoe.txt somsang.txt</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
+</div><!-- fragment --><p><span id="further-notes"></span> </p>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Further notes</h1>
 <p>This is still in alpha! There is no guarantee at all that this actually works. <br  />
  Whilst i did my best do make sure it does, i bet there are still a few flaws i've overlooked. <br  />
  Please know that i am not obliged to work on fixes. I do have other stuff to do. This does not mean that i won't, but i'm not sure when. <br  />
  Feel free to submit a PR if you think you improved it in any way :)</p>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<p><span id="#contributing"></span> </p>
+<h1><a class="anchor" id="autotoc_md15"></a>
 Contributing</h1>
 <p>If you want to contribute, feel free to fork the repository, and submit a pull request. <br  />
  Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests. <br  />
- Just create an issue with the tag <code>feature request</code>. Don't forget to update the UML <code>Hazelnupp.vpp</code> aswell! The (free) modelling software used is <a href="https://www.visual-paradigm.com">Visual Paradigm</a>. <br  />
+ Just create an issue with the tag <code>feature request</code>. Don't forget to update the UML (<code>Hazelnupp.vpp</code>)! The (free) modelling software used is <a href="https://www.visual-paradigm.com">Visual Paradigm</a>. <br  />
 </p>
 <p>Any code added must match the existing style!</p><ul>
 <li>Objects begin with a lowercase initial</li>
@@ -339,7 +384,8 @@ Contributing</h1>
 <li>Do <code>using namespace <a class="el" href="namespaceHazelnp.html">Hazelnp</a></code> in cpp files. Don't do <code><a class="el" href="namespaceHazelnp.html">Hazelnp</a>::</code> if possible</li>
 <li>Files outside the project (like STL) have to be included with <code>#include &lt;&gt;</code>. Not <code>""</code></li>
 </ul>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<p><span id="license"></span> </p>
+<h1><a class="anchor" id="autotoc_md16"></a>
 LICENSE</h1>
 <div class="fragment"><div class="line">Copyright (c) 2021, Leon Etienne</div>
 <div class="line"> </div>
@@ -366,7 +412,7 @@ LICENSE</h1>
 <div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_ab85210bb37bbace962ff08fcccdafaf2"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#ab85210bb37bbace962ff08fcccdafaf2">Hazelnp::ParamConstraint::TypeSafety</a></div><div class="ttdeci">static ParamConstraint TypeSafety(const std::string &amp;key, DATA_TYPE wantedType, bool constrainType=true)</div><div class="ttdoc">Constructs a type-safety constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00027">ParamConstraint.h:27</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 13:53:39 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 15:57:42 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
