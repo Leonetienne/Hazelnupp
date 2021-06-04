@@ -83,32 +83,44 @@ $(function() {
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceHazelnp.html">Hazelnp</a></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{</div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;{<span class="comment"></span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">    /** Specializations for list values (uses std::vector&lt;Value*&gt;)</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="classHazelnp_1_1ListValue.html">    9</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1ListValue.html">ListValue</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="classHazelnp_1_1ListValue.html#a6082aaa506b31496720a168da8ab2708">ListValue</a>();</div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;        <a class="code" href="classHazelnp_1_1ListValue.html#a91f1450f299d46b3301774a6b4eb6c18">~ListValue</a>() <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;        <a class="code" href="classHazelnp_1_1Value.html">Value</a>* <a class="code" href="classHazelnp_1_1ListValue.html#a51c89ff315026b03d908345c6f58169d">Deepcopy</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        std::string <a class="code" href="classHazelnp_1_1ListValue.html#a5b1f8af329e48c5469fee16634b7889c">GetAsOsString</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        <span class="keywordtype">void</span> <a class="code" href="classHazelnp_1_1ListValue.html#af8787d266aa353d3f96e2c76cce76c41">AddValue</a>(<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a>* value);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keyword">const</span> std::vector&lt;Value*&gt;&amp; <a class="code" href="classHazelnp_1_1ListValue.html#a7907ae7433e4011157f1b31dd5339702">GetValue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">        //! Will return a deeopopy of this object</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span>        <a class="code" href="classHazelnp_1_1Value.html">Value</a>* <a class="code" href="classHazelnp_1_1ListValue.html#a51c89ff315026b03d908345c6f58169d">Deepcopy</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">        //! Will return a string suitable for an std::ostream;</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment"></span>        std::string <a class="code" href="classHazelnp_1_1ListValue.html#a5b1f8af329e48c5469fee16634b7889c">GetAsOsString</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">        //! Will add this value to the list</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="comment"></span>        <span class="keywordtype">void</span> <a class="code" href="classHazelnp_1_1ListValue.html#af8787d266aa353d3f96e2c76cce76c41">AddValue</a>(<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a>* value);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">        //! Will return the raw value</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment"></span>        <span class="keyword">const</span> std::vector&lt;Value*&gt;&amp; <a class="code" href="classHazelnp_1_1ListValue.html#a7907ae7433e4011157f1b31dd5339702">GetValue</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">operator</span> std::vector&lt;Value*&gt;() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classHazelnp_1_1ListValue.html#a9a7a1161ddeb3e56eaafee5f10f75995">GetInt64</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <span class="keywordtype">int</span> <a class="code" href="classHazelnp_1_1ListValue.html#a565c2b86fcfb3a13de29e59d95a358e7">GetInt32</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        <span class="keywordtype">long</span> <span class="keywordtype">double</span> <a class="code" href="classHazelnp_1_1ListValue.html#a571178db1c9d23f6c685ea8898dbb60e">GetFloat64</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        <span class="keywordtype">double</span> <a class="code" href="classHazelnp_1_1ListValue.html#a637fec02ed7f7325554e494fc7cd4e86">GetFloat32</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        std::string <a class="code" href="classHazelnp_1_1ListValue.html#aeaf80c07236045a77d72349ebcfc3b89">GetString</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keyword">const</span> std::vector&lt;Value*&gt;&amp; <a class="code" href="classHazelnp_1_1ListValue.html#ad578d9088c0375cd9b9c6658e5d9ba1f">GetList</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment">        //! Throws HazelnuppValueNotConvertibleException</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"></span>        <span class="keywordtype">long</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="classHazelnp_1_1ListValue.html#a9a7a1161ddeb3e56eaafee5f10f75995">GetInt64</a>() <span class="keyword">const override</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">        //! Throws HazelnuppValueNotConvertibleException</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span>        <span class="keywordtype">int</span> <a class="code" href="classHazelnp_1_1ListValue.html#a565c2b86fcfb3a13de29e59d95a358e7">GetInt32</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">        //! Throws HazelnuppValueNotConvertibleException</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"></span>        <span class="keywordtype">long</span> <span class="keywordtype">double</span> <a class="code" href="classHazelnp_1_1ListValue.html#a571178db1c9d23f6c685ea8898dbb60e">GetFloat64</a>() <span class="keyword">const override</span>;<span class="comment"></span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment">        //! Throws HazelnuppValueNotConvertibleException</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"></span>        <span class="keywordtype">double</span> <a class="code" href="classHazelnp_1_1ListValue.html#a637fec02ed7f7325554e494fc7cd4e86">GetFloat32</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment">        //! Throws HazelnuppValueNotConvertibleException</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"></span>        std::string <a class="code" href="classHazelnp_1_1ListValue.html#aeaf80c07236045a77d72349ebcfc3b89">GetString</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">        //! Will return this values list</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment"></span>        <span class="keyword">const</span> std::vector&lt;Value*&gt;&amp; <a class="code" href="classHazelnp_1_1ListValue.html#ad578d9088c0375cd9b9c6658e5d9ba1f">GetList</a>() <span class="keyword">const override</span>;</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">private</span>:</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::vector&lt;Value*&gt; value;</div>
@@ -133,7 +145,7 @@ $(function() {
 <div class="ttc" id="aValue_8h_html"><div class="ttname"><a href="Value_8h.html">Value.h</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 02:43:55 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 02:48:01 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -82,14 +82,17 @@ $(function() {
 <div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceHazelnp.html">Hazelnp</a></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{</div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;{<span class="comment"></span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">    /** Generic hazelnupp exception</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html">    8</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a> : <span class="keyword">public</span> std::exception</div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    {</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html#a0b21fd5d4f22e5e677b74eb0acd7c6ff">   11</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppException.html#a0b21fd5d4f22e5e677b74eb0acd7c6ff">HazelnuppException</a>() {};</div>
 <div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html#a816f823fe2ebd35076049e33b9f3c05c">   12</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppException.html#a816f823fe2ebd35076049e33b9f3c05c">HazelnuppException</a>(<span class="keyword">const</span> std::string&amp; msg) : <a class="code" href="classHazelnp_1_1HazelnuppException.html#aa905cabcd12f542dfc67638732737e88">message</a>{ msg } {};</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">   15</a></span>&#160;        <span class="keyword">const</span> std::string&amp; <a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>()<span class="keyword"> const</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">        //! Will return an error message</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">   15</a></span>&#160;<span class="comment"></span>        <span class="keyword">const</span> std::string&amp; <a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>()<span class="keyword"> const</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">        </span>{</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;            <span class="keywordflow">return</span> <a class="code" href="classHazelnp_1_1HazelnuppException.html#aa905cabcd12f542dfc67638732737e88">message</a>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        }</div>
@@ -97,35 +100,45 @@ $(function() {
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keyword">protected</span>:</div>
 <div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppException.html#aa905cabcd12f542dfc67638732737e88">   21</a></span>&#160;        std::string <a class="code" href="classHazelnp_1_1HazelnuppException.html#aa905cabcd12f542dfc67638732737e88">message</a>;</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    };</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">    /** Gets thrown when an non-existent key gets dereferenced</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppInvalidKeyException.html">   26</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppInvalidKeyException.html">HazelnuppInvalidKeyException</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a></div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    {</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppInvalidKeyException.html#ab23be8f7cb84129fa85ed1e7a0b280a0">   29</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppInvalidKeyException.html#ab23be8f7cb84129fa85ed1e7a0b280a0">HazelnuppInvalidKeyException</a>() : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>() {};</div>
 <div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppInvalidKeyException.html#a18a08dc4efe80a378216460db5769891">   30</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppInvalidKeyException.html#a18a08dc4efe80a378216460db5769891">HazelnuppInvalidKeyException</a>(<span class="keyword">const</span> std::string&amp; msg) : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>(msg) {};</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    };</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">    /** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html">   35</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html">HazelnuppValueNotConvertibleException</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a></div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    {</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html#a0babee1bb5cec9fdd4abfd86995561f4">   38</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html#a0babee1bb5cec9fdd4abfd86995561f4">HazelnuppValueNotConvertibleException</a>() : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>() {};</div>
 <div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html#a7ba376cd7fc7edcb934ee0257d4867f2">   39</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html#a7ba376cd7fc7edcb934ee0257d4867f2">HazelnuppValueNotConvertibleException</a>(<span class="keyword">const</span> std::string&amp; msg) : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>(msg) {};</div>
 <div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    };</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment">    /** Gets thrown something bad happens because of parameter constraints</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintException.html">   44</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html">HazelnuppConstraintException</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a></div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    {</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintException.html#a4d08002a96bf9b3da3c6e931a51960e9">   47</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html#a4d08002a96bf9b3da3c6e931a51960e9">HazelnuppConstraintException</a>() : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>() {};</div>
 <div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintException.html#a944f0e6a384e032a762c5892964e1cc0">   48</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html#a944f0e6a384e032a762c5892964e1cc0">HazelnuppConstraintException</a>(<span class="keyword">const</span> std::string&amp; msg) : <a class="code" href="classHazelnp_1_1HazelnuppException.html">HazelnuppException</a>(msg) {};</div>
 <div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    };</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="comment">    /** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html">   53</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html">HazelnuppConstraintTypeMissmatch</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html">HazelnuppConstraintException</a></div>
 <div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html#ab7c9e9afd9d3286e563a7656785242e8">   56</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html#ab7c9e9afd9d3286e563a7656785242e8">HazelnuppConstraintTypeMissmatch</a>() : <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html">HazelnuppConstraintException</a>() {};</div>
 <div class="line"><a name="l00057"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html#a603d91c9af39e53b54e5aa288266cfe4">   57</a></span>&#160;        <a class="code" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html#a603d91c9af39e53b54e5aa288266cfe4">HazelnuppConstraintTypeMissmatch</a>(<span class="keyword">const</span> std::string&amp; msg) : <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html">HazelnuppConstraintException</a>(msg) {};</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    };</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="comment">    /** Gets thrown when a parameter constrained to be required is not provided, and has no default value set</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    */</span></div>
 <div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classHazelnp_1_1HazelnuppConstraintMissingValue.html">   62</a></span>&#160;    <span class="keyword">class </span><a class="code" href="classHazelnp_1_1HazelnuppConstraintMissingValue.html">HazelnuppConstraintMissingValue</a> : <span class="keyword">public</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintException.html">HazelnuppConstraintException</a></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    {</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keyword">public</span>:</div>
@@ -157,7 +170,7 @@ $(function() {
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppInvalidKeyException_html_ab23be8f7cb84129fa85ed1e7a0b280a0"><div class="ttname"><a href="classHazelnp_1_1HazelnuppInvalidKeyException.html#ab23be8f7cb84129fa85ed1e7a0b280a0">Hazelnp::HazelnuppInvalidKeyException::HazelnuppInvalidKeyException</a></div><div class="ttdeci">HazelnuppInvalidKeyException()</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00029">HazelnuppException.h:29</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 02:43:55 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 02:48:01 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

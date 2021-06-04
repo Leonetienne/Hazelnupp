@@ -90,10 +90,12 @@ $(function() {
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keyword">public</span>:</div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">explicit</span> <a class="code" href="classHazelnp_1_1Parameter.html#a0c9faefc26cc9d8c886ef71e39e2f90c">Parameter</a>(<span class="keyword">const</span> std::string&amp; key, <span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a>* value);</div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        <a class="code" href="classHazelnp_1_1Parameter.html#a6e2ade42a712f1d3675653329266e42d">~Parameter</a>();</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">const</span> std::string&amp; <a class="code" href="classHazelnp_1_1Parameter.html#a7acd68ce06eec06ab286b1a062f9c8d6">Key</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a>* <a class="code" href="classHazelnp_1_1Parameter.html#a4ab8ba022bde4a0175e5ceb8e3a598af">GetValue</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">        //! Will return the key of this parameter</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment"></span>        <span class="keyword">const</span> std::string&amp; <a class="code" href="classHazelnp_1_1Parameter.html#a7acd68ce06eec06ab286b1a062f9c8d6">Key</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment"></span> </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">        //! Will return the value of this parameter</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment"></span>        <span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Value.html">Value</a>* <a class="code" href="classHazelnp_1_1Parameter.html#a4ab8ba022bde4a0175e5ceb8e3a598af">GetValue</a>() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classHazelnp_1_1Parameter.html#a11b3529badcbf99b46262772472495c7">   20</a></span>&#160;        <span class="keyword">friend</span> std::ostream&amp; <a class="code" href="classHazelnp_1_1Parameter.html#a11b3529badcbf99b46262772472495c7">operator&lt;&lt; </a>(std::ostream&amp; os, <span class="keyword">const</span> <a class="code" href="classHazelnp_1_1Parameter.html">Parameter</a>&amp; p)</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        {</div>
@@ -117,7 +119,7 @@ $(function() {
 <div class="ttc" id="aValue_8h_html"><div class="ttname"><a href="Value_8h.html">Value.h</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 02:43:55 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 02:48:01 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
