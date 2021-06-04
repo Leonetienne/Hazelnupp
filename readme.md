@@ -239,6 +239,50 @@ args.RegisterConstraints({pc});
 ```
 What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
+## Automatic parameter documentation
+Hazelnupp does create an automatic parameter documentation accessible via `--help`.  
+If you want to use `--help` yourself, just turn it off.
+```cpp
+Hazelnupp args;
+args.SetCatchHelp(false);
+```
+
+What does this automatically generated documentation look like?
+```
+$ a.out --help
+
+This is the testing application for Hazelnupp.
+
+==== AVAILABLE PARAMETERS ====
+
+--help   This will display the parameter documentation.
+
+--name   LIST   default=['peter' 'hannes']   The names to target
+
+--force   -f   Just forces it.
+
+--width   -w   FLOAT   The width of something...
+
+--fruit   STRING   [[REQUIRED]]    The fruit to use
+
+--height   -h
+```
+
+This documentation is automatically fed by any information provided on parameters.  
+You have to set the brief descriptions yourself though.
+```cpp
+Hazelnupp args;
+args.RegisterDescription("--force", "Just forces it.");
+```
+
+Additionally you can provide a brief description of your application to be added right above the parameter list.
+```cpp
+Hazelnupp args;
+args.SetBriefDescription("This is the testing application for Hazelnupp.");
+```
+
+If you want to display this information somewhere else, you can always access it via `args.GenerateDocumentation()`.
+
 ## More examples?
 Check out the unit tests! They may help you out!  
 Also make sure to check out the [doxygen docs](https://leonetienne.github.io/Hazelnupp/)!
