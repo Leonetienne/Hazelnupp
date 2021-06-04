@@ -10,12 +10,10 @@ Hazelnupp does not support windows-, or bsd-style arguments. Only linux-style.
 What is the linux-style? This:
 ```
 # Using a long parameter
-a.out --long-parameter 1234
-```
+$ a.out --long-parameter 1234
 
-```
 # Using an abbreviated parameter
-a.out -lp 1234
+$ a.out -lp 1234
 ```
 
 ## Note
@@ -43,22 +41,22 @@ The concept is that each parameter must be one of five types. These are:
 Here are examples on how to create them
 ```
 # Void
-a.out --foo
+$ a.out --foo
 
 # Int
-a.out --foo 5
+$ a.out --foo 5
 
 # Float
-a.out --foo 5.5
+$ a.out --foo 5.5
 
 # String
-a.out --foo peter
+$ a.out --foo peter
 
 # List (any type above works)
-a.out --foo peter jake jeff billy
+$ a.out --foo peter jake jeff billy
 
 # List, mixed types
-a.out --foo 1 2 3 4 peter willy billy bob 3
+$ a.out --foo 1 2 3 4 peter willy billy bob 3
 ```
 
 These parameters can then be accessed via a simple lookup!
@@ -257,7 +255,7 @@ This is the testing application for Hazelnupp.
 
 --help   This will display the parameter documentation.
 
---name   LIST   default=['peter' 'hannes']   The names to target
+--names   LIST   default=['peter' 'hannes']   The names to target
 
 --force   -f   Just forces it.
 
@@ -284,26 +282,53 @@ args.SetBriefDescription("This is the testing application for Hazelnupp.");
 If you want to display this information somewhere else, you can always access it as a string via `args.GenerateDocumentation()`.
 
 ## More examples?
-Check out the unit tests! They may help you out!  
+Check out the [tests](https://github.com/Leonetienne/Hazelnupp/tree/master/Test_Hazelnupp)! They may help you out!  
 Also make sure to check out the [doxygen docs](https://leonetienne.github.io/Hazelnupp/)!
-
-## Further notes
-This is still in alpha! There is no guarantee at all that this actually works.  
-Whilst i did my best do make sure it does, i bet there are still a few flaws i did overlook.  
-Please know that i am not obliged to work on fixes. I do have other stuff to do.
-This does not mean that i won't do it, but i'm not sure when.  
-Feel free to submit a PR if you fixed something :)
 
 ## What is not supported?
 Chaining abbreviated parameters, like this:
 ```
 # This is not supported. It would think -ltr is one parameter.
-a.out -ltr
+$ a.out -ltr
 
 # Instead do this
-a.out -l -t -r
+$ a.out -l -t -r
 
 ```
+
+Using parameters multiple times
+```
+# This is not supported.
+# Let's say -i is short for --input
+$ a.out -i hello.txt -i shoe.txt -i somsang.txt
+
+# Instead do this
+$ a.out -i hello.txt shoe.txt somsang.txt
+```
+
+## Further notes
+This is still in alpha! There is no guarantee at all that this actually works.  
+Whilst i did my best do make sure it does, i bet there are still a few flaws i've overlooked.  
+Please know that i am not obliged to work on fixes. I do have other stuff to do.
+This does not mean that i won't, but i'm not sure when.  
+Feel free to submit a PR if you think you improved it in any way :)
+
+## Contributing
+If you want to contribute, feel free to fork the repository, and submit a pull request.  
+Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests.  
+Just create an issue with the tag `feature request`. Don't forget to update the UML `Hazelnupp.vpp` aswell! The (free) modelling software used is [Visual Paradigm](https://www.visual-paradigm.com).  
+  
+Any code added must match the existing style!
+* Objects begin with a lowercase initial
+* Classifiers and Functions/Methods begin with an uppercase initial
+* Classifiers are camel-case
+* Classifiers get documented via `/** */` for doxygen. See existing classifiers
+* Members (methods and objects) get documented via `//!` for doxygen. See existing definitions.
+* `{` always gets a new line
+* Enumerations (and their values) and macros are all-upper case snake-case
+* No `using namespace std`
+* Do `using namespace Hazelnp` in cpp files. Don't do `Hazelnp::` if possible
+* Files outside the project (like STL) have to be included with `#include <>`. Not `""`
 
 ## LICENSE
 ```
