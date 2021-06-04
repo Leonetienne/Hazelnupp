@@ -3,6 +3,13 @@
 # [Documentation](https://leonetienne.github.io/Hazelnupp/)
 ## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classHazelnupp.html)
 
+
+<style>
+#readme a[href] {
+	color: #A6BF29;
+}
+</style>
+
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
 Hazelnupp does not support windows-, or bsd-style arguments. Only linux-style.  
