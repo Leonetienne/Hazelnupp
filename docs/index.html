@@ -271,7 +271,7 @@ Type safety</h2>
 </div><!-- fragment --><p>What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in <b>one</b> struct.</p>
 <h1><a class="anchor" id="autotoc_md10"></a>
 Automatic parameter documentation</h1>
-<p>Hazelnupp does create an automatic parameter documentation accessible via <code>--help</code>. <br  />
+<p>Hazelnupp does automatically create a parameter documentation, accessible via <code>--help</code>. <br  />
  If you want to use <code>--help</code> yourself, just turn it off. </p><div class="fragment"><div class="line">Hazelnupp args;</div>
 <div class="line">args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a60e0a51cd92014a87e44322158e45872">SetCatchHelp</a>(<span class="keyword">false</span>);</div>
 </div><!-- fragment --><p>What does this automatically generated documentation look like? </p><div class="fragment"><div class="line">$ a.out --help</div>
@@ -296,7 +296,7 @@ Automatic parameter documentation</h1>
 <div class="line">args.RegisterDescription(<span class="stringliteral">&quot;--force&quot;</span>, <span class="stringliteral">&quot;Just forces it.&quot;</span>);</div>
 </div><!-- fragment --><p>Additionally you can provide a brief description of your application to be added right above the parameter list. </p><div class="fragment"><div class="line">Hazelnupp args;</div>
 <div class="line">args.SetBriefDescription(<span class="stringliteral">&quot;This is the testing application for Hazelnupp.&quot;</span>);</div>
-</div><!-- fragment --><p>If you want to display this information somewhere else, you can always access it via <code>args.GenerateDocumentation()</code>.</p>
+</div><!-- fragment --><p>If you want to display this information somewhere else, you can always access it as a string via <code>args.GenerateDocumentation()</code>.</p>
 <h1><a class="anchor" id="autotoc_md11"></a>
 More examples?</h1>
 <p>Check out the unit tests! They may help you out! <br  />
@@ -341,7 +341,7 @@ LICENSE</h1>
 <div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_ab85210bb37bbace962ff08fcccdafaf2"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#ab85210bb37bbace962ff08fcccdafaf2">Hazelnp::ParamConstraint::TypeSafety</a></div><div class="ttdeci">static ParamConstraint TypeSafety(const std::string &amp;key, DATA_TYPE wantedType, bool constrainType=true)</div><div class="ttdoc">Constructs a type-safety constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00027">ParamConstraint.h:27</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 02:30:29 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Fri Jun 4 2021 02:43:55 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
