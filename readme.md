@@ -30,7 +30,6 @@ args.SetCrashOnFail(false);
 1. [Minimal working example](#minimal-working-example)
 1. [Abbreviations](#abbreviations)
 1. [Constraints](#constraints)
-1. [Minimal working example](#minimal-working-example)
 1. [Automatic parameter documentation](#automatic-parameter-documentation)
 1. [More examples?](#more-examples)
 1. [What is not supported?](#what-is-not-supported)
@@ -77,6 +76,7 @@ $ a.out --foo 1 2 3 4 peter willy billy bob 3
 
 These parameters can then be accessed via a simple lookup!
 
+<span id="minimal-working-example"></span>
 ## Minimal working example
 So what's the simplest way to use Hazelnupp to work with command-line parameters? See:
 ```cpp
@@ -142,6 +142,7 @@ int main(int argc, char** argv)
 }
 ```
 
+<span id="abbreviations"></span>
 ## Abbreviations
 Abbreviations are a very important part of command line arguments. Like, typing `-f` instead of `--force`.
 Here's how to use them in Hazelnupp:
@@ -168,6 +169,7 @@ int main(int argc, char** argv)
 }
 ```
 
+<span id="constraints"></span>
 ## Constraints
 > That's all cool and stuff, but this looks like a **LOT** of error-checking and not elegant at all! How would i *actually* use this?
 
@@ -253,6 +255,7 @@ args.RegisterConstraints({pc});
 ```
 What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
+<span id="automatic-parameter-documentation"></span>
 ## Automatic parameter documentation
 Hazelnupp does automatically create a parameter documentation, accessible via `--help`.  
 If you want to use `--help` yourself, just turn it off.
@@ -297,10 +300,12 @@ args.SetBriefDescription("This is the testing application for Hazelnupp.");
 
 If you want to display this information somewhere else, you can always access it as a string via `args.GenerateDocumentation()`.
 
+<span id="more-examples"></span>
 ## More examples?
 Check out the [tests](https://github.com/Leonetienne/Hazelnupp/tree/master/Test_Hazelnupp)! They may help you out!  
 Also make sure to check out the [doxygen docs](https://leonetienne.github.io/Hazelnupp/)!
 
+<span id="what-is-not-supported"></span>
 ## What is not supported?
 Chaining abbreviated parameters, like this:
 ```
@@ -322,6 +327,7 @@ $ a.out -i hello.txt -i shoe.txt -i somsang.txt
 $ a.out -i hello.txt shoe.txt somsang.txt
 ```
 
+<span id="further-notes"></span>
 ## Further notes
 This is still in alpha! There is no guarantee at all that this actually works.  
 Whilst i did my best do make sure it does, i bet there are still a few flaws i've overlooked.  
@@ -329,6 +335,7 @@ Please know that i am not obliged to work on fixes. I do have other stuff to do.
 This does not mean that i won't, but i'm not sure when.  
 Feel free to submit a PR if you think you improved it in any way :)
 
+<span id="#contributing"></span>
 ## Contributing
 If you want to contribute, feel free to fork the repository, and submit a pull request.  
 Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests.  
