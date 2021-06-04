@@ -6,57 +6,27 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	while (1)
-	{
-		// Mock command-line params
-		std::vector<const char*> testArgv = {
-			"meinpfad",
-			"-w",
-			"-99",
-			"--alfred",
-			"apfel",
-			"banane",
-			"triangle",
-			"--numbers",
-			"1",
-			"2",
-			"3",
-			"4",
-			"5",
-		};
+	Hazelnupp nupp;
 
-		argc = testArgv.size();
-		argv = const_cast<char**>(testArgv.data());
+	nupp.SetBriefDescription("This is the testing application for Hazelnupp.");
 
-		// Prepare Hazelnupp parser
-		Hazelnupp args;
+	nupp.RegisterDescription("--help", "This will display the parameter documentation.");
+	nupp.RegisterDescription("--force", "Just forces it.");
+	nupp.RegisterDescription("--width", "The width of something...");
+	nupp.RegisterDescription("--name", "The names to target");
+	nupp.RegisterDescription("--fruit", "The fruit to use");
 
-		ParamConstraint pc;
-		pc.key = "--alfredo";
-		pc.constrainType = true;
-		pc.wantedType = DATA_TYPE::LIST;
-		pc.required = true;
-		pc.defaultValue = { "coca cola", "fanta" };
+	nupp.RegisterAbbreviation("-f", "--force");
+	nupp.RegisterAbbreviation("-w", "--width");
+	nupp.RegisterAbbreviation("-h", "--height");
 
-		args.RegisterConstraints({
-			pc
-		});
+	nupp.RegisterConstraints({
+		ParamConstraint::TypeSafety("--width", DATA_TYPE::FLOAT),
+		ParamConstraint("--name", true, DATA_TYPE::LIST, {"peter", "hannes"}, true),
+		ParamConstraint("--fruit", true, DATA_TYPE::STRING, {}, true)
+	});
 
-		args.RegisterAbbreviation("-w", "--word");
-
-		// Parse
-		args.Parse(argc, argv);
-		
-		// Use
-		if (args.HasParam("--alfredo"))
-		{
-			std::cout << args["--alfredo"].GetInt32() << std::endl;
-		}
-		else
-		{
-			std::cout << "No --alfredo!" << std::endl;
-		}
-	}
+	nupp.Parse(argc, argv);
 
 	return 0;
 }
