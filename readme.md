@@ -240,7 +240,7 @@ args.RegisterConstraints({pc});
 What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
 ## Automatic parameter documentation
-Hazelnupp does create an automatic parameter documentation accessible via `--help`.  
+Hazelnupp does automatically create a parameter documentation, accessible via `--help`.  
 If you want to use `--help` yourself, just turn it off.
 ```cpp
 Hazelnupp args;
@@ -281,7 +281,7 @@ Hazelnupp args;
 args.SetBriefDescription("This is the testing application for Hazelnupp.");
 ```
 
-If you want to display this information somewhere else, you can always access it via `args.GenerateDocumentation()`.
+If you want to display this information somewhere else, you can always access it as a string via `args.GenerateDocumentation()`.
 
 ## More examples?
 Check out the unit tests! They may help you out!  
