@@ -32,17 +32,28 @@ namespace Hazelnp
 		//! Will register an abbreviation (like -f for --force)
 		void RegisterAbbreviation(const std::string& abbrev, const std::string& target);
 
-		//! Will return the long form of an abbreviation (like --force for -f)
-		const std::string& GetAbbreviation(const std::string& abbrev) const;
+		//! Will return the long form of an abbreviation (like --force for -f)  
+		//! Returns "" if no match is found
+		std::string GetAbbreviation(const std::string& abbrev) const;
 
 		//! Will check wether or not an abbreviation is registered
 		bool HasAbbreviation(const std::string& abbrev) const;
+
+		//! Will delete the abbreviation for a given parameter.  
+		//! IMPORTANT: This parameter is the abbreviation! Not the long form!
+		void ClearAbbreviation(const std::string& abbrevation);
 
 		//! Will delete all abbreviations
 		void ClearAbbreviations();
 
 		//! Will register parameter constraints
 		void RegisterConstraints(const std::vector<ParamConstraint>& constraints);
+
+		//! Will return the constraint information for a specific parameter
+		ParamConstraint GetConstraint(const std::string& parameter) const;
+
+		//! Will the constraint of a specific parameter
+		void ClearConstraint(const std::string& parameter);
 
 		//! Will delete all constraints
 		void ClearConstraints();
@@ -72,10 +83,16 @@ namespace Hazelnp
 
 		//! Will return a short description for a parameter, if it exists.  
 		//! Empty string if it does not exist.
-		const std::string GetDescription(const std::string& parameter) const;
+		std::string GetDescription(const std::string& parameter) const;
+
+		//! Returns whether or not a given parameter has a registered description
+		bool HasDescription(const std::string& parameter) const;
 
 		//! Will delete the description of a parameter if it exists.
 		void ClearDescription(const std::string& parameter);
+
+		//! Will delete all parameter descriptions
+		void ClearDescriptions();
 
 		//! Will generate a text-based documentation suited to show the user, for example on --help.
 		std::string GenerateDocumentation() const;
@@ -112,6 +129,7 @@ namespace Hazelnp
 		std::vector<std::string> rawArgs;
 
 		//! Short descriptions for parameters
+		//! First member is the abbreviation
 		std::unordered_map<std::string, std::string> parameterDescriptions;
 
 		//! A brief description of the application to be added to the generated documentation. Optional.

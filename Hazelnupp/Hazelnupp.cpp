@@ -320,22 +320,32 @@ void Hazelnp::Hazelnupp::RegisterDescription(const std::string& parameter, const
 	return;
 }
 
-const std::string Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
+std::string Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
 {
 	// Do we already have a description for this parameter?
-	const auto par = parameterDescriptions.find(parameter);
-	if (par == parameterDescriptions.end())
+	if (!HasDescription(parameter))
 		// No? Then return ""
 		return "";
 
 	// We do? Then return it
-	return par->second;
+	return parameterDescriptions.find(parameter)->second;
 }
 
-void Hazelnp::Hazelnupp::ClearDescription(const std::string& parameter)
+bool Hazelnupp::HasDescription(const std::string& parameter) const
+{
+	return parameterDescriptions.find(parameter) != parameterDescriptions.end();
+}
+
+void Hazelnupp::ClearDescription(const std::string& parameter)
 {
 	// This will just do nothing if the entry does not exist
 	parameterDescriptions.erase(parameter);
+	return;
+}
+
+void Hazelnp::Hazelnupp::ClearDescriptions()
+{
+	parameterDescriptions.clear();
 	return;
 }
 
@@ -482,6 +492,17 @@ void Hazelnupp::ApplyConstraints()
 	return;
 }
 
+ParamConstraint Hazelnupp::GetConstraint(const std::string& parameter) const
+{
+	return constraints.find(parameter)->second;
+}
+
+void Hazelnupp::ClearConstraint(const std::string& parameter)
+{
+	constraints.erase(parameter);
+	return;
+}
+
 const std::string& Hazelnupp::GetExecutableName() const
 {
 	return executableName;
@@ -502,14 +523,23 @@ void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::strin
 	return;
 }
 
-const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
+std::string Hazelnupp::GetAbbreviation(const std::string& abbrev) const
 {
+	if (!HasAbbreviation(abbrev))
+		return "";
+
 	return abbreviations.find(abbrev)->second;
 }
 
 bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
 {
 	return abbreviations.find(abbrev) != abbreviations.end();
+}
+
+void Hazelnupp::ClearAbbreviation(const std::string& abbrevation)
+{
+	abbreviations.erase(abbrevation);
+	return;
 }
 
 void Hazelnupp::ClearAbbreviations()

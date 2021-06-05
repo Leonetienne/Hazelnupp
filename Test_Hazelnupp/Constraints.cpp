@@ -317,5 +317,125 @@ namespace TestHazelnupp
 
 			return;
 		}
+
+		// Tests that constraints can cleared invidivually
+		TEST_METHOD(Can_Clear_Constraints_Individually)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-list",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraints({
+				ParamConstraint::Require("--not-there", {}, true),
+				ParamConstraint::Require("--default-val", {"32"}, true),
+			});
+
+			// Exercise
+			nupp.ClearConstraint("--not-there");
+
+
+			// Verify
+			nupp.Parse(C_Ify(args));
+
+			// Also verifies that parse does not throw an exception for --not-there
+
+			Assert::IsTrue(nupp.HasParam("--default-val"), L"Default value is missing");
+			Assert::AreEqual(32, nupp["--default-val"].GetInt32(), L"Default value has wrong value");
+
+			return;
+		}
+
+		// Tests that constraints can cleared invidivually
+		TEST_METHOD(Can_Clear_All_Constraints)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-list",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraints({
+				ParamConstraint::Require("--not-there", {}, true)
+			});
+
+			// Exercise
+			nupp.ClearConstraints();
+
+			// Verify
+			nupp.Parse(C_Ify(args));
+
+			return;
+		}
+
+		// Tests that setting a constraint for a parameter again will overwrite the existing one
+		TEST_METHOD(Can_Override_Constraints)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-list",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraints({
+				ParamConstraint::Require("--not-there", {}, true)
+			});
+
+			//Exercise
+			nupp.RegisterConstraints({
+				ParamConstraint::Require("--not-there", {}, false)
+			});
+
+			// Verify
+			nupp.Parse(C_Ify(args));
+
+			return;
+		}
+
+		// Tests that the GetConstraint returns the correct constraint information
+		TEST_METHOD(Get_Constraint)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-list",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			ParamConstraint dftvalConst_expected = ParamConstraint::Require("--default-val", {"32"}, true);
+			nupp.RegisterConstraints({
+				ParamConstraint::Require("--not-there", {}, true),
+				dftvalConst_expected,
+				ParamConstraint::Require("--another-one", {"bites"}, true),
+			});
+
+			// Exercise
+			ParamConstraint dftvalConst = nupp.GetConstraint("--default-val");
+
+			// Verify
+			Assert::IsTrue(dftvalConst_expected.key == dftvalConst.key, L"key");
+			Assert::IsTrue(dftvalConst_expected.required == dftvalConst.required, L"required");
+			Assert::IsTrue(dftvalConst_expected.defaultValue == dftvalConst.defaultValue, L"defaultValue");
+			Assert::IsTrue(dftvalConst_expected.wantedType == dftvalConst.wantedType, L"wantedType");
+			Assert::IsTrue(dftvalConst_expected.constrainType == dftvalConst.constrainType, L"constrainType");
+
+			return;
+		}
 	};
 }

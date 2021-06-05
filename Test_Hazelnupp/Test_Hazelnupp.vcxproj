@@ -160,6 +160,7 @@
     <ClCompile Include="Basics.cpp" />
     <ClCompile Include="Constraints.cpp" />
     <ClCompile Include="Conversion.cpp" />
+    <ClCompile Include="Descriptions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Hazelnupp\Hazelnupp.vcxproj">
