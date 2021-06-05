@@ -247,9 +247,9 @@ pc.wantedType = DATA_TYPE::STRING;
 pc.defaultValue = {}; // no default value
 pc.required = true;
 
-args.RegisterConstraints("--my-key", pc);
+args.RegisterConstraint("--my-key", pc);
 ```
-What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
+What doesn't work is inserting multiple constraints for one key. It will just discard the older one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
 <span id="automatic-parameter-documentation"></span>
 ## Automatic parameter documentation
