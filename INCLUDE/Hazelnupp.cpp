@@ -217,14 +217,14 @@ void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
 void Hazelnupp::ExpandAbbreviations()
 {
 	// Abort if no abbreviations
-	if (abbreviations.size() == 0)
+	if (parameterAbreviations.size() == 0)
 		return;
 
 	for (std::string& arg : rawArgs)
 	{
 		// Is arg registered as an abbreviation?
-		auto abbr = abbreviations.find(arg);
-		if (abbr != abbreviations.end())
+		auto abbr = parameterAbreviations.find(arg);
+		if (abbr != parameterAbreviations.end())
 		{
 			// Yes: replace arg with the long form
 			arg = abbr->second;
@@ -252,6 +252,12 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 			(constraint->wantedType == DATA_TYPE::LIST))
 			return new ListValue();
 
+		// Is a string forced via a constraint? If yes, return an empty string
+		if ((constrainType) &&
+			(constraint->wantedType == DATA_TYPE::STRING))
+			return new StringValue("");
+
+		// Else, just return the void type
 		return new VoidValue;
 	}
 
@@ -393,22 +399,32 @@ void Hazelnp::Hazelnupp::RegisterDescription(const std::string& parameter, const
 	return;
 }
 
-const std::string Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
+const std::string& Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
 {
 	// Do we already have a description for this parameter?
-	const auto par = parameterDescriptions.find(parameter);
-	if (par == parameterDescriptions.end())
+	if (!HasDescription(parameter))
 		// No? Then return ""
-		return "";
+		return Placeholders::g_emptyString;
 
 	// We do? Then return it
-	return par->second;
+	return parameterDescriptions.find(parameter)->second;
 }
 
-void Hazelnp::Hazelnupp::ClearDescription(const std::string& parameter)
+bool Hazelnupp::HasDescription(const std::string& parameter) const
+{
+	return parameterDescriptions.find(parameter) != parameterDescriptions.end();
+}
+
+void Hazelnupp::ClearDescription(const std::string& parameter)
 {
 	// This will just do nothing if the entry does not exist
 	parameterDescriptions.erase(parameter);
+	return;
+}
+
+void Hazelnp::Hazelnupp::ClearDescriptions()
+{
+	parameterDescriptions.clear();
 	return;
 }
 
@@ -445,7 +461,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 
 	// Collect abbreviations
 	// first value is abbreviation, second is long form
-	for (const auto& it : abbreviations)
+	for (const auto& it : parameterAbreviations)
 	{
 		// Do we already have that param in the paramInfo set?
 		if (paramInfos.find(it.second) == paramInfos.end())
@@ -456,7 +472,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 	}
 
 	// Collect constraints
-	for (const auto& it : constraints)
+	for (const auto& it : parameterConstraints)
 	{
 		// Do we already have that param in the paramInfo set?
 		if (paramInfos.find(it.first) == paramInfos.end())
@@ -524,7 +540,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 void Hazelnupp::ApplyConstraints()
 {
 	// Enforce required parameters / default values
-	for (const auto& pc : constraints)
+	for (const auto& pc : parameterConstraints)
 		// Parameter in question is not supplied
 		if (!HasParam(pc.second.key))
 		{
@@ -555,6 +571,17 @@ void Hazelnupp::ApplyConstraints()
 	return;
 }
 
+ParamConstraint Hazelnupp::GetConstraint(const std::string& parameter) const
+{
+	return parameterConstraints.find(parameter)->second;
+}
+
+void Hazelnupp::ClearConstraint(const std::string& parameter)
+{
+	parameterConstraints.erase(parameter);
+	return;
+}
+
 const std::string& Hazelnupp::GetExecutableName() const
 {
 	return executableName;
@@ -571,50 +598,45 @@ const Value& Hazelnupp::operator[](const std::string& key) const
 
 void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::string& target)
 {
-	abbreviations.insert(std::pair<std::string, std::string>(abbrev, target));
+	parameterAbreviations.insert(std::pair<std::string, std::string>(abbrev, target));
 	return;
 }
 
 const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
 {
-	return abbreviations.find(abbrev)->second;
+	if (!HasAbbreviation(abbrev))
+		return Placeholders::g_emptyString;
+
+	return parameterAbreviations.find(abbrev)->second;
 }
 
 bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
 {
-	return abbreviations.find(abbrev) != abbreviations.end();
+	return parameterAbreviations.find(abbrev) != parameterAbreviations.end();
+}
+
+void Hazelnupp::ClearAbbreviation(const std::string& abbrevation)
+{
+	parameterAbreviations.erase(abbrevation);
+	return;
 }
 
 void Hazelnupp::ClearAbbreviations()
 {
-	abbreviations.clear();
+	parameterAbreviations.clear();
 	return;
 }
 
-void Hazelnupp::RegisterConstraints(const std::vector<ParamConstraint>& constraints)
+void Hazelnupp::RegisterConstraint(const std::string& key, const ParamConstraint& constraint)
 {
-	for (const ParamConstraint& pc : constraints)
-	{
-		// Does this constraint already exist?
-		const auto constraint = this->constraints.find(pc.key);
-		// If yes, replace it.
-		if (constraint != this->constraints.end())
-			constraint->second = pc;
-
-		// Else, create a new pair
-		else
-			this->constraints.insert(std::pair<std::string, ParamConstraint>(
-				pc.key,
-				pc
-			));
-	}
-
+	// Magic syntax, wooo
+	(parameterConstraints[key] = constraint).key = key;
 	return;
 }
 
 void Hazelnupp::ClearConstraints()
 {
-	constraints.clear();
+	parameterConstraints.clear();
 	return;
 }
 
@@ -626,9 +648,9 @@ void Hazelnupp::SetCrashOnFail(bool crashOnFail)
 
 const ParamConstraint* Hazelnupp::GetConstraintForKey(const std::string& key) const
 {
-	const auto constraint = constraints.find(key);
+	const auto constraint = parameterConstraints.find(key);
 
-	if (constraint == constraints.end())
+	if (constraint == parameterConstraints.end())
 		return nullptr;
 
 	return &constraint->second;
@@ -1165,11 +1187,12 @@ double VoidValue::GetFloat32() const
 
 std::string VoidValue::GetString() const
 {
-	throw HazelnuppValueNotConvertibleException();
+	return "";
 }
 
 const std::vector<Value*>& VoidValue::GetList() const
 {
-	throw HazelnuppValueNotConvertibleException();
+	static const std::vector<Value*> empty;
+	return empty;
 }
 

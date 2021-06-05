@@ -42,6 +42,19 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/Placeholders.h ***/
+
+#include <string>
+
+namespace Hazelnp
+{
+	namespace Placeholders
+	{
+		//! The only purpose of this is to provide the ability to return an empty string as an error for std::string& methods.
+		static const std::string g_emptyString;
+	}
+}
+
 /*** ../Hazelnupp/HazelnuppException.h ***/
 
 #include <stdexcept>
@@ -168,10 +181,9 @@ namespace Hazelnp
 
 		//! Constructs a require constraint.  
 		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
-		static ParamConstraint Require(const std::string& key, const std::vector<std::string>& defaultValue = {}, bool required = true)
+		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
 		{
 			ParamConstraint pc;
-			pc.key = key;
 			pc.defaultValue = defaultValue;
 			pc.required = required;
 
@@ -179,10 +191,9 @@ namespace Hazelnp
 		}
 
 		//! Constructs a type-safety constraint
-		static ParamConstraint TypeSafety(const std::string& key, DATA_TYPE wantedType, bool constrainType = true)
+		static ParamConstraint TypeSafety(DATA_TYPE wantedType, bool constrainType = true)
 		{
 			ParamConstraint pc;
-			pc.key = key;
 			pc.constrainType = constrainType;
 			pc.wantedType = wantedType;
 
@@ -190,9 +201,8 @@ namespace Hazelnp
 		}
 
 		//! Whole constructor
-		ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
 			:
-			key{ key },
 			constrainType{ constrainType },
 			wantedType{ wantedType },
 			defaultValue{ defaultValue },
@@ -200,9 +210,6 @@ namespace Hazelnp
 		{
 			return;
 		}
-
-		//! The key of the parameter to constrain
-		std::string key;
 
 		//! Should this parameter be forced to be of a certain type?  
 		//! Remember to set `constrainTo` to the wanted type
@@ -219,6 +226,13 @@ namespace Hazelnp
 		//! If set to true, and no default value set,
 		//! an error will be produced if this parameter is not supplied by the user.
 		bool required = false;
+
+	private:
+		//! The parameter this constraint is for.
+		//! This value is automatically set by Hazelnupp.
+		std::string key;
+
+		friend class Hazelnupp;
 	};
 }
 
@@ -273,6 +287,101 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/ListValue.h ***/
+
+#include <vector>
+
+namespace Hazelnp
+{
+	/** Specializations for list values (uses std::vector<Value*>)
+	*/
+	class ListValue : public Value
+	{
+	public:
+		ListValue();
+		~ListValue() override;
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will add this value to the list
+		void AddValue(const Value* value);
+
+		//! Will return the raw value
+		const std::vector<Value*>& GetValue() const;
+
+		operator std::vector<Value*>() const;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long long int GetInt64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		int GetInt32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long double GetFloat64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		double GetFloat32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		std::string GetString() const override;
+
+		//! Will return this values list
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		std::vector<Value*> value;
+	};
+}
+
+/*** ../Hazelnupp/StringValue.h ***/
+
+#include <string>
+
+namespace Hazelnp
+{
+	/** Specializations for string values (uses std::string)
+	*/
+	class StringValue : public Value
+	{
+	public:
+		StringValue(const std::string& value);
+		~StringValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will return the raw value
+		const std::string& GetValue() const;
+
+		operator std::string() const;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long long int GetInt64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		int GetInt32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long double GetFloat64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		double GetFloat32() const override;
+
+		//! Will return this value as a string
+		std::string GetString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		std::string value;
+	};
+}
+
 /*** ../Hazelnupp/VoidValue.h ***/
 
 
@@ -302,10 +411,10 @@ namespace Hazelnp
 		//! Throws HazelnuppValueNotConvertibleException
 		double GetFloat32() const override;
 
-		//! Throws HazelnuppValueNotConvertibleException
+		//! Returns an empty string
 		std::string GetString() const override;
 
-		//! Throws HazelnuppValueNotConvertibleException
+		//! Returns an empty list
 		const std::vector<Value*>& GetList() const;
 	};
 }
@@ -420,17 +529,30 @@ namespace Hazelnp
 		//! Will register an abbreviation (like -f for --force)
 		void RegisterAbbreviation(const std::string& abbrev, const std::string& target);
 
-		//! Will return the long form of an abbreviation (like --force for -f)
+		//! Will return the long form of an abbreviation (like --force for -f)  
+		//! Returns "" if no match is found
 		const std::string& GetAbbreviation(const std::string& abbrev) const;
 
 		//! Will check wether or not an abbreviation is registered
 		bool HasAbbreviation(const std::string& abbrev) const;
 
+		//! Will delete the abbreviation for a given parameter.  
+		//! IMPORTANT: This parameter is the abbreviation! Not the long form!
+		void ClearAbbreviation(const std::string& abbrevation);
+
 		//! Will delete all abbreviations
 		void ClearAbbreviations();
 
-		//! Will register parameter constraints
-		void RegisterConstraints(const std::vector<ParamConstraint>& constraints);
+		//! Will register a constraint for a parameter.
+		//! IMPORTANT: Any parameter can only have ONE constraint. Applying a new one will overwrite the old one!
+		//! Construct the ParamConstraint struct yourself to combine Require and TypeSafety! You can also use the ParamConstraint constructor!
+		void RegisterConstraint(const std::string& key, const ParamConstraint& constraint);
+
+		//! Will return the constraint information for a specific parameter
+		ParamConstraint GetConstraint(const std::string& parameter) const;
+
+		//! Will the constraint of a specific parameter
+		void ClearConstraint(const std::string& parameter);
 
 		//! Will delete all constraints
 		void ClearConstraints();
@@ -460,10 +582,16 @@ namespace Hazelnp
 
 		//! Will return a short description for a parameter, if it exists.  
 		//! Empty string if it does not exist.
-		const std::string GetDescription(const std::string& parameter) const;
+		const std::string& GetDescription(const std::string& parameter) const;
+
+		//! Returns whether or not a given parameter has a registered description
+		bool HasDescription(const std::string& parameter) const;
 
 		//! Will delete the description of a parameter if it exists.
 		void ClearDescription(const std::string& parameter);
+
+		//! Will delete all parameter descriptions
+		void ClearDescriptions();
 
 		//! Will generate a text-based documentation suited to show the user, for example on --help.
 		std::string GenerateDocumentation() const;
@@ -491,15 +619,16 @@ namespace Hazelnp
 		std::unordered_map<std::string, Parameter*> parameters;
 
 		//! These are abbreviations. Like, -f for --force.
-		std::unordered_map<std::string, std::string> abbreviations;
+		std::unordered_map<std::string, std::string> parameterAbreviations;
 
 		//! Parameter constraints, mapped to keys
-		std::unordered_map<std::string, ParamConstraint> constraints;
+		std::unordered_map<std::string, ParamConstraint> parameterConstraints;
 
 		//! Raw argv
 		std::vector<std::string> rawArgs;
 
 		//! Short descriptions for parameters
+		//! First member is the abbreviation
 		std::unordered_map<std::string, std::string> parameterDescriptions;
 
 		//! A brief description of the application to be added to the generated documentation. Optional.
@@ -510,101 +639,6 @@ namespace Hazelnp
 
 		//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
 		bool crashOnFail = true;
-	};
-}
-
-/*** ../Hazelnupp/ListValue.h ***/
-
-#include <vector>
-
-namespace Hazelnp
-{
-	/** Specializations for list values (uses std::vector<Value*>)
-	*/
-	class ListValue : public Value
-	{
-	public:
-		ListValue();
-		~ListValue() override;
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will add this value to the list
-		void AddValue(const Value* value);
-
-		//! Will return the raw value
-		const std::vector<Value*>& GetValue() const;
-
-		operator std::vector<Value*>() const;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long long int GetInt64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		int GetInt32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long double GetFloat64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		double GetFloat32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		std::string GetString() const override;
-
-		//! Will return this values list
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		std::vector<Value*> value;
-	};
-}
-
-/*** ../Hazelnupp/StringValue.h ***/
-
-#include <string>
-
-namespace Hazelnp
-{
-	/** Specializations for string values (uses std::string)
-	*/
-	class StringValue : public Value
-	{
-	public:
-		StringValue(const std::string& value);
-		~StringValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will return the raw value
-		const std::string& GetValue() const;
-
-		operator std::string() const;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long long int GetInt64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		int GetInt32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long double GetFloat64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		double GetFloat32() const override;
-
-		//! Will return this value as a string
-		std::string GetString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		std::string value;
 	};
 }
 
