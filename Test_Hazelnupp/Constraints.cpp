@@ -284,7 +284,7 @@ namespace TestHazelnupp
 			return;
 		}
 
-		// Tests that everything a void can be converted to an empty list
+		// Tests that a void can be converted to an empty list
 		TEST_METHOD(Weird_Load_Conversions_VoidToEmptyList)
 		{
 			// Setup
@@ -313,7 +313,7 @@ namespace TestHazelnupp
 			return;
 		}
 
-		// Tests that constraints can cleared invidivually
+		// Tests that constraints can be cleared invidivually
 		TEST_METHOD(Can_Clear_Constraints_Individually)
 		{
 			// Setup
@@ -351,7 +351,7 @@ namespace TestHazelnupp
 			return;
 		}
 
-		// Tests that constraints can cleared invidivually
+		// Tests that constraints can be cleared invidivually
 		TEST_METHOD(Can_Clear_All_Constraints)
 		{
 			// Setup
@@ -408,7 +408,7 @@ namespace TestHazelnupp
 			return;
 		}
 
-		// Tests that the GetConstraint returns the correct constraint information
+		// Tests that the GetConstraint method returns the correct constraint information
 		TEST_METHOD(Get_Constraint)
 		{
 			// Setup
