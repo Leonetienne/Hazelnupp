@@ -67,7 +67,7 @@ $ a.out --foo 5.5
 # String
 $ a.out --foo peter
 
-# List (any type above works)
+# List (any type above works, except void)
 $ a.out --foo peter jake jeff billy
 
 # List, mixed types
@@ -211,10 +211,11 @@ These conversions are:
 * float ->[int, string, list, void]
 * string -> [list, void]
 * list -> [void]
-* void -> [list]
+* void -> [list, string]
 
 The conversions `*->list` just create a list with a single entry (except for `void->list` which produces an empty list).  
-The `*->void` conversions just drop their value.
+The `*->void` conversions just drop their value.  
+`void->string` just produces an empty string.
 
 Minimal working example:
 ```cpp
