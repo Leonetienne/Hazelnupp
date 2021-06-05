@@ -26,12 +26,10 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--elenor-int", {"5994"}),
-				ParamConstraint::Require("--federich-float", {"420.69"}),
-				ParamConstraint::Require("--siegbert-string", {"banana"}),
-				ParamConstraint::Require("--lieber-liste", {"banana", "apple", "59"})
-			});
+			nupp.RegisterConstraint("--elenor-int", ParamConstraint::Require({"5994"}));
+			nupp.RegisterConstraint("--federich-float", ParamConstraint::Require({ "420.69" }));
+			nupp.RegisterConstraint("--siegbert-string", ParamConstraint::Require({"banana"}));
+			nupp.RegisterConstraint("--lieber-liste", ParamConstraint::Require({ "banana", "apple", "59" }));
 
 			nupp.Parse(C_Ify(args));
 
@@ -80,12 +78,10 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--elenor-int", {"6871"}),
-				ParamConstraint::Require("--federich-float", {"-199.44"}),
-				ParamConstraint::Require("--siegbert-string", {"bornana"}),
-				ParamConstraint::Require("--lieber-liste", {"bornana", "ollpe", "5"})
-			});
+			nupp.RegisterConstraint("--elenor-int", ParamConstraint::Require({ "6871" }));
+			nupp.RegisterConstraint("--federich-float", ParamConstraint::Require({"-199.44"}));
+			nupp.RegisterConstraint("--siegbert-string", ParamConstraint::Require({"bornana"}));
+			nupp.RegisterConstraint("--lieber-liste", ParamConstraint::Require({"bornana", "ollpe", "5"}));
 
 			nupp.Parse(C_Ify(args));
 
@@ -136,14 +132,12 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::TypeSafety("--num-apples", DATA_TYPE::INT),
-				ParamConstraint::TypeSafety("--table-height", DATA_TYPE::FLOAT),
-				ParamConstraint::TypeSafety("--license-plate", DATA_TYPE::STRING),
-				ParamConstraint::TypeSafety("--fav-fruits", DATA_TYPE::LIST),
-				ParamConstraint::TypeSafety("--indices", DATA_TYPE::LIST),
-				ParamConstraint::TypeSafety("--force", DATA_TYPE::VOID),
-			});
+			nupp.RegisterConstraint("--num-apples", ParamConstraint::TypeSafety(DATA_TYPE::INT));
+			nupp.RegisterConstraint("--table-height", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
+			nupp.RegisterConstraint("--license-plate", ParamConstraint::TypeSafety(DATA_TYPE::STRING));
+			nupp.RegisterConstraint("--fav-fruits", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
+			nupp.RegisterConstraint("--indices", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
+			nupp.RegisterConstraint("--force", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
 
 			nupp.Parse(C_Ify(args));
 
@@ -198,9 +192,10 @@ namespace TestHazelnupp
 					Hazelnupp nupp;
 					nupp.SetCrashOnFail(false);
 
-					nupp.RegisterConstraints({
-						ParamConstraint::Require("--elenor-int"),
-					});
+					nupp.RegisterConstraint(
+						"--elenor-int",
+						ParamConstraint::Require()
+					);
 
 					nupp.Parse(C_Ify(args));
 				}
@@ -235,9 +230,10 @@ namespace TestHazelnupp
 					Hazelnupp nupp;
 					nupp.SetCrashOnFail(false);
 
-					nupp.RegisterConstraints({
-						ParamConstraint::TypeSafety("--elenor-int", DATA_TYPE::INT),
-					});
+					nupp.RegisterConstraint(
+						"--elenor-int",
+						ParamConstraint::TypeSafety( DATA_TYPE::INT)
+					);
 
 					nupp.Parse(C_Ify(args));
 				}
@@ -268,13 +264,11 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::TypeSafety("--void1", DATA_TYPE::VOID),
-				ParamConstraint::TypeSafety("--void2", DATA_TYPE::VOID),
-				ParamConstraint::TypeSafety("--void3", DATA_TYPE::VOID),
-				ParamConstraint::TypeSafety("--void4", DATA_TYPE::VOID),
-				ParamConstraint::TypeSafety("--void5", DATA_TYPE::VOID)
-			});
+			nupp.RegisterConstraint("--void1", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			nupp.RegisterConstraint("--void2", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			nupp.RegisterConstraint("--void3", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			nupp.RegisterConstraint("--void4", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			nupp.RegisterConstraint("--void5", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
 
 
 			// Exercise
@@ -303,9 +297,10 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::TypeSafety("--empty-list", DATA_TYPE::LIST),
-			});
+			nupp.RegisterConstraint(
+				"--empty-list",
+				ParamConstraint::TypeSafety(DATA_TYPE::LIST)
+			);
 
 
 			// Exercise
@@ -331,10 +326,15 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--not-there", {}, true),
-				ParamConstraint::Require("--default-val", {"32"}, true),
-			});
+			nupp.RegisterConstraint(
+				"--default-val",
+				ParamConstraint::Require({"32"}, true)
+			);
+
+			nupp.RegisterConstraint(
+				"--not-there",
+				ParamConstraint::Require({}, true)
+			);
 
 			// Exercise
 			nupp.ClearConstraint("--not-there");
@@ -364,9 +364,10 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--not-there", {}, true)
-			});
+			nupp.RegisterConstraint(
+				"--not-there",
+				ParamConstraint::Require({}, true)
+			);
 
 			// Exercise
 			nupp.ClearConstraints();
@@ -390,14 +391,16 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--not-there", {}, true)
-			});
+			nupp.RegisterConstraint(
+				"--not-there",
+				ParamConstraint::Require({}, true)
+			);
 
 			//Exercise
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--not-there", {}, false)
-			});
+			nupp.RegisterConstraint(
+				"--not-there",
+				ParamConstraint::Require({}, false)
+			);
 
 			// Verify
 			nupp.Parse(C_Ify(args));
@@ -418,18 +421,17 @@ namespace TestHazelnupp
 			Hazelnupp nupp;
 			nupp.SetCrashOnFail(false);
 
-			ParamConstraint dftvalConst_expected = ParamConstraint::Require("--default-val", {"32"}, true);
-			nupp.RegisterConstraints({
-				ParamConstraint::Require("--not-there", {}, true),
-				dftvalConst_expected,
-				ParamConstraint::Require("--another-one", {"bites"}, true),
-			});
+			ParamConstraint dftvalConst_expected = 
+				ParamConstraint::Require({"32"}, true);
+	
+			nupp.RegisterConstraint("--default-val", dftvalConst_expected);
+			nupp.RegisterConstraint("--not-there", ParamConstraint::Require({}, true));
+			nupp.RegisterConstraint("--another-one", ParamConstraint::Require({ "bites" }, true));
 
 			// Exercise
 			ParamConstraint dftvalConst = nupp.GetConstraint("--default-val");
 
 			// Verify
-			Assert::IsTrue(dftvalConst_expected.key == dftvalConst.key, L"key");
 			Assert::IsTrue(dftvalConst_expected.required == dftvalConst.required, L"required");
 			Assert::IsTrue(dftvalConst_expected.defaultValue == dftvalConst.defaultValue, L"defaultValue");
 			Assert::IsTrue(dftvalConst_expected.wantedType == dftvalConst.wantedType, L"wantedType");
