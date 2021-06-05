@@ -120,10 +120,10 @@ namespace Hazelnp
 		std::unordered_map<std::string, Parameter*> parameters;
 
 		//! These are abbreviations. Like, -f for --force.
-		std::unordered_map<std::string, std::string> abbreviations;
+		std::unordered_map<std::string, std::string> parameterAbreviations;
 
 		//! Parameter constraints, mapped to keys
-		std::unordered_map<std::string, ParamConstraint> constraints;
+		std::unordered_map<std::string, ParamConstraint> parameterConstraints;
 
 		//! Raw argv
 		std::vector<std::string> rawArgs;
