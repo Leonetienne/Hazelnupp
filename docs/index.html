@@ -131,7 +131,7 @@ What's the concept?</h1>
 <div class="line"># String</div>
 <div class="line">$ a.out --foo peter</div>
 <div class="line"> </div>
-<div class="line"># List (any type above works)</div>
+<div class="line"># List (any type above works, except void)</div>
 <div class="line">$ a.out --foo peter jake jeff billy</div>
 <div class="line"> </div>
 <div class="line"># List, mixed types</div>
@@ -237,10 +237,8 @@ Requiring data</h2>
 <div class="line">    <a class="code" href="classHazelnp_1_1Hazelnupp.html">Hazelnupp</a> args;</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// Register constraints</span></div>
-<div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">RegisterConstraints</a>({</div>
-<div class="line">        <a class="code" href="structHazelnp_1_1ParamConstraint.html#afbcc75c428381ab3a292d3f55945eb32">ParamConstraint::Require</a>(<span class="stringliteral">&quot;--this-is-required&quot;</span>), <span class="comment">// This missing throws an exception</span></div>
-<div class="line">        <a class="code" href="structHazelnp_1_1ParamConstraint.html#afbcc75c428381ab3a292d3f55945eb32">ParamConstraint::Require</a>(<span class="stringliteral">&quot;--also-required-but-defaulted&quot;</span>, {<span class="stringliteral">&quot;122&quot;</span>}), <span class="comment">// This will default to 122</span></div>
-<div class="line">    });</div>
+<div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">RegisterConstraint</a>(<span class="stringliteral">&quot;--this-is-required&quot;</span>, <a class="code" href="structHazelnp_1_1ParamConstraint.html#a926e12fcb2fd0d031452c4bcc950bd6c">ParamConstraint::Require</a>()); <span class="comment">// This missing throws an exception</span></div>
+<div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">RegisterConstraint</a>(<span class="stringliteral">&quot;--also-required-but-defaulted&quot;</span>, <a class="code" href="structHazelnp_1_1ParamConstraint.html#a926e12fcb2fd0d031452c4bcc950bd6c">ParamConstraint::Require</a>({<span class="stringliteral">&quot;122&quot;</span>})); <span class="comment">// This will default to 122</span></div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// Parse</span></div>
 <div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Parse</a>(argc, argv);</div>
@@ -258,10 +256,11 @@ Type safety</h2>
 <li>float -&gt;[int, string, list, void]</li>
 <li>string -&gt; [list, void]</li>
 <li>list -&gt; [void]</li>
-<li>void -&gt; [list]</li>
+<li>void -&gt; [list, string]</li>
 </ul>
 <p>The conversions <code>*-&gt;list</code> just create a list with a single entry (except for <code>void-&gt;list</code> which produces an empty list). <br  />
- The <code>*-&gt;void</code> conversions just drop their value.</p>
+ The <code>*-&gt;void</code> conversions just drop their value. <br  />
+ <code>void-&gt;string</code> just produces an empty string.</p>
 <p>Minimal working example: </p><div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="Hazelnupp_8h.html">Hazelnupp.h</a>&quot;</span></div>
 <div class="line"><span class="keyword">using namespace </span><a class="code" href="namespaceHazelnp.html">Hazelnp</a>;</div>
 <div class="line"> </div>
@@ -270,9 +269,7 @@ Type safety</h2>
 <div class="line">    <a class="code" href="classHazelnp_1_1Hazelnupp.html">Hazelnupp</a> args;</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// Register constraints</span></div>
-<div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">RegisterConstraints</a>({</div>
-<div class="line">        <a class="code" href="structHazelnp_1_1ParamConstraint.html#ab85210bb37bbace962ff08fcccdafaf2">ParamConstraint::TypeSafety</a>(<span class="stringliteral">&quot;--this-must-be-int&quot;</span>, <a class="code" href="namespaceHazelnp.html#a07b61ac22ce9cd97eceebdf9487f803fa53f93baa3057821107c750323892fa92">DATA_TYPE::INT</a>)</div>
-<div class="line">    });</div>
+<div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">RegisterConstraint</a>(<span class="stringliteral">&quot;--this-must-be-int&quot;</span>, <a class="code" href="structHazelnp_1_1ParamConstraint.html#a15a860c63388ea3164e3d7b35b352e9a">ParamConstraint::TypeSafety</a>(<a class="code" href="namespaceHazelnp.html#a07b61ac22ce9cd97eceebdf9487f803fa53f93baa3057821107c750323892fa92">DATA_TYPE::INT</a>));</div>
 <div class="line">    </div>
 <div class="line">    <span class="comment">// Parse</span></div>
 <div class="line">    args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Parse</a>(argc, argv);</div>
@@ -282,13 +279,12 @@ Type safety</h2>
 </div><!-- fragment --><p>If <code>--this-must-be-int</code> would be passed as a float, it would be converted to int. If it was passed, for example, as a string, it would throw an exception.</p>
 <hr  />
 <p> Note that you can also combine these two constraint-types by populating the struct yourself: </p><div class="fragment"><div class="line">ParamConstraint pc;</div>
-<div class="line">pc.key = <span class="stringliteral">&quot;--my-key&quot;</span>;</div>
 <div class="line">pc.constrainType = <span class="keyword">true</span>;</div>
 <div class="line">pc.wantedType = DATA_TYPE::STRING;</div>
 <div class="line">pc.defaultValue = {}; <span class="comment">// no default value</span></div>
 <div class="line">pc.required = <span class="keyword">true</span>;</div>
 <div class="line"> </div>
-<div class="line">args.<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">RegisterConstraints</a>({pc});</div>
+<div class="line">args.RegisterConstraints(<span class="stringliteral">&quot;--my-key&quot;</span>, pc);</div>
 </div><!-- fragment --><p>What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in <b>one</b> struct.</p>
 <p><span id="automatic-parameter-documentation"></span> </p>
 <h1><a class="anchor" id="autotoc_md11"></a>
@@ -381,18 +377,18 @@ LICENSE</h1>
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppInvalidKeyException_html"><div class="ttname"><a href="classHazelnp_1_1HazelnuppInvalidKeyException.html">Hazelnp::HazelnuppInvalidKeyException</a></div><div class="ttdoc">Gets thrown when an non-existent key gets dereferenced.</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00026">HazelnuppException.h:26</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html">Hazelnp::Hazelnupp</a></div><div class="ttdoc">The main class to interface with.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8h_source.html#l00011">Hazelnupp.h:11</a></div></div>
 <div class="ttc" id="amain_8cpp_html_a3c04138a5bfe5d72780bb7e82a18e627"><div class="ttname"><a href="main_8cpp.html#a3c04138a5bfe5d72780bb7e82a18e627">main</a></div><div class="ttdeci">int main(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="main_8cpp_source.html#l00007">main.cpp:7</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a60e0a51cd92014a87e44322158e45872"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a60e0a51cd92014a87e44322158e45872">Hazelnp::Hazelnupp::SetCatchHelp</a></div><div class="ttdeci">void SetCatchHelp(bool catchHelp)</div><div class="ttdoc">Sets whether the Hazelnupp should automatically catch the –help parameter, print the parameter docume...</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00295">Hazelnupp.cpp:295</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a8b79a79d40420ae748c108c691111040"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">Hazelnp::Hazelnupp::HasParam</a></div><div class="ttdeci">bool HasParam(const std::string &amp;key) const</div><div class="ttdoc">Will check wether a parameter exists given a key, or not.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00164">Hazelnupp.cpp:164</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a1ccb88faca1a8deb77161888479c300b"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Hazelnp::Hazelnupp::Parse</a></div><div class="ttdeci">void Parse(const int argc, const char *const *argv)</div><div class="ttdoc">Will parse command line arguments.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00035">Hazelnupp.cpp:35</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_abf1e0ebf0207ca2327fcde81f7372124"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#abf1e0ebf0207ca2327fcde81f7372124">Hazelnp::Hazelnupp::RegisterAbbreviation</a></div><div class="ttdeci">void RegisterAbbreviation(const std::string &amp;abbrev, const std::string &amp;target)</div><div class="ttdoc">Will register an abbreviation (like -f for –force)</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00499">Hazelnupp.cpp:499</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a8a3331836b9ea1f920e77f6d332019d5"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">Hazelnp::Hazelnupp::RegisterConstraints</a></div><div class="ttdeci">void RegisterConstraints(const std::vector&lt; ParamConstraint &gt; &amp;constraints)</div><div class="ttdoc">Will register parameter constraints.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00521">Hazelnupp.cpp:521</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a60e0a51cd92014a87e44322158e45872"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a60e0a51cd92014a87e44322158e45872">Hazelnp::Hazelnupp::SetCatchHelp</a></div><div class="ttdeci">void SetCatchHelp(bool catchHelp)</div><div class="ttdoc">Sets whether the Hazelnupp should automatically catch the –help parameter, print the parameter docume...</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00302">Hazelnupp.cpp:302</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a8b79a79d40420ae748c108c691111040"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">Hazelnp::Hazelnupp::HasParam</a></div><div class="ttdeci">bool HasParam(const std::string &amp;key) const</div><div class="ttdoc">Will check wether a parameter exists given a key, or not.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00165">Hazelnupp.cpp:165</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a1ccb88faca1a8deb77161888479c300b"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Hazelnp::Hazelnupp::Parse</a></div><div class="ttdeci">void Parse(const int argc, const char *const *argv)</div><div class="ttdoc">Will parse command line arguments.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00036">Hazelnupp.cpp:36</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_abf1e0ebf0207ca2327fcde81f7372124"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#abf1e0ebf0207ca2327fcde81f7372124">Hazelnp::Hazelnupp::RegisterAbbreviation</a></div><div class="ttdeci">void RegisterAbbreviation(const std::string &amp;abbrev, const std::string &amp;target)</div><div class="ttdoc">Will register an abbreviation (like -f for –force)</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00527">Hazelnupp.cpp:527</a></div></div>
 <div class="ttc" id="aHazelnupp_8h_html"><div class="ttname"><a href="Hazelnupp_8h.html">Hazelnupp.h</a></div></div>
-<div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_afbcc75c428381ab3a292d3f55945eb32"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#afbcc75c428381ab3a292d3f55945eb32">Hazelnp::ParamConstraint::Require</a></div><div class="ttdeci">static ParamConstraint Require(const std::string &amp;key, const std::vector&lt; std::string &gt; &amp;defaultValue={}, bool required=true)</div><div class="ttdoc">Constructs a require constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00016">ParamConstraint.h:16</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_add731b65fb0741e4fb0b8fc8a601a11d"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">Hazelnp::Hazelnupp::RegisterConstraint</a></div><div class="ttdeci">void RegisterConstraint(const std::string &amp;key, const ParamConstraint &amp;constraint)</div><div class="ttdoc">Will register a constraint for a parameter.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00558">Hazelnupp.cpp:558</a></div></div>
 <div class="ttc" id="anamespaceHazelnp_html_a07b61ac22ce9cd97eceebdf9487f803fa53f93baa3057821107c750323892fa92"><div class="ttname"><a href="namespaceHazelnp.html#a07b61ac22ce9cd97eceebdf9487f803fa53f93baa3057821107c750323892fa92">Hazelnp::DATA_TYPE::INT</a></div><div class="ttdeci">@ INT</div></div>
-<div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_ab85210bb37bbace962ff08fcccdafaf2"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#ab85210bb37bbace962ff08fcccdafaf2">Hazelnp::ParamConstraint::TypeSafety</a></div><div class="ttdeci">static ParamConstraint TypeSafety(const std::string &amp;key, DATA_TYPE wantedType, bool constrainType=true)</div><div class="ttdoc">Constructs a type-safety constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00027">ParamConstraint.h:27</a></div></div>
+<div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_a926e12fcb2fd0d031452c4bcc950bd6c"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#a926e12fcb2fd0d031452c4bcc950bd6c">Hazelnp::ParamConstraint::Require</a></div><div class="ttdeci">static ParamConstraint Require(const std::vector&lt; std::string &gt; &amp;defaultValue={}, bool required=true)</div><div class="ttdoc">Constructs a require constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00016">ParamConstraint.h:16</a></div></div>
+<div class="ttc" id="astructHazelnp_1_1ParamConstraint_html_a15a860c63388ea3164e3d7b35b352e9a"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html#a15a860c63388ea3164e3d7b35b352e9a">Hazelnp::ParamConstraint::TypeSafety</a></div><div class="ttdeci">static ParamConstraint TypeSafety(DATA_TYPE wantedType, bool constrainType=true)</div><div class="ttdoc">Constructs a type-safety constraint.</div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00026">ParamConstraint.h:26</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 15:58:57 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 5 2021 12:40:12 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

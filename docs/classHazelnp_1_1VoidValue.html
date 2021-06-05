@@ -130,10 +130,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a6d39d2983e54e1a407c66e303273aa48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws <a class="el" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html" title="Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...">HazelnuppValueNotConvertibleException</a>.  <a href="classHazelnp_1_1VoidValue.html#a6d39d2983e54e1a407c66e303273aa48">More...</a><br /></td></tr>
 <tr class="separator:a6d39d2983e54e1a407c66e303273aa48"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5af0c47a873b84226df47a90e63b2acd"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1VoidValue.html#a5af0c47a873b84226df47a90e63b2acd">GetString</a> () const override</td></tr>
-<tr class="memdesc:a5af0c47a873b84226df47a90e63b2acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws <a class="el" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html" title="Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...">HazelnuppValueNotConvertibleException</a>.  <a href="classHazelnp_1_1VoidValue.html#a5af0c47a873b84226df47a90e63b2acd">More...</a><br /></td></tr>
+<tr class="memdesc:a5af0c47a873b84226df47a90e63b2acd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an empty string.  <a href="classHazelnp_1_1VoidValue.html#a5af0c47a873b84226df47a90e63b2acd">More...</a><br /></td></tr>
 <tr class="separator:a5af0c47a873b84226df47a90e63b2acd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aba53ae37d415959b583f33f3e381be16"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; <a class="el" href="classHazelnp_1_1Value.html">Value</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1VoidValue.html#aba53ae37d415959b583f33f3e381be16">GetList</a> () const</td></tr>
-<tr class="memdesc:aba53ae37d415959b583f33f3e381be16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Throws <a class="el" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html" title="Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...">HazelnuppValueNotConvertibleException</a>.  <a href="classHazelnp_1_1VoidValue.html#aba53ae37d415959b583f33f3e381be16">More...</a><br /></td></tr>
+<tr class="memdesc:aba53ae37d415959b583f33f3e381be16"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns an empty list.  <a href="classHazelnp_1_1VoidValue.html#aba53ae37d415959b583f33f3e381be16">More...</a><br /></td></tr>
 <tr class="separator:aba53ae37d415959b583f33f3e381be16"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classHazelnp_1_1Value"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classHazelnp_1_1Value')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classHazelnp_1_1Value.html">Hazelnp::Value</a></td></tr>
 <tr class="memitem:a977dea61ee5b00b6c6d77ad6ad2c8d4c inherit pub_methods_classHazelnp_1_1Value"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Value.html#a977dea61ee5b00b6c6d77ad6ad2c8d4c">~Value</a> ()</td></tr>
@@ -437,14 +437,15 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Throws <a class="el" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html" title="Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...">HazelnuppValueNotConvertibleException</a>. </p>
+<p>Returns an empty list. </p>
 
 <p>Implements <a class="el" href="classHazelnp_1_1Value.html#a358092f951e817cd2a878225b5b1c869">Hazelnp::Value</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="VoidValue_8cpp_source.html#l00050">50</a> of file <a class="el" href="VoidValue_8cpp_source.html">VoidValue.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html">HazelnuppValueNotConvertibleException</a>();</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> std::vector&lt;Value*&gt; empty;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordflow">return</span> empty;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -471,13 +472,13 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Throws <a class="el" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html" title="Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...">HazelnuppValueNotConvertibleException</a>. </p>
+<p>Returns an empty string. </p>
 
 <p>Implements <a class="el" href="classHazelnp_1_1Value.html#a1446705c062026f03866d0f452c39501">Hazelnp::Value</a>.</p>
 
 <p class="definition">Definition at line <a class="el" href="VoidValue_8cpp_source.html#l00045">45</a> of file <a class="el" href="VoidValue_8cpp_source.html">VoidValue.cpp</a>.</p>
 <div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">throw</span> <a class="code" href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html">HazelnuppValueNotConvertibleException</a>();</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
 <div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
@@ -493,7 +494,7 @@ Additional Inherited Members</h2></td></tr>
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppValueNotConvertibleException_html"><div class="ttname"><a href="classHazelnp_1_1HazelnuppValueNotConvertibleException.html">Hazelnp::HazelnuppValueNotConvertibleException</a></div><div class="ttdoc">Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not ...</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00035">HazelnuppException.h:35</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 15:58:57 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 5 2021 12:40:12 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>

@@ -111,17 +111,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:abf1e0ebf0207ca2327fcde81f7372124"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will register an abbreviation (like -f for &ndash;force)  <a href="classHazelnp_1_1Hazelnupp.html#abf1e0ebf0207ca2327fcde81f7372124">More...</a><br /></td></tr>
 <tr class="separator:abf1e0ebf0207ca2327fcde81f7372124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a579e78129f19cb9f17a6075366ababe5"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a579e78129f19cb9f17a6075366ababe5">GetAbbreviation</a> (const std::string &amp;abbrev) const</td></tr>
-<tr class="memdesc:a579e78129f19cb9f17a6075366ababe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return the long form of an abbreviation (like &ndash;force for -f)  <a href="classHazelnp_1_1Hazelnupp.html#a579e78129f19cb9f17a6075366ababe5">More...</a><br /></td></tr>
+<tr class="memdesc:a579e78129f19cb9f17a6075366ababe5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return the long form of an abbreviation (like &ndash;force for -f) <br  />
+ Returns "" if no match is found.  <a href="classHazelnp_1_1Hazelnupp.html#a579e78129f19cb9f17a6075366ababe5">More...</a><br /></td></tr>
 <tr class="separator:a579e78129f19cb9f17a6075366ababe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a46df7d396fb56e30351c9a7308792200"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a46df7d396fb56e30351c9a7308792200">HasAbbreviation</a> (const std::string &amp;abbrev) const</td></tr>
 <tr class="memdesc:a46df7d396fb56e30351c9a7308792200"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will check wether or not an abbreviation is registered.  <a href="classHazelnp_1_1Hazelnupp.html#a46df7d396fb56e30351c9a7308792200">More...</a><br /></td></tr>
 <tr class="separator:a46df7d396fb56e30351c9a7308792200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05d1decbb08d1f9368bc9a0d3dfd6398"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a05d1decbb08d1f9368bc9a0d3dfd6398">ClearAbbreviation</a> (const std::string &amp;abbrevation)</td></tr>
+<tr class="memdesc:a05d1decbb08d1f9368bc9a0d3dfd6398"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete the abbreviation for a given parameter.  <a href="classHazelnp_1_1Hazelnupp.html#a05d1decbb08d1f9368bc9a0d3dfd6398">More...</a><br /></td></tr>
+<tr class="separator:a05d1decbb08d1f9368bc9a0d3dfd6398"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5175869b025468324cefad487081e91d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a5175869b025468324cefad487081e91d">ClearAbbreviations</a> ()</td></tr>
 <tr class="memdesc:a5175869b025468324cefad487081e91d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete all abbreviations.  <a href="classHazelnp_1_1Hazelnupp.html#a5175869b025468324cefad487081e91d">More...</a><br /></td></tr>
 <tr class="separator:a5175869b025468324cefad487081e91d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a3331836b9ea1f920e77f6d332019d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">RegisterConstraints</a> (const std::vector&lt; <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> &gt; &amp;constraints)</td></tr>
-<tr class="memdesc:a8a3331836b9ea1f920e77f6d332019d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will register parameter constraints.  <a href="classHazelnp_1_1Hazelnupp.html#a8a3331836b9ea1f920e77f6d332019d5">More...</a><br /></td></tr>
-<tr class="separator:a8a3331836b9ea1f920e77f6d332019d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add731b65fb0741e4fb0b8fc8a601a11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">RegisterConstraint</a> (const std::string &amp;key, const <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> &amp;constraint)</td></tr>
+<tr class="memdesc:add731b65fb0741e4fb0b8fc8a601a11d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will register a constraint for a parameter.  <a href="classHazelnp_1_1Hazelnupp.html#add731b65fb0741e4fb0b8fc8a601a11d">More...</a><br /></td></tr>
+<tr class="separator:add731b65fb0741e4fb0b8fc8a601a11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaec2780d800113ffc2d72a6b865955c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#acaec2780d800113ffc2d72a6b865955c">GetConstraint</a> (const std::string &amp;parameter) const</td></tr>
+<tr class="memdesc:acaec2780d800113ffc2d72a6b865955c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return the constraint information for a specific parameter.  <a href="classHazelnp_1_1Hazelnupp.html#acaec2780d800113ffc2d72a6b865955c">More...</a><br /></td></tr>
+<tr class="separator:acaec2780d800113ffc2d72a6b865955c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63d6bdfc0d6255b5d663f3a786077eb4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a63d6bdfc0d6255b5d663f3a786077eb4">ClearConstraint</a> (const std::string &amp;parameter)</td></tr>
+<tr class="memdesc:a63d6bdfc0d6255b5d663f3a786077eb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will the constraint of a specific parameter.  <a href="classHazelnp_1_1Hazelnupp.html#a63d6bdfc0d6255b5d663f3a786077eb4">More...</a><br /></td></tr>
+<tr class="separator:a63d6bdfc0d6255b5d663f3a786077eb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3970b74583def49c6632fe08a4499809"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a3970b74583def49c6632fe08a4499809">ClearConstraints</a> ()</td></tr>
 <tr class="memdesc:a3970b74583def49c6632fe08a4499809"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete all constraints.  <a href="classHazelnp_1_1Hazelnupp.html#a3970b74583def49c6632fe08a4499809">More...</a><br /></td></tr>
 <tr class="separator:a3970b74583def49c6632fe08a4499809"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,12 +156,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a17883db87e97caad4a0f114f9f850f5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a17883db87e97caad4a0f114f9f850f5e">RegisterDescription</a> (const std::string &amp;parameter, const std::string &amp;description)</td></tr>
 <tr class="memdesc:a17883db87e97caad4a0f114f9f850f5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Willl register a short description for a parameter.  <a href="classHazelnp_1_1Hazelnupp.html#a17883db87e97caad4a0f114f9f850f5e">More...</a><br /></td></tr>
 <tr class="separator:a17883db87e97caad4a0f114f9f850f5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6637dc4b78871d7ecba1f2e1c8c28fb0"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a6637dc4b78871d7ecba1f2e1c8c28fb0">GetDescription</a> (const std::string &amp;parameter) const</td></tr>
-<tr class="memdesc:a6637dc4b78871d7ecba1f2e1c8c28fb0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return a short description for a parameter, if it exists.  <a href="classHazelnp_1_1Hazelnupp.html#a6637dc4b78871d7ecba1f2e1c8c28fb0">More...</a><br /></td></tr>
-<tr class="separator:a6637dc4b78871d7ecba1f2e1c8c28fb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8490e0b10feee0b815c043e7cad454cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a8490e0b10feee0b815c043e7cad454cb">ClearDescription</a> (const std::string &amp;parameter)</td></tr>
-<tr class="memdesc:a8490e0b10feee0b815c043e7cad454cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete the description of a parameter if it exists.  <a href="classHazelnp_1_1Hazelnupp.html#a8490e0b10feee0b815c043e7cad454cb">More...</a><br /></td></tr>
-<tr class="separator:a8490e0b10feee0b815c043e7cad454cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a300e55438cb0983b02347fdc3653e32c"><td class="memItemLeft" align="right" valign="top">const std::string &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a300e55438cb0983b02347fdc3653e32c">GetDescription</a> (const std::string &amp;parameter) const</td></tr>
+<tr class="memdesc:a300e55438cb0983b02347fdc3653e32c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will return a short description for a parameter, if it exists.  <a href="classHazelnp_1_1Hazelnupp.html#a300e55438cb0983b02347fdc3653e32c">More...</a><br /></td></tr>
+<tr class="separator:a300e55438cb0983b02347fdc3653e32c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabab94412ff5eecf95b97a4e21eb9cf6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#aabab94412ff5eecf95b97a4e21eb9cf6">HasDescription</a> (const std::string &amp;parameter) const</td></tr>
+<tr class="memdesc:aabab94412ff5eecf95b97a4e21eb9cf6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether or not a given parameter has a registered description.  <a href="classHazelnp_1_1Hazelnupp.html#aabab94412ff5eecf95b97a4e21eb9cf6">More...</a><br /></td></tr>
+<tr class="separator:aabab94412ff5eecf95b97a4e21eb9cf6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26eaac65949072b659531444d32c4cbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a26eaac65949072b659531444d32c4cbf">ClearDescription</a> (const std::string &amp;parameter)</td></tr>
+<tr class="memdesc:a26eaac65949072b659531444d32c4cbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete the description of a parameter if it exists.  <a href="classHazelnp_1_1Hazelnupp.html#a26eaac65949072b659531444d32c4cbf">More...</a><br /></td></tr>
+<tr class="separator:a26eaac65949072b659531444d32c4cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae266cfb3526b9223fc05beb01646fb42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#ae266cfb3526b9223fc05beb01646fb42">ClearDescriptions</a> ()</td></tr>
+<tr class="memdesc:ae266cfb3526b9223fc05beb01646fb42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will delete all parameter descriptions.  <a href="classHazelnp_1_1Hazelnupp.html#ae266cfb3526b9223fc05beb01646fb42">More...</a><br /></td></tr>
+<tr class="separator:ae266cfb3526b9223fc05beb01646fb42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b1bf5e700d8a0d8e90c5750e54749de"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a> () const</td></tr>
 <tr class="memdesc:a7b1bf5e700d8a0d8e90c5750e54749de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Will generate a text-based documentation suited to show the user, for example on &ndash;help.  <a href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">More...</a><br /></td></tr>
 <tr class="separator:a7b1bf5e700d8a0d8e90c5750e54749de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -176,10 +192,10 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00014">14</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00015">15</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;{</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -209,11 +225,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00019">19</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;{</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Parse</a>(argc, argv);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00020">20</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;{</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Parse</a>(argc, argv);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -232,19 +248,47 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00025">25</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; it : parameters)</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">delete</span> it.second;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    parameters.clear();</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00026">26</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">auto</span>&amp; it : parameters)</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">delete</span> it.second;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    parameters.clear();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="a05d1decbb08d1f9368bc9a0d3dfd6398"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05d1decbb08d1f9368bc9a0d3dfd6398">&#9670;&nbsp;</a></span>ClearAbbreviation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hazelnupp::ClearAbbreviation </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>abbrevation</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Will delete the abbreviation for a given parameter. </p>
+<p><br  />
+ IMPORTANT: This parameter is the abbreviation! Not the long form! </p>
+
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00546">546</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00547"></a><span class="lineno">  547</span>&#160;{</div>
+<div class="line"><a name="l00548"></a><span class="lineno">  548</span>&#160;    parameterAbreviations.erase(abbrevation);</div>
+<div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="a5175869b025468324cefad487081e91d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5175869b025468324cefad487081e91d">&#9670;&nbsp;</a></span>ClearAbbreviations()</h2>
 
@@ -262,11 +306,37 @@ Public Member Functions</h2></td></tr>
 
 <p>Will delete all abbreviations. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00515">515</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;{</div>
-<div class="line"><a name="l00517"></a><span class="lineno">  517</span>&#160;    abbreviations.clear();</div>
-<div class="line"><a name="l00518"></a><span class="lineno">  518</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00552">552</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00553"></a><span class="lineno">  553</span>&#160;{</div>
+<div class="line"><a name="l00554"></a><span class="lineno">  554</span>&#160;    parameterAbreviations.clear();</div>
+<div class="line"><a name="l00555"></a><span class="lineno">  555</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00556"></a><span class="lineno">  556</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a63d6bdfc0d6255b5d663f3a786077eb4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63d6bdfc0d6255b5d663f3a786077eb4">&#9670;&nbsp;</a></span>ClearConstraint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hazelnupp::ClearConstraint </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Will the constraint of a specific parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00507">507</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;{</div>
+<div class="line"><a name="l00509"></a><span class="lineno">  509</span>&#160;    parameterConstraints.erase(parameter);</div>
+<div class="line"><a name="l00510"></a><span class="lineno">  510</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -287,22 +357,22 @@ Public Member Functions</h2></td></tr>
 
 <p>Will delete all constraints. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00542">542</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;{</div>
-<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;    constraints.clear();</div>
-<div class="line"><a name="l00545"></a><span class="lineno">  545</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00546"></a><span class="lineno">  546</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00565">565</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00566"></a><span class="lineno">  566</span>&#160;{</div>
+<div class="line"><a name="l00567"></a><span class="lineno">  567</span>&#160;    parameterConstraints.clear();</div>
+<div class="line"><a name="l00568"></a><span class="lineno">  568</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00569"></a><span class="lineno">  569</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a8490e0b10feee0b815c043e7cad454cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8490e0b10feee0b815c043e7cad454cb">&#9670;&nbsp;</a></span>ClearDescription()</h2>
+<a id="a26eaac65949072b659531444d32c4cbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26eaac65949072b659531444d32c4cbf">&#9670;&nbsp;</a></span>ClearDescription()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Hazelnp::Hazelnupp::ClearDescription </td>
+          <td class="memname">void Hazelnupp::ClearDescription </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>parameter</em></td><td>)</td>
@@ -313,12 +383,37 @@ Public Member Functions</h2></td></tr>
 
 <p>Will delete the description of a parameter if it exists. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00335">335</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;{</div>
-<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="comment">// This will just do nothing if the entry does not exist</span></div>
-<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    parameterDescriptions.erase(parameter);</div>
-<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00346">346</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;{</div>
+<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;    <span class="comment">// This will just do nothing if the entry does not exist</span></div>
+<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160;    parameterDescriptions.erase(parameter);</div>
+<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae266cfb3526b9223fc05beb01646fb42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae266cfb3526b9223fc05beb01646fb42">&#9670;&nbsp;</a></span>ClearDescriptions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Hazelnp::Hazelnupp::ClearDescriptions </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Will delete all parameter descriptions. </p>
+
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00353">353</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;{</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;    parameterDescriptions.clear();</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -339,114 +434,114 @@ Public Member Functions</h2></td></tr>
 
 <p>Will generate a text-based documentation suited to show the user, for example on &ndash;help. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00342">342</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;{</div>
-<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;    std::stringstream ss;</div>
-<div class="line"><a name="l00345"></a><span class="lineno">  345</span>&#160; </div>
-<div class="line"><a name="l00346"></a><span class="lineno">  346</span>&#160;    <span class="comment">// Add brief, if available</span></div>
-<div class="line"><a name="l00347"></a><span class="lineno">  347</span>&#160;    <span class="keywordflow">if</span> (briefDescription.length() &gt; 0)</div>
-<div class="line"><a name="l00348"></a><span class="lineno">  348</span>&#160;        ss &lt;&lt; briefDescription &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00349"></a><span class="lineno">  349</span>&#160; </div>
-<div class="line"><a name="l00350"></a><span class="lineno">  350</span>&#160;    <span class="comment">// Collect parameter information</span></div>
-<div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;    <span class="keyword">struct </span>ParamDocEntry</div>
-<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    {</div>
-<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;        std::string abbreviation;</div>
-<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        std::string description;</div>
-<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        std::string type;</div>
-<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;        <span class="keywordtype">bool</span> required = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;        <span class="keywordtype">bool</span> typeIsForced = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;        std::string defaultVal;</div>
-<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;    };</div>
-<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;    std::unordered_map&lt;std::string, ParamDocEntry&gt; paramInfos;</div>
-<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160; </div>
-<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <span class="comment">// Collect descriptions</span></div>
-<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : parameterDescriptions)</div>
-<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    {</div>
-<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
-<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.first) == paramInfos.end())</div>
-<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;            <span class="comment">// No? Create it.</span></div>
-<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;            paramInfos[it.first] = ParamDocEntry();</div>
-<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160; </div>
-<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        paramInfos[it.first].description = it.second;</div>
-<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;    }</div>
-<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160; </div>
-<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;    <span class="comment">// Collect abbreviations</span></div>
-<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="comment">// first value is abbreviation, second is long form</span></div>
-<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : abbreviations)</div>
-<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    {</div>
-<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
-<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.second) == paramInfos.end())</div>
-<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;            <span class="comment">// No? Create it.</span></div>
-<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;            paramInfos[it.second] = ParamDocEntry();</div>
-<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160; </div>
-<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        paramInfos[it.second].abbreviation = it.first;</div>
-<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;    }</div>
-<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160; </div>
-<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;    <span class="comment">// Collect constraints</span></div>
-<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : constraints)</div>
-<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    {</div>
-<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
-<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.first) == paramInfos.end())</div>
-<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;            <span class="comment">// No? Create it.</span></div>
-<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;            paramInfos[it.first] = ParamDocEntry();</div>
-<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160; </div>
-<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;        ParamDocEntry&amp; cached = paramInfos[it.first];</div>
-<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        cached.required = it.second.required;</div>
-<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        cached.typeIsForced = it.second.constrainType;</div>
-<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;        cached.type = <a class="code" href="namespaceHazelnp.html#a7fb1e5ad9e2ecb6c0025beb19f11621b">DataTypeToString</a>(it.second.wantedType);</div>
-<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;        </div>
-<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;        std::stringstream defaultValueSs;</div>
-<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string&amp; s : it.second.defaultValue)</div>
-<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;        {</div>
-<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;            defaultValueSs &lt;&lt; <span class="charliteral">&#39;\&#39;&#39;</span> &lt;&lt; s &lt;&lt; <span class="charliteral">&#39;\&#39;&#39;</span>;</div>
-<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160; </div>
-<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;            <span class="comment">// Add a space if we are not at the last entry</span></div>
-<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;            <span class="keywordflow">if</span> ((<span class="keywordtype">void</span>*)&amp;s != (<span class="keywordtype">void</span>*)&amp;it.second.defaultValue.back())</div>
-<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;                defaultValueSs &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
-<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        }</div>
-<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;        cached.defaultVal = defaultValueSs.str();</div>
-<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    }</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00359">359</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;{</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    std::stringstream ss;</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160; </div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;    <span class="comment">// Add brief, if available</span></div>
+<div class="line"><a name="l00364"></a><span class="lineno">  364</span>&#160;    <span class="keywordflow">if</span> (briefDescription.length() &gt; 0)</div>
+<div class="line"><a name="l00365"></a><span class="lineno">  365</span>&#160;        ss &lt;&lt; briefDescription &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00366"></a><span class="lineno">  366</span>&#160; </div>
+<div class="line"><a name="l00367"></a><span class="lineno">  367</span>&#160;    <span class="comment">// Collect parameter information</span></div>
+<div class="line"><a name="l00368"></a><span class="lineno">  368</span>&#160;    <span class="keyword">struct </span>ParamDocEntry</div>
+<div class="line"><a name="l00369"></a><span class="lineno">  369</span>&#160;    {</div>
+<div class="line"><a name="l00370"></a><span class="lineno">  370</span>&#160;        std::string abbreviation;</div>
+<div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;        std::string description;</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;        std::string type;</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordtype">bool</span> required = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;        <span class="keywordtype">bool</span> typeIsForced = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;        std::string defaultVal;</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    };</div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    std::unordered_map&lt;std::string, ParamDocEntry&gt; paramInfos;</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160; </div>
+<div class="line"><a name="l00379"></a><span class="lineno">  379</span>&#160;    <span class="comment">// Collect descriptions</span></div>
+<div class="line"><a name="l00380"></a><span class="lineno">  380</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : parameterDescriptions)</div>
+<div class="line"><a name="l00381"></a><span class="lineno">  381</span>&#160;    {</div>
+<div class="line"><a name="l00382"></a><span class="lineno">  382</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
+<div class="line"><a name="l00383"></a><span class="lineno">  383</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.first) == paramInfos.end())</div>
+<div class="line"><a name="l00384"></a><span class="lineno">  384</span>&#160;            <span class="comment">// No? Create it.</span></div>
+<div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;            paramInfos[it.first] = ParamDocEntry();</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160; </div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;        paramInfos[it.first].description = it.second;</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    }</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160; </div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    <span class="comment">// Collect abbreviations</span></div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    <span class="comment">// first value is abbreviation, second is long form</span></div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : parameterAbreviations)</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    {</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.second) == paramInfos.end())</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <span class="comment">// No? Create it.</span></div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            paramInfos[it.second] = ParamDocEntry();</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160; </div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;        paramInfos[it.second].abbreviation = it.first;</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    }</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160; </div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    <span class="comment">// Collect constraints</span></div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : parameterConstraints)</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    {</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;        <span class="comment">// Do we already have that param in the paramInfo set?</span></div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <span class="keywordflow">if</span> (paramInfos.find(it.first) == paramInfos.end())</div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            <span class="comment">// No? Create it.</span></div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            paramInfos[it.first] = ParamDocEntry();</div>
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
-<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    <span class="comment">// Now generate the documentatino body</span></div>
-<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;    <span class="keywordflow">if</span> (paramInfos.size() &gt; 0)</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;    {</div>
-<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        ss &lt;&lt; std::endl </div>
-<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;            &lt;&lt; <span class="stringliteral">&quot;==== AVAILABLE PARAMETERS ====&quot;</span> </div>
-<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;            &lt;&lt; std::endl &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160; </div>
-<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : paramInfos)</div>
-<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;        {</div>
-<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;            <span class="keyword">const</span> ParamDocEntry&amp; pde = it.second;</div>
-<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160; </div>
-<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            <span class="comment">// Put name</span></div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;            ss &lt;&lt; it.first &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
-<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160; </div>
-<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;            <span class="comment">// Put abbreviation</span></div>
-<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;            <span class="keywordflow">if</span> (pde.abbreviation.length() &gt; 0)</div>
-<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160;                ss &lt;&lt; pde.abbreviation &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
-<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160; </div>
-<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;            <span class="comment">// Put type</span></div>
-<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;            <span class="keywordflow">if</span> (pde.typeIsForced)</div>
-<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;                ss &lt;&lt; pde.type &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
-<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160; </div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            <span class="comment">// Put default value</span></div>
-<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;            <span class="keywordflow">if</span> (pde.defaultVal.length() &gt; 0)</div>
-<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;                ss &lt;&lt; <span class="stringliteral">&quot;default=[&quot;</span> &lt;&lt; pde.defaultVal &lt;&lt; <span class="stringliteral">&quot;]   &quot;</span>;</div>
-<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160; </div>
-<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            <span class="comment">// Put required tag, but only if no default value</span></div>
-<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160;            <span class="keywordflow">if</span> ((pde.required) &amp;&amp; (pde.defaultVal.length() == 0))</div>
-<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;                ss &lt;&lt; <span class="stringliteral">&quot;[[REQUIRED]]    &quot;</span>;</div>
-<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160; </div>
-<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160;            <span class="comment">// Put brief description</span></div>
-<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="keywordflow">if</span> (pde.description.length() &gt; 0)</div>
-<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;                ss &lt;&lt; pde.description;</div>
-<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;            ss &lt;&lt; std::endl &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        }</div>
-<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;    }</div>
-<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160; </div>
-<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160;    <span class="keywordflow">return</span> ss.str();</div>
-<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;}</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;        ParamDocEntry&amp; cached = paramInfos[it.first];</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        cached.required = it.second.required;</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;        cached.typeIsForced = it.second.constrainType;</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;        cached.type = <a class="code" href="namespaceHazelnp.html#a7fb1e5ad9e2ecb6c0025beb19f11621b">DataTypeToString</a>(it.second.wantedType);</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;        </div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;        std::stringstream defaultValueSs;</div>
+<div class="line"><a name="l00416"></a><span class="lineno">  416</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string&amp; s : it.second.defaultValue)</div>
+<div class="line"><a name="l00417"></a><span class="lineno">  417</span>&#160;        {</div>
+<div class="line"><a name="l00418"></a><span class="lineno">  418</span>&#160;            defaultValueSs &lt;&lt; <span class="charliteral">&#39;\&#39;&#39;</span> &lt;&lt; s &lt;&lt; <span class="charliteral">&#39;\&#39;&#39;</span>;</div>
+<div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160; </div>
+<div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;            <span class="comment">// Add a space if we are not at the last entry</span></div>
+<div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160;            <span class="keywordflow">if</span> ((<span class="keywordtype">void</span>*)&amp;s != (<span class="keywordtype">void</span>*)&amp;it.second.defaultValue.back())</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;                defaultValueSs &lt;&lt; <span class="stringliteral">&quot; &quot;</span>;</div>
+<div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;        }</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;        cached.defaultVal = defaultValueSs.str();</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;    }</div>
+<div class="line"><a name="l00426"></a><span class="lineno">  426</span>&#160; </div>
+<div class="line"><a name="l00427"></a><span class="lineno">  427</span>&#160;    <span class="comment">// Now generate the documentatino body</span></div>
+<div class="line"><a name="l00428"></a><span class="lineno">  428</span>&#160;    <span class="keywordflow">if</span> (paramInfos.size() &gt; 0)</div>
+<div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;    {</div>
+<div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160;        ss &lt;&lt; std::endl </div>
+<div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;            &lt;&lt; <span class="stringliteral">&quot;==== AVAILABLE PARAMETERS ====&quot;</span> </div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;            &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160; </div>
+<div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160;        <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; it : paramInfos)</div>
+<div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;        {</div>
+<div class="line"><a name="l00436"></a><span class="lineno">  436</span>&#160;            <span class="keyword">const</span> ParamDocEntry&amp; pde = it.second;</div>
+<div class="line"><a name="l00437"></a><span class="lineno">  437</span>&#160; </div>
+<div class="line"><a name="l00438"></a><span class="lineno">  438</span>&#160;            <span class="comment">// Put name</span></div>
+<div class="line"><a name="l00439"></a><span class="lineno">  439</span>&#160;            ss &lt;&lt; it.first &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
+<div class="line"><a name="l00440"></a><span class="lineno">  440</span>&#160; </div>
+<div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;            <span class="comment">// Put abbreviation</span></div>
+<div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;            <span class="keywordflow">if</span> (pde.abbreviation.length() &gt; 0)</div>
+<div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;                ss &lt;&lt; pde.abbreviation &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160; </div>
+<div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;            <span class="comment">// Put type</span></div>
+<div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;            <span class="keywordflow">if</span> (pde.typeIsForced)</div>
+<div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;                ss &lt;&lt; pde.type &lt;&lt; <span class="stringliteral">&quot;   &quot;</span>;</div>
+<div class="line"><a name="l00448"></a><span class="lineno">  448</span>&#160; </div>
+<div class="line"><a name="l00449"></a><span class="lineno">  449</span>&#160;            <span class="comment">// Put default value</span></div>
+<div class="line"><a name="l00450"></a><span class="lineno">  450</span>&#160;            <span class="keywordflow">if</span> (pde.defaultVal.length() &gt; 0)</div>
+<div class="line"><a name="l00451"></a><span class="lineno">  451</span>&#160;                ss &lt;&lt; <span class="stringliteral">&quot;default=[&quot;</span> &lt;&lt; pde.defaultVal &lt;&lt; <span class="stringliteral">&quot;]   &quot;</span>;</div>
+<div class="line"><a name="l00452"></a><span class="lineno">  452</span>&#160; </div>
+<div class="line"><a name="l00453"></a><span class="lineno">  453</span>&#160;            <span class="comment">// Put required tag, but only if no default value</span></div>
+<div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;            <span class="keywordflow">if</span> ((pde.required) &amp;&amp; (pde.defaultVal.length() == 0))</div>
+<div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;                ss &lt;&lt; <span class="stringliteral">&quot;[[REQUIRED]]    &quot;</span>;</div>
+<div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160; </div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;            <span class="comment">// Put brief description</span></div>
+<div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            <span class="keywordflow">if</span> (pde.description.length() &gt; 0)</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                ss &lt;&lt; pde.description;</div>
+<div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160; </div>
+<div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            ss &lt;&lt; std::endl &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;        }</div>
+<div class="line"><a name="l00463"></a><span class="lineno">  463</span>&#160;    }</div>
+<div class="line"><a name="l00464"></a><span class="lineno">  464</span>&#160; </div>
+<div class="line"><a name="l00465"></a><span class="lineno">  465</span>&#160;    <span class="keywordflow">return</span> ss.str();</div>
+<div class="line"><a name="l00466"></a><span class="lineno">  466</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -466,12 +561,16 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Will return the long form of an abbreviation (like &ndash;force for -f) </p>
+<p>Will return the long form of an abbreviation (like &ndash;force for -f) <br  />
+ Returns "" if no match is found. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00505">505</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00506"></a><span class="lineno">  506</span>&#160;{</div>
-<div class="line"><a name="l00507"></a><span class="lineno">  507</span>&#160;    <span class="keywordflow">return</span> abbreviations.find(abbrev)-&gt;second;</div>
-<div class="line"><a name="l00508"></a><span class="lineno">  508</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00533">533</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;{</div>
+<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#a46df7d396fb56e30351c9a7308792200">HasAbbreviation</a>(abbrev))</div>
+<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespaceHazelnp_1_1Placeholders.html#a90536f0cd5261b18da736e954c6b8b79">Placeholders::g_emptyString</a>;</div>
+<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160; </div>
+<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160;    <span class="keywordflow">return</span> parameterAbreviations.find(abbrev)-&gt;second;</div>
+<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -492,10 +591,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Returns the brief description of the application to be automatically added to the documentation. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00312">312</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;{</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    <span class="keywordflow">return</span> briefDescription;</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00319">319</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;{</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordflow">return</span> briefDescription;</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -516,10 +615,35 @@ Public Member Functions</h2></td></tr>
 
 <p>Retruns whether the <a class="el" href="classHazelnp_1_1Hazelnupp.html" title="The main class to interface with.">Hazelnupp</a> should automatically catch the &ndash;help parameter, print the parameter documentation to stdout, and exit or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00301">301</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;{</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">return</span> catchHelp;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00308">308</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;{</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    <span class="keywordflow">return</span> catchHelp;</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="acaec2780d800113ffc2d72a6b865955c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaec2780d800113ffc2d72a6b865955c">&#9670;&nbsp;</a></span>GetConstraint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> Hazelnupp::GetConstraint </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Will return the constraint information for a specific parameter. </p>
+
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00502">502</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;{</div>
+<div class="line"><a name="l00504"></a><span class="lineno">  504</span>&#160;    <span class="keywordflow">return</span> parameterConstraints.find(parameter)-&gt;second;</div>
+<div class="line"><a name="l00505"></a><span class="lineno">  505</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -540,21 +664,21 @@ Public Member Functions</h2></td></tr>
 
 <p>Gets whether the application crashes on an exception whilst parsing, and prints to stderr. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00290">290</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;{</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;    <span class="keywordflow">return</span> crashOnFail;</div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00297">297</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;{</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;    <span class="keywordflow">return</span> crashOnFail;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a6637dc4b78871d7ecba1f2e1c8c28fb0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6637dc4b78871d7ecba1f2e1c8c28fb0">&#9670;&nbsp;</a></span>GetDescription()</h2>
+<a id="a300e55438cb0983b02347fdc3653e32c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a300e55438cb0983b02347fdc3653e32c">&#9670;&nbsp;</a></span>GetDescription()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string Hazelnp::Hazelnupp::GetDescription </td>
+          <td class="memname">const std::string &amp; Hazelnp::Hazelnupp::GetDescription </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>parameter</em></td><td>)</td>
@@ -567,17 +691,16 @@ Public Member Functions</h2></td></tr>
 <p><br  />
  Empty string if it does not exist. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00323">323</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;{</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;    <span class="comment">// Do we already have a description for this parameter?</span></div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <span class="keyword">const</span> <span class="keyword">auto</span> par = parameterDescriptions.find(parameter);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">if</span> (par == parameterDescriptions.end())</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        <span class="comment">// No? Then return &quot;&quot;</span></div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;        <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160; </div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;    <span class="comment">// We do? Then return it</span></div>
-<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="keywordflow">return</span> par-&gt;second;</div>
-<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00330">330</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;{</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;    <span class="comment">// Do we already have a description for this parameter?</span></div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#aabab94412ff5eecf95b97a4e21eb9cf6">HasDescription</a>(parameter))</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <span class="comment">// No? Then return &quot;&quot;</span></div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;        <span class="keywordflow">return</span> <a class="code" href="namespaceHazelnp_1_1Placeholders.html#a90536f0cd5261b18da736e954c6b8b79">Placeholders::g_emptyString</a>;</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160; </div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    <span class="comment">// We do? Then return it</span></div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;    <span class="keywordflow">return</span> parameterDescriptions.find(parameter)-&gt;second;</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -598,10 +721,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Will return argv[0], the name of the executable. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00485">485</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00486"></a><span class="lineno">  486</span>&#160;{</div>
-<div class="line"><a name="l00487"></a><span class="lineno">  487</span>&#160;    <span class="keywordflow">return</span> executableName;</div>
-<div class="line"><a name="l00488"></a><span class="lineno">  488</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00513">513</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00514"></a><span class="lineno">  514</span>&#160;{</div>
+<div class="line"><a name="l00515"></a><span class="lineno">  515</span>&#160;    <span class="keywordflow">return</span> executableName;</div>
+<div class="line"><a name="l00516"></a><span class="lineno">  516</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -623,10 +746,35 @@ Public Member Functions</h2></td></tr>
 
 <p>Will check wether or not an abbreviation is registered. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00510">510</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00511"></a><span class="lineno">  511</span>&#160;{</div>
-<div class="line"><a name="l00512"></a><span class="lineno">  512</span>&#160;    <span class="keywordflow">return</span> abbreviations.find(abbrev) != abbreviations.end();</div>
-<div class="line"><a name="l00513"></a><span class="lineno">  513</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00541">541</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00542"></a><span class="lineno">  542</span>&#160;{</div>
+<div class="line"><a name="l00543"></a><span class="lineno">  543</span>&#160;    <span class="keywordflow">return</span> parameterAbreviations.find(abbrev) != parameterAbreviations.end();</div>
+<div class="line"><a name="l00544"></a><span class="lineno">  544</span>&#160;}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aabab94412ff5eecf95b97a4e21eb9cf6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabab94412ff5eecf95b97a4e21eb9cf6">&#9670;&nbsp;</a></span>HasDescription()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Hazelnupp::HasDescription </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>parameter</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether or not a given parameter has a registered description. </p>
+
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00341">341</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;{</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    <span class="keywordflow">return</span> parameterDescriptions.find(parameter) != parameterDescriptions.end();</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -648,10 +796,10 @@ Public Member Functions</h2></td></tr>
 
 <p>Will check wether a parameter exists given a key, or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00164">164</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;{</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;    <span class="keywordflow">return</span> parameters.find(key) != parameters.end();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00165">165</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;{</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;    <span class="keywordflow">return</span> parameters.find(key) != parameters.end();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -673,14 +821,14 @@ Public Member Functions</h2></td></tr>
 
 <p>Will return the value given a key. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00490">490</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160;{</div>
-<div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;    <span class="comment">// Throw exception if param is unknown</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(key))</div>
-<div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;        <span class="keywordflow">throw</span> <a class="code" href="classHazelnp_1_1HazelnuppInvalidKeyException.html">HazelnuppInvalidKeyException</a>();</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160; </div>
-<div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;    <span class="keywordflow">return</span> *parameters.find(key)-&gt;second-&gt;GetValue();</div>
-<div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00518">518</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00519"></a><span class="lineno">  519</span>&#160;{</div>
+<div class="line"><a name="l00520"></a><span class="lineno">  520</span>&#160;    <span class="comment">// Throw exception if param is unknown</span></div>
+<div class="line"><a name="l00521"></a><span class="lineno">  521</span>&#160;    <span class="keywordflow">if</span> (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(key))</div>
+<div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;        <span class="keywordflow">throw</span> <a class="code" href="classHazelnp_1_1HazelnuppInvalidKeyException.html">HazelnuppInvalidKeyException</a>();</div>
+<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160; </div>
+<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    <span class="keywordflow">return</span> *parameters.find(key)-&gt;second-&gt;GetValue();</div>
+<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -712,70 +860,70 @@ Public Member Functions</h2></td></tr>
 
 <p>Will parse command line arguments. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00035">35</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keywordflow">try</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    {</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="comment">// Populate raw arguments</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        PopulateRawArgs(argc, argv);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">// Expand abbreviations</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        ExpandAbbreviations();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        executableName = std::string(rawArgs[0]);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;        std::size_t i = 1;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="keywordflow">while</span> (i &lt; rawArgs.size())</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            <span class="keywordflow">if</span> ((rawArgs[i].length() &gt; 2) &amp;&amp; (rawArgs[i].substr(0, 2) == <span class="stringliteral">&quot;--&quot;</span>))</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            {</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                <a class="code" href="classHazelnp_1_1Parameter.html">Parameter</a>* param = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                i = ParseNextParameter(i, param);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;                parameters.insert(std::pair&lt;std::string, Parameter*&gt;(param-&gt;<a class="code" href="classHazelnp_1_1Parameter.html#a7acd68ce06eec06ab286b1a062f9c8d6">Key</a>(), param));</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;                i++;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        }</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        <span class="comment">// Apply constraints such as default values, and required parameters.</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">// Types have already been enforced.</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Dont apply constraints when we are just printind the param docs</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="keywordflow">if</span> ((!catchHelp) || (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(<span class="stringliteral">&quot;--help&quot;</span>)))</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            ApplyConstraints();</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    }</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html">HazelnuppConstraintTypeMissmatch</a>&amp; hctm)</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    {</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keywordflow">if</span> (crashOnFail)</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        {</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Fatal error: Command-line parameter value-type mismatch at \&quot;&quot;</span> &lt;&lt; hctm.<a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;!&quot;</span>;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            quick_exit(-1009);</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        }</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            <span class="keywordflow">throw</span> hctm; <span class="comment">// yeet</span></div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    }</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintMissingValue.html">HazelnuppConstraintMissingValue</a>&amp; hctm)</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="keywordflow">if</span> (crashOnFail)</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        {</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Fatal error: Missing required command-line parameter \&quot;&quot;</span> &lt;&lt; hctm.<a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;!&quot;</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            quick_exit(-1010);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        }</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;            <span class="keywordflow">throw</span> hctm; <span class="comment">// yeet</span></div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;    <span class="comment">// Catch --help parameter</span></div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">if</span> ((catchHelp) &amp;&amp; (<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(<span class="stringliteral">&quot;--help&quot;</span>)))</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        quick_exit(0);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    }</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00036">36</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordflow">try</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        <span class="comment">// Populate raw arguments</span></div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        PopulateRawArgs(argc, argv);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="comment">// Expand abbreviations</span></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        ExpandAbbreviations();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        executableName = std::string(rawArgs[0]);</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        std::size_t i = 1;</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keywordflow">while</span> (i &lt; rawArgs.size())</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            <span class="keywordflow">if</span> ((rawArgs[i].length() &gt; 2) &amp;&amp; (rawArgs[i].substr(0, 2) == <span class="stringliteral">&quot;--&quot;</span>))</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;                <a class="code" href="classHazelnp_1_1Parameter.html">Parameter</a>* param = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;                i = ParseNextParameter(i, param);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;                parameters.insert(std::pair&lt;std::string, Parameter*&gt;(param-&gt;<a class="code" href="classHazelnp_1_1Parameter.html#a7acd68ce06eec06ab286b1a062f9c8d6">Key</a>(), param));</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            }</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                i++;</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        }</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        <span class="comment">// Apply constraints such as default values, and required parameters.</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="comment">// Types have already been enforced.</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <span class="comment">// Dont apply constraints when we are just printind the param docs</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">if</span> ((!catchHelp) || (!<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(<span class="stringliteral">&quot;--help&quot;</span>)))</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            ApplyConstraints();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    }</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html">HazelnuppConstraintTypeMissmatch</a>&amp; hctm)</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">if</span> (crashOnFail)</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        {</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;            std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Fatal error: Command-line parameter value-type mismatch at \&quot;&quot;</span> &lt;&lt; hctm.<a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;!&quot;</span>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;            quick_exit(-1009);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;            <span class="keywordflow">throw</span> hctm; <span class="comment">// yeet</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="classHazelnp_1_1HazelnuppConstraintMissingValue.html">HazelnuppConstraintMissingValue</a>&amp; hctm)</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    {</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <span class="keywordflow">if</span> (crashOnFail)</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        {</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;            std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;            std::cerr &lt;&lt; <span class="stringliteral">&quot;Fatal error: Missing required command-line parameter \&quot;&quot;</span> &lt;&lt; hctm.<a class="code" href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">What</a>() &lt;&lt; <span class="stringliteral">&quot;\&quot;!&quot;</span>;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            quick_exit(-1010);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;            <span class="keywordflow">throw</span> hctm; <span class="comment">// yeet</span></div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;    }</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="comment">// Catch --help parameter</span></div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span> ((catchHelp) &amp;&amp; (<a class="code" href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">HasParam</a>(<span class="stringliteral">&quot;--help&quot;</span>)))</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        std::cout &lt;&lt; <a class="code" href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">GenerateDocumentation</a>() &lt;&lt; std::endl;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        quick_exit(0);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    }</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -807,52 +955,49 @@ Public Member Functions</h2></td></tr>
 
 <p>Will register an abbreviation (like -f for &ndash;force) </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00499">499</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00500"></a><span class="lineno">  500</span>&#160;{</div>
-<div class="line"><a name="l00501"></a><span class="lineno">  501</span>&#160;    abbreviations.insert(std::pair&lt;std::string, std::string&gt;(abbrev, target));</div>
-<div class="line"><a name="l00502"></a><span class="lineno">  502</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00503"></a><span class="lineno">  503</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00527">527</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;{</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;    parameterAbreviations.insert(std::pair&lt;std::string, std::string&gt;(abbrev, target));</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
-<a id="a8a3331836b9ea1f920e77f6d332019d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a3331836b9ea1f920e77f6d332019d5">&#9670;&nbsp;</a></span>RegisterConstraints()</h2>
+<a id="add731b65fb0741e4fb0b8fc8a601a11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add731b65fb0741e4fb0b8fc8a601a11d">&#9670;&nbsp;</a></span>RegisterConstraint()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Hazelnupp::RegisterConstraints </td>
+          <td class="memname">void Hazelnupp::RegisterConstraint </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> &gt; &amp;&#160;</td>
-          <td class="paramname"><em>constraints</em></td><td>)</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>key</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> &amp;&#160;</td>
+          <td class="paramname"><em>constraint</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Will register parameter constraints. </p>
+<p>Will register a constraint for a parameter. </p>
+<p>IMPORTANT: Any parameter can only have ONE constraint. Applying a new one will overwrite the old one! Construct the <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> struct yourself to combine Require and TypeSafety! You can also use the <a class="el" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a> constructor! </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00521">521</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00522"></a><span class="lineno">  522</span>&#160;{</div>
-<div class="line"><a name="l00523"></a><span class="lineno">  523</span>&#160;    <span class="keywordflow">for</span> (<span class="keyword">const</span> <a class="code" href="structHazelnp_1_1ParamConstraint.html">ParamConstraint</a>&amp; pc : constraints)</div>
-<div class="line"><a name="l00524"></a><span class="lineno">  524</span>&#160;    {</div>
-<div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160;        <span class="comment">// Does this constraint already exist?</span></div>
-<div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;        <span class="keyword">const</span> <span class="keyword">auto</span> constraint = this-&gt;constraints.find(pc.key);</div>
-<div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160;        <span class="comment">// If yes, replace it.</span></div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;        <span class="keywordflow">if</span> (constraint != this-&gt;constraints.end())</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;            constraint-&gt;second = pc;</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160; </div>
-<div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;        <span class="comment">// Else, create a new pair</span></div>
-<div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;            this-&gt;constraints.insert(std::pair&lt;std::string, ParamConstraint&gt;(</div>
-<div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;                pc.key,</div>
-<div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160;                pc</div>
-<div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160;            ));</div>
-<div class="line"><a name="l00537"></a><span class="lineno">  537</span>&#160;    }</div>
-<div class="line"><a name="l00538"></a><span class="lineno">  538</span>&#160; </div>
-<div class="line"><a name="l00539"></a><span class="lineno">  539</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00540"></a><span class="lineno">  540</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00558">558</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00559"></a><span class="lineno">  559</span>&#160;{</div>
+<div class="line"><a name="l00560"></a><span class="lineno">  560</span>&#160;    <span class="comment">// Magic syntax, wooo</span></div>
+<div class="line"><a name="l00561"></a><span class="lineno">  561</span>&#160;    (parameterConstraints[key] = constraint).key = key;</div>
+<div class="line"><a name="l00562"></a><span class="lineno">  562</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00563"></a><span class="lineno">  563</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -886,11 +1031,11 @@ Public Member Functions</h2></td></tr>
 <p><br  />
  Will overwrite existing descriptions for that parameter. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00317">317</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;{</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    parameterDescriptions[parameter] = description;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00324">324</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;{</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    parameterDescriptions[parameter] = description;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -912,11 +1057,11 @@ Public Member Functions</h2></td></tr>
 
 <p>Sets a brief description of the application to be automatically added to the documentation. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00306">306</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;{</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;    briefDescription = description;</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00313">313</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;{</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    briefDescription = description;</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -938,11 +1083,11 @@ Public Member Functions</h2></td></tr>
 
 <p>Sets whether the <a class="el" href="classHazelnp_1_1Hazelnupp.html" title="The main class to interface with.">Hazelnupp</a> should automatically catch the &ndash;help parameter, print the parameter documentation to stdout, and exit or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00295">295</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;{</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;    this-&gt;catchHelp = catchHelp;</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00302">302</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;{</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    this-&gt;catchHelp = catchHelp;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -964,11 +1109,11 @@ Public Member Functions</h2></td></tr>
 
 <p>Sets whether to crash the application, and print to stderr, when an exception is raised whilst parsing, or not. </p>
 
-<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00548">548</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00549"></a><span class="lineno">  549</span>&#160;{</div>
-<div class="line"><a name="l00550"></a><span class="lineno">  550</span>&#160;    this-&gt;crashOnFail = crashOnFail;</div>
-<div class="line"><a name="l00551"></a><span class="lineno">  551</span>&#160;    <span class="keywordflow">return</span>;</div>
-<div class="line"><a name="l00552"></a><span class="lineno">  552</span>&#160;}</div>
+<p class="definition">Definition at line <a class="el" href="Hazelnupp_8cpp_source.html#l00571">571</a> of file <a class="el" href="Hazelnupp_8cpp_source.html">Hazelnupp.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00572"></a><span class="lineno">  572</span>&#160;{</div>
+<div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;    this-&gt;crashOnFail = crashOnFail;</div>
+<div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;    <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;}</div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -978,19 +1123,21 @@ Public Member Functions</h2></td></tr>
 </ul>
 </div><!-- contents -->
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppInvalidKeyException_html"><div class="ttname"><a href="classHazelnp_1_1HazelnuppInvalidKeyException.html">Hazelnp::HazelnuppInvalidKeyException</a></div><div class="ttdoc">Gets thrown when an non-existent key gets dereferenced.</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00026">HazelnuppException.h:26</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a7b1bf5e700d8a0d8e90c5750e54749de"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">Hazelnp::Hazelnupp::GenerateDocumentation</a></div><div class="ttdeci">std::string GenerateDocumentation() const</div><div class="ttdoc">Will generate a text-based documentation suited to show the user, for example on –help.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00342">Hazelnupp.cpp:342</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a7b1bf5e700d8a0d8e90c5750e54749de"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a7b1bf5e700d8a0d8e90c5750e54749de">Hazelnp::Hazelnupp::GenerateDocumentation</a></div><div class="ttdeci">std::string GenerateDocumentation() const</div><div class="ttdoc">Will generate a text-based documentation suited to show the user, for example on –help.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00359">Hazelnupp.cpp:359</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppException_html_aa86c415a0f2b4ea5f11892145d1ea83e"><div class="ttname"><a href="classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e">Hazelnp::HazelnuppException::What</a></div><div class="ttdeci">const std::string &amp; What() const</div><div class="ttdoc">Will return an error message.</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00015">HazelnuppException.h:15</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_aabab94412ff5eecf95b97a4e21eb9cf6"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#aabab94412ff5eecf95b97a4e21eb9cf6">Hazelnp::Hazelnupp::HasDescription</a></div><div class="ttdeci">bool HasDescription(const std::string &amp;parameter) const</div><div class="ttdoc">Returns whether or not a given parameter has a registered description.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00341">Hazelnupp.cpp:341</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1Parameter_html"><div class="ttname"><a href="classHazelnp_1_1Parameter.html">Hazelnp::Parameter</a></div><div class="ttdef"><b>Definition:</b> <a href="Parameter_8h_source.html#l00008">Parameter.h:8</a></div></div>
-<div class="ttc" id="astructHazelnp_1_1ParamConstraint_html"><div class="ttname"><a href="structHazelnp_1_1ParamConstraint.html">Hazelnp::ParamConstraint</a></div><div class="ttdef"><b>Definition:</b> <a href="ParamConstraint_8h_source.html#l00008">ParamConstraint.h:8</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a8b79a79d40420ae748c108c691111040"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">Hazelnp::Hazelnupp::HasParam</a></div><div class="ttdeci">bool HasParam(const std::string &amp;key) const</div><div class="ttdoc">Will check wether a parameter exists given a key, or not.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00164">Hazelnupp.cpp:164</a></div></div>
-<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a1ccb88faca1a8deb77161888479c300b"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Hazelnp::Hazelnupp::Parse</a></div><div class="ttdeci">void Parse(const int argc, const char *const *argv)</div><div class="ttdoc">Will parse command line arguments.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00035">Hazelnupp.cpp:35</a></div></div>
+<div class="ttc" id="anamespaceHazelnp_1_1Placeholders_html_a90536f0cd5261b18da736e954c6b8b79"><div class="ttname"><a href="namespaceHazelnp_1_1Placeholders.html#a90536f0cd5261b18da736e954c6b8b79">Hazelnp::Placeholders::g_emptyString</a></div><div class="ttdeci">static const std::string g_emptyString</div><div class="ttdoc">The only purpose of this is to provide the ability to return an empty string as an error for std::str...</div><div class="ttdef"><b>Definition:</b> <a href="Placeholders_8h_source.html#l00009">Placeholders.h:9</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a8b79a79d40420ae748c108c691111040"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040">Hazelnp::Hazelnupp::HasParam</a></div><div class="ttdeci">bool HasParam(const std::string &amp;key) const</div><div class="ttdoc">Will check wether a parameter exists given a key, or not.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00165">Hazelnupp.cpp:165</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a1ccb88faca1a8deb77161888479c300b"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a1ccb88faca1a8deb77161888479c300b">Hazelnp::Hazelnupp::Parse</a></div><div class="ttdeci">void Parse(const int argc, const char *const *argv)</div><div class="ttdoc">Will parse command line arguments.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00036">Hazelnupp.cpp:36</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1Parameter_html_a7acd68ce06eec06ab286b1a062f9c8d6"><div class="ttname"><a href="classHazelnp_1_1Parameter.html#a7acd68ce06eec06ab286b1a062f9c8d6">Hazelnp::Parameter::Key</a></div><div class="ttdeci">const std::string &amp; Key() const</div><div class="ttdoc">Will return the key of this parameter.</div><div class="ttdef"><b>Definition:</b> <a href="Parameter_8cpp_source.html#l00021">Parameter.cpp:21</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppConstraintMissingValue_html"><div class="ttname"><a href="classHazelnp_1_1HazelnuppConstraintMissingValue.html">Hazelnp::HazelnuppConstraintMissingValue</a></div><div class="ttdoc">Gets thrown when a parameter constrained to be required is not provided, and has no default value set...</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00062">HazelnuppException.h:62</a></div></div>
 <div class="ttc" id="aclassHazelnp_1_1HazelnuppConstraintTypeMissmatch_html"><div class="ttname"><a href="classHazelnp_1_1HazelnuppConstraintTypeMissmatch.html">Hazelnp::HazelnuppConstraintTypeMissmatch</a></div><div class="ttdoc">Gets thrown when a parameter is of a type that does not match the required type, and is not convertib...</div><div class="ttdef"><b>Definition:</b> <a href="HazelnuppException_8h_source.html#l00053">HazelnuppException.h:53</a></div></div>
+<div class="ttc" id="aclassHazelnp_1_1Hazelnupp_html_a46df7d396fb56e30351c9a7308792200"><div class="ttname"><a href="classHazelnp_1_1Hazelnupp.html#a46df7d396fb56e30351c9a7308792200">Hazelnp::Hazelnupp::HasAbbreviation</a></div><div class="ttdeci">bool HasAbbreviation(const std::string &amp;abbrev) const</div><div class="ttdoc">Will check wether or not an abbreviation is registered.</div><div class="ttdef"><b>Definition:</b> <a href="Hazelnupp_8cpp_source.html#l00541">Hazelnupp.cpp:541</a></div></div>
 <div class="ttc" id="anamespaceHazelnp_html_a7fb1e5ad9e2ecb6c0025beb19f11621b"><div class="ttname"><a href="namespaceHazelnp.html#a7fb1e5ad9e2ecb6c0025beb19f11621b">Hazelnp::DataTypeToString</a></div><div class="ttdeci">static std::string DataTypeToString(DATA_TYPE type)</div><div class="ttdef"><b>Definition:</b> <a href="DataType_8h_source.html#l00017">DataType.h:17</a></div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Jun 4 2021 15:58:56 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Jun 5 2021 12:40:11 for Leonetienne/Hazelnupp by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.17
 </small></address>
