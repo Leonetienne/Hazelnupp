@@ -138,7 +138,7 @@ namespace TestHazelnupp
 				"/my/fake/path/wahoo.out",
 				"--pud",
 				"39"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
@@ -172,7 +172,7 @@ namespace TestHazelnupp
 				"/my/fake/path/wahoo.out",
 				"--pud",
 				"39.5"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
@@ -209,7 +209,7 @@ namespace TestHazelnupp
 				"1",
 				"2",
 				"3"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
