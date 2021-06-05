@@ -548,24 +548,10 @@ void Hazelnupp::ClearAbbreviations()
 	return;
 }
 
-void Hazelnupp::RegisterConstraints(const std::vector<ParamConstraint>& parameterConstraints)
+void Hazelnupp::RegisterConstraint(const std::string& key, const ParamConstraint& constraint)
 {
-	for (const ParamConstraint& pc : parameterConstraints)
-	{
-		// Does this constraint already exist?
-		const auto constraint = this->parameterConstraints.find(pc.key);
-		// If yes, replace it.
-		if (constraint != this->parameterConstraints.end())
-			constraint->second = pc;
-
-		// Else, create a new pair
-		else
-			this->parameterConstraints.insert(std::pair<std::string, ParamConstraint>(
-				pc.key,
-				pc
-			));
-	}
-
+	// Magic syntax, wooo
+	(parameterConstraints[key] = constraint).key = key;
 	return;
 }
 

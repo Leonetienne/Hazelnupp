@@ -13,10 +13,9 @@ namespace Hazelnp
 
 		//! Constructs a require constraint.  
 		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
-		static ParamConstraint Require(const std::string& key, const std::vector<std::string>& defaultValue = {}, bool required = true)
+		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
 		{
 			ParamConstraint pc;
-			pc.key = key;
 			pc.defaultValue = defaultValue;
 			pc.required = required;
 
@@ -24,10 +23,9 @@ namespace Hazelnp
 		}
 
 		//! Constructs a type-safety constraint
-		static ParamConstraint TypeSafety(const std::string& key, DATA_TYPE wantedType, bool constrainType = true)
+		static ParamConstraint TypeSafety(DATA_TYPE wantedType, bool constrainType = true)
 		{
 			ParamConstraint pc;
-			pc.key = key;
 			pc.constrainType = constrainType;
 			pc.wantedType = wantedType;
 
@@ -35,9 +33,8 @@ namespace Hazelnp
 		}
 
 		//! Whole constructor
-		ParamConstraint(const std::string& key, bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
 			:
-			key{ key },
 			constrainType{ constrainType },
 			wantedType{ wantedType },
 			defaultValue{ defaultValue },
@@ -45,9 +42,6 @@ namespace Hazelnp
 		{
 			return;
 		}
-
-		//! The key of the parameter to constrain
-		std::string key;
 
 		//! Should this parameter be forced to be of a certain type?  
 		//! Remember to set `constrainTo` to the wanted type
@@ -64,5 +58,12 @@ namespace Hazelnp
 		//! If set to true, and no default value set,
 		//! an error will be produced if this parameter is not supplied by the user.
 		bool required = false;
+
+	private:
+		//! The parameter this constraint is for.
+		//! This value is automatically set by Hazelnupp.
+		std::string key;
+
+		friend class Hazelnupp;
 	};
 }

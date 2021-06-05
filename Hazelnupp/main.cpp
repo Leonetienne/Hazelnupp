@@ -20,11 +20,9 @@ int main(int argc, char** argv)
 	nupp.RegisterAbbreviation("-w", "--width");
 	nupp.RegisterAbbreviation("-h", "--height");
 
-	nupp.RegisterConstraints({
-		ParamConstraint::TypeSafety("--width", DATA_TYPE::FLOAT),
-		ParamConstraint("--name", true, DATA_TYPE::LIST, {"peter", "hannes"}, true),
-		ParamConstraint("--fruit", true, DATA_TYPE::STRING, {}, true)
-	});
+	nupp.RegisterConstraint("--width", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
+	nupp.RegisterConstraint("--name", ParamConstraint(true, DATA_TYPE::LIST, {"peter", "hannes"}, true));
+	nupp.RegisterConstraint("--fruit", ParamConstraint(true, DATA_TYPE::STRING, {}, true));
 
 	nupp.Parse(argc, argv);
 

@@ -46,8 +46,10 @@ namespace Hazelnp
 		//! Will delete all abbreviations
 		void ClearAbbreviations();
 
-		//! Will register parameter constraints
-		void RegisterConstraints(const std::vector<ParamConstraint>& constraints);
+		//! Will register a constraint for a parameter.
+		//! IMPORTANT: Any parameter can only have ONE constraint. Applying a new one will overwrite the old one!
+		//! Construct the ParamConstraint struct yourself to combine Require and TypeSafety! You can also use the ParamConstraint constructor!
+		void RegisterConstraint(const std::string& key, const ParamConstraint& constraint);
 
 		//! Will return the constraint information for a specific parameter
 		ParamConstraint GetConstraint(const std::string& parameter) const;
