@@ -34,7 +34,7 @@ namespace Hazelnp
 
 		//! Will return the long form of an abbreviation (like --force for -f)  
 		//! Returns "" if no match is found
-		std::string GetAbbreviation(const std::string& abbrev) const;
+		const std::string& GetAbbreviation(const std::string& abbrev) const;
 
 		//! Will check wether or not an abbreviation is registered
 		bool HasAbbreviation(const std::string& abbrev) const;
@@ -85,7 +85,7 @@ namespace Hazelnp
 
 		//! Will return a short description for a parameter, if it exists.  
 		//! Empty string if it does not exist.
-		std::string GetDescription(const std::string& parameter) const;
+		const std::string& GetDescription(const std::string& parameter) const;
 
 		//! Returns whether or not a given parameter has a registered description
 		bool HasDescription(const std::string& parameter) const;

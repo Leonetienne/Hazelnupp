@@ -112,20 +112,11 @@ namespace TestHazelnupp
 				}
 			, L"Float32");
 
-			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
-				{
-					(*ptnupp)["--pud"].GetString();
-				}
-			, L"String");
+			// Expect empty string
+			Assert::AreEqual(std::string(), nupp["--pud"].GetString(), L"String");
 
-			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
-				{
-					(*ptnupp)["--pud"].GetList();
-				}
-			, L"List");
-
+			// Expect empty list
+			Assert::AreEqual(std::size_t(0), nupp["--pud"].GetList().size(), L"List");
 
 			return;
 		}

@@ -44,10 +44,11 @@ double VoidValue::GetFloat32() const
 
 std::string VoidValue::GetString() const
 {
-	throw HazelnuppValueNotConvertibleException();
+	return "";
 }
 
 const std::vector<Value*>& VoidValue::GetList() const
 {
-	throw HazelnuppValueNotConvertibleException();
+	static const std::vector<Value*> empty;
+	return empty;
 }

@@ -27,10 +27,10 @@ namespace Hazelnp
 		//! Throws HazelnuppValueNotConvertibleException
 		double GetFloat32() const override;
 
-		//! Throws HazelnuppValueNotConvertibleException
+		//! Returns an empty string
 		std::string GetString() const override;
 
-		//! Throws HazelnuppValueNotConvertibleException
+		//! Returns an empty list
 		const std::vector<Value*>& GetList() const;
 	};
 }

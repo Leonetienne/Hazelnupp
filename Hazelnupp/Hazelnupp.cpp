@@ -5,6 +5,7 @@
 #include "StringValue.h"
 #include "ListValue.h"
 #include "HazelnuppException.h"
+#include "Placeholders.h"
 #include "StringTools.h"
 #include <iostream>
 #include <cstdlib>
@@ -320,12 +321,12 @@ void Hazelnp::Hazelnupp::RegisterDescription(const std::string& parameter, const
 	return;
 }
 
-std::string Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
+const std::string& Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
 {
 	// Do we already have a description for this parameter?
 	if (!HasDescription(parameter))
 		// No? Then return ""
-		return "";
+		return Placeholders::g_emptyString;
 
 	// We do? Then return it
 	return parameterDescriptions.find(parameter)->second;
@@ -523,10 +524,10 @@ void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::strin
 	return;
 }
 
-std::string Hazelnupp::GetAbbreviation(const std::string& abbrev) const
+const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
 {
 	if (!HasAbbreviation(abbrev))
-		return "";
+		return Placeholders::g_emptyString;
 
 	return parameterAbreviations.find(abbrev)->second;
 }
