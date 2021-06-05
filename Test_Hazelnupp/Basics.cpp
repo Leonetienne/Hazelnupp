@@ -37,7 +37,7 @@ namespace TestHazelnupp
 			ArgList args({
 				"/my/fake/path/wahoo.out",
 				"--dummy"
-				});
+			});
 
 			// Exercise
 			Hazelnupp nupp(C_Ify(args));
