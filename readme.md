@@ -190,10 +190,8 @@ int main(int argc, char** argv)
 	Hazelnupp args;
 	
 	// Register constraints
-	args.RegisterConstraints({
-		ParamConstraint::Require("--this-is-required"), // This missing throws an exception
-		ParamConstraint::Require("--also-required-but-defaulted", {"122"}), // This will default to 122
-	});
+	args.RegisterConstraint("--this-is-required", ParamConstraint::Require()); // This missing throws an exception
+	args.RegisterConstraint("--also-required-but-defaulted", ParamConstraint::Require({"122"})); // This will default to 122
 	
 	// Parse
 	args.Parse(argc, argv);
@@ -228,9 +226,7 @@ int main(int argc, char** argv)
 	Hazelnupp args;
 	
 	// Register constraints
-	args.RegisterConstraints({
-		ParamConstraint::TypeSafety("--this-must-be-int", DATA_TYPE::INT)
-	});
+	args.RegisterConstraint("--this-must-be-int", ParamConstraint::TypeSafety(DATA_TYPE::INT));
 	
 	// Parse
 	args.Parse(argc, argv);
@@ -245,13 +241,12 @@ If it was passed, for example, as a string, it would throw an exception.
 Note that you can also combine these two constraint-types by populating the struct yourself:
 ```cpp
 ParamConstraint pc;
-pc.key = "--my-key";
 pc.constrainType = true;
 pc.wantedType = DATA_TYPE::STRING;
 pc.defaultValue = {}; // no default value
 pc.required = true;
 
-args.RegisterConstraints({pc});
+args.RegisterConstraints("--my-key", pc);
 ```
 What doesn't work is inserting multiple constraints for one key. It will just discard the oldest one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
