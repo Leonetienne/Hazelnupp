@@ -307,8 +307,37 @@ namespace TestHazelnupp
 			nupp.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp["--empty-list"].GetDataType() == DATA_TYPE::LIST);
-			Assert::AreEqual(std::size_t(0), nupp["--empty-list"].GetList().size());
+			Assert::IsTrue(nupp["--empty-list"].GetDataType() == DATA_TYPE::LIST, L"Wrong datatype");
+			Assert::AreEqual(std::size_t(0), nupp["--empty-list"].GetList().size(), L"Wrong size");
+
+			return;
+		}
+
+		// Tests that a void can be converted to an empty string
+		TEST_METHOD(Weird_Load_Conversions_VoidToEmptyString)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--dummy",
+				"--empty-string",
+			});
+
+			Hazelnupp nupp;
+			nupp.SetCrashOnFail(false);
+
+			nupp.RegisterConstraint(
+				"--empty-string",
+				ParamConstraint::TypeSafety(DATA_TYPE::STRING)
+			);
+
+
+			// Exercise
+			nupp.Parse(C_Ify(args));
+
+			// Verify
+			Assert::IsTrue(nupp["--empty-string"].GetDataType() == DATA_TYPE::STRING, L"Wrong datatype");
+			Assert::AreEqual(std::size_t(0), nupp["--empty-string"].GetString().length(), L"Wrong size");
 
 			return;
 		}

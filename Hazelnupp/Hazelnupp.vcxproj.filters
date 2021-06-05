@@ -83,5 +83,8 @@
     <ClInclude Include="HazelnuppException.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Placeholders.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

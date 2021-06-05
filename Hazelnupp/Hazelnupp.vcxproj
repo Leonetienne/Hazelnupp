@@ -159,6 +159,7 @@
     <ClInclude Include="ParamConstraint.h" />
     <ClInclude Include="Parameter.h" />
     <ClInclude Include="DataType.h" />
+    <ClInclude Include="Placeholders.h" />
     <ClInclude Include="StringTools.h" />
     <ClInclude Include="StringValue.h" />
     <ClInclude Include="Value.h" />

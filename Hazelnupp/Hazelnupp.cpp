@@ -180,6 +180,12 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 			(constraint->wantedType == DATA_TYPE::LIST))
 			return new ListValue();
 
+		// Is a string forced via a constraint? If yes, return an empty string
+		if ((constrainType) &&
+			(constraint->wantedType == DATA_TYPE::STRING))
+			return new StringValue("");
+
+		// Else, just return the void type
 		return new VoidValue;
 	}
 
