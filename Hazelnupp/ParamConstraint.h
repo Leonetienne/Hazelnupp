@@ -23,20 +23,20 @@ namespace Hazelnp
 		}
 
 		//! Constructs a type-safety constraint
-		static ParamConstraint TypeSafety(DATA_TYPE wantedType, bool constrainType = true)
+		static ParamConstraint TypeSafety(DATA_TYPE requiredType, bool constrainType = true)
 		{
 			ParamConstraint pc;
 			pc.constrainType = constrainType;
-			pc.wantedType = wantedType;
+			pc.requiredType = requiredType;
 
 			return pc;
 		}
 
 		//! Whole constructor
-		ParamConstraint(bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
 			:
 			constrainType{ constrainType },
-			wantedType{ wantedType },
+			requiredType{ requiredType },
 			defaultValue{ defaultValue },
 			required{ required }
 		{
@@ -48,7 +48,7 @@ namespace Hazelnp
 		bool constrainType = false;
 
 		//! Constrain the parameter to this value. Requires `constrainType` to be set to true.
-		DATA_TYPE wantedType = DATA_TYPE::VOID;
+		DATA_TYPE requiredType = DATA_TYPE::VOID;
 
 		//! The default value for this parameter.  
 		//! Gets applied if this parameter was not given.  

@@ -244,7 +244,7 @@ Note that you can also combine these two constraint-types by populating the stru
 ```cpp
 ParamConstraint pc;
 pc.constrainType = true;
-pc.wantedType = DATA_TYPE::STRING;
+pc.requiredType = DATA_TYPE::STRING;
 pc.defaultValue = {}; // no default value
 pc.required = true;
 

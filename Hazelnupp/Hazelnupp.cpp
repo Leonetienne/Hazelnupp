@@ -182,21 +182,21 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 
 		// Is a list forced via a constraint? If yes, return an empty list
 		if ((constrainType) &&
-			(constraint->wantedType == DATA_TYPE::LIST))
+			(constraint->requiredType == DATA_TYPE::LIST))
 			return new ListValue();
 
 		// Is a string forced via a constraint? If yes, return an empty string
 		else if ((constrainType) &&
-			(constraint->wantedType == DATA_TYPE::STRING))
+			(constraint->requiredType == DATA_TYPE::STRING))
 			return new StringValue("");
 
 		// Is an int or float forced via constraint? If yes, throw an exception
 		else if ((constrainType) &&
-			((constraint->wantedType == DATA_TYPE::INT) ||
-			 (constraint->wantedType == DATA_TYPE::FLOAT)))
+			((constraint->requiredType == DATA_TYPE::INT) ||
+			 (constraint->requiredType == DATA_TYPE::FLOAT)))
 			throw HazelnuppConstraintTypeMissmatch(
 				constraint->key,
-				constraint->wantedType,
+				constraint->requiredType,
 				rawInputType,
 				GetDescription(constraint->key)
 			);
@@ -207,7 +207,7 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 
 	// Force void type by constraint
 	else if ((constrainType) &&
-		(constraint->wantedType == DATA_TYPE::VOID))
+		(constraint->requiredType == DATA_TYPE::VOID))
 	{
 		return new VoidValue;
 	}
@@ -219,11 +219,11 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 
 		// Should the type be something other than list?
 		if ((constrainType) &&
-			(constraint->wantedType != DATA_TYPE::LIST))
+			(constraint->requiredType != DATA_TYPE::LIST))
 		{
 			throw HazelnuppConstraintTypeMissmatch(
 				constraint->key, 
-				constraint->wantedType,
+				constraint->requiredType,
 				rawInputType,
 				GetDescription(constraint->key)
 			);
@@ -250,10 +250,10 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 		// Is the type not supposed to be a string?
 		// void and list are already sorted out
 		if ((constrainType) &&
-			(constraint->wantedType != DATA_TYPE::STRING))
+			(constraint->requiredType != DATA_TYPE::STRING))
 		{
 			// We can only force a list-value from here
-			if (constraint->wantedType == DATA_TYPE::LIST)
+			if (constraint->requiredType == DATA_TYPE::LIST)
 			{
 				ListValue* list = new ListValue();
 				Value* tmp = ParseValue({ val });
@@ -266,7 +266,7 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 			else
 				throw HazelnuppConstraintTypeMissmatch(
 					constraint->key,
-					constraint->wantedType,
+					constraint->requiredType,
 					rawInputType,
 					GetDescription(constraint->key)
 				);
@@ -278,7 +278,7 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	// In this case we have a numeric value.
 	// We should still produce a string if requested
 	if ((constrainType) &&
-		(constraint->wantedType == DATA_TYPE::STRING))
+		(constraint->requiredType == DATA_TYPE::STRING))
 		return new StringValue(val);
 
 	// Numeric
@@ -294,10 +294,10 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 		if (constrainType)
 		{
 			// Must it be an integer?
-			if (constraint->wantedType == DATA_TYPE::INT)
+			if (constraint->requiredType == DATA_TYPE::INT)
 				return new IntValue((long long int)num);
 			// Must it be a floating point?
-			else if (constraint->wantedType == DATA_TYPE::FLOAT)
+			else if (constraint->requiredType == DATA_TYPE::FLOAT)
 				return new FloatValue(num);
 			// Else it must be a List
 			else
@@ -442,7 +442,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 		ParamDocEntry& cached = paramInfos[it.first];
 		cached.required = it.second.required;
 		cached.typeIsForced = it.second.constrainType;
-		cached.type = DataTypeToString(it.second.wantedType);
+		cached.type = DataTypeToString(it.second.requiredType);
 		
 		std::stringstream defaultValueSs;
 		for (const std::string& s : it.second.defaultValue)
