@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['value_229',['Value',['../classHazelnp_1_1Value.html#a8455d65bb2d939e850d6772dfbf8bfec',1,'Hazelnp::Value']]],
-  ['voidvalue_230',['VoidValue',['../classHazelnp_1_1VoidValue.html#a75abf334b7f55cd149d2bb1962f2d8f1',1,'Hazelnp::VoidValue']]]
+  ['what_227',['What',['../classHazelnp_1_1HazelnuppException.html#aa86c415a0f2b4ea5f11892145d1ea83e',1,'Hazelnp::HazelnuppException']]]
 ];
