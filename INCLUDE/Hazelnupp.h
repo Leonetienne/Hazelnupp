@@ -1,18 +1,5 @@
 #pragma once
 
-/*** ../Hazelnupp/Placeholders.h ***/
-
-#include <string>
-
-namespace Hazelnp
-{
-	namespace Placeholders
-	{
-		//! The only purpose of this is to provide the ability to return an empty string as an error for std::string& methods.
-		static const std::string g_emptyString;
-	}
-}
-
 /*** ../Hazelnupp/StringTools.h ***/
 
 #include <string>
@@ -53,6 +40,19 @@ namespace Hazelnp
 		//! Will make a string all lower-case
 		static std::string ToLower(const std::string& str);
 	};
+}
+
+/*** ../Hazelnupp/Placeholders.h ***/
+
+#include <string>
+
+namespace Hazelnp
+{
+	namespace Placeholders
+	{
+		//! The only purpose of this is to provide the ability to return an empty string as an error for std::string& methods.
+		static const std::string g_emptyString;
+	}
 }
 
 /*** ../Hazelnupp/DataType.h ***/
@@ -121,20 +121,20 @@ namespace Hazelnp
 		}
 
 		//! Constructs a type-safety constraint
-		static ParamConstraint TypeSafety(DATA_TYPE wantedType, bool constrainType = true)
+		static ParamConstraint TypeSafety(DATA_TYPE requiredType, bool constrainType = true)
 		{
 			ParamConstraint pc;
 			pc.constrainType = constrainType;
-			pc.wantedType = wantedType;
+			pc.requiredType = requiredType;
 
 			return pc;
 		}
 
 		//! Whole constructor
-		ParamConstraint(bool constrainType, DATA_TYPE wantedType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
 			:
 			constrainType{ constrainType },
-			wantedType{ wantedType },
+			requiredType{ requiredType },
 			defaultValue{ defaultValue },
 			required{ required }
 		{
@@ -146,7 +146,7 @@ namespace Hazelnp
 		bool constrainType = false;
 
 		//! Constrain the parameter to this value. Requires `constrainType` to be set to true.
-		DATA_TYPE wantedType = DATA_TYPE::VOID;
+		DATA_TYPE requiredType = DATA_TYPE::VOID;
 
 		//! The default value for this parameter.  
 		//! Gets applied if this parameter was not given.  
@@ -458,43 +458,6 @@ namespace Hazelnp
 	};
 }
 
-/*** ../Hazelnupp/VoidValue.h ***/
-
-
-namespace Hazelnp
-{
-	/** Specializations for void values. These house no value whatsoever, but only communicate information by merely existing.
-	*/
-	class VoidValue : public Value
-	{
-	public:
-		VoidValue();
-		~VoidValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long long int GetInt64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		int GetInt32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long double GetFloat64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		double GetFloat32() const override;
-
-		//! Returns an empty string
-		std::string GetString() const override;
-
-		//! Returns an empty list
-		const std::vector<Value*>& GetList() const;
-	};
-}
-
 /*** ../Hazelnupp/Parameter.h ***/
 
 #include <string>
@@ -668,6 +631,43 @@ namespace Hazelnp
 
 		//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
 		bool crashOnFail = true;
+	};
+}
+
+/*** ../Hazelnupp/VoidValue.h ***/
+
+
+namespace Hazelnp
+{
+	/** Specializations for void values. These house no value whatsoever, but only communicate information by merely existing.
+	*/
+	class VoidValue : public Value
+	{
+	public:
+		VoidValue();
+		~VoidValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long long int GetInt64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		int GetInt32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long double GetFloat64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		double GetFloat32() const override;
+
+		//! Returns an empty string
+		std::string GetString() const override;
+
+		//! Returns an empty list
+		const std::vector<Value*>& GetList() const;
 	};
 }
 
