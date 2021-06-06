@@ -463,6 +463,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 			<< "==== AVAILABLE PARAMETERS ====" 
 			<< std::endl << std::endl;
 
+		std::size_t counter = 0;
 		for (const auto& it : paramInfos)
 		{
 			const ParamDocEntry& pde = it.second;
@@ -490,8 +491,11 @@ std::string Hazelnupp::GenerateDocumentation() const
 			if (pde.description.length() > 0)
 				ss << pde.description;
 
-			if (&it.second != &(paramInfos.cend().operator--())->second)
+			// Omit linebreaks when we're on the last element
+			if (counter < paramInfos.size()-1)
 				ss << std::endl << std::endl;
+
+			counter++;
 		}
 	}
 
