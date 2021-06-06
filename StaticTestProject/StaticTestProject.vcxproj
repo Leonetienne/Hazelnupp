@@ -21,32 +21,32 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{9aeaa0c6-9088-4f6e-9224-5c67d3163a17}</ProjectGuid>
-    <RootNamespace>Hazelnupp</RootNamespace>
+    <ProjectGuid>{901bb5f6-e2a0-4363-b725-5f966cbf111e}</ProjectGuid>
+    <RootNamespace>StaticTestProject</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -139,30 +139,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="FloatValue.cpp" />
-    <ClCompile Include="Hazelnupp.cpp" />
-    <ClCompile Include="IntValue.cpp" />
-    <ClCompile Include="ListValue.cpp" />
-    <ClCompile Include="Parameter.cpp" />
-    <ClCompile Include="StringTools.cpp" />
-    <ClCompile Include="StringValue.cpp" />
-    <ClCompile Include="Value.cpp" />
-    <ClCompile Include="VoidValue.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="FloatValue.h" />
-    <ClInclude Include="Hazelnupp.h" />
-    <ClInclude Include="HazelnuppException.h" />
-    <ClInclude Include="IntValue.h" />
-    <ClInclude Include="ListValue.h" />
-    <ClInclude Include="ParamConstraint.h" />
-    <ClInclude Include="Parameter.h" />
-    <ClInclude Include="DataType.h" />
-    <ClInclude Include="Placeholders.h" />
-    <ClInclude Include="StringTools.h" />
-    <ClInclude Include="StringValue.h" />
-    <ClInclude Include="Value.h" />
-    <ClInclude Include="VoidValue.h" />
+    <ProjectReference Include="..\Hazelnupp\Hazelnupp.vcxproj">
+      <Project>{9aeaa0c6-9088-4f6e-9224-5c67d3163a17}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
