@@ -326,7 +326,7 @@ $ a.out -i hello.txt shoe.txt somsang.txt
 <span id="further-notes"></span>
 ## Further notes
 This is still in alpha! There is no guarantee at all that this actually works.  
-Whilst i did my best do make sure it does, i bet there are still a few flaws i've overlooked.  
+Whilst i did my best to make sure it does, i bet there are still a few flaws i've overlooked.  
 Please know that i am not obliged to work on fixes. I do have other stuff to do.
 This does not mean that i won't, but i'm not sure when.  
 Feel free to submit a PR if you think you improved it in any way :)
@@ -334,7 +334,7 @@ Feel free to submit a PR if you think you improved it in any way :)
 <span id="#contributing"></span>
 ## Contributing
 If you want to contribute, feel free to fork the repository, and submit a pull request.  
-Bugfixes and tests are almost certain to be accepted, features should agreed upon and come with tests.  
+Bugfixes and tests are almost certain to be accepted, features should be agreed upon and come with tests.  
 Just create an issue with the tag `feature request`. Don't forget to update the UML (`Hazelnupp.vpp`)! The (free) modelling software used is [Visual Paradigm](https://www.visual-paradigm.com).  
   
 Any code added must match the existing style!
@@ -342,7 +342,7 @@ Any code added must match the existing style!
 * Classifiers and Functions/Methods begin with an uppercase initial
 * Classifiers are camel-case
 * Classifiers get documented via `/** */` for doxygen. See existing classifiers
-* Members (methods and objects) get documented via `//!` for doxygen. See existing definitions.
+* Members (methods and objects) get documented via `//!` for doxygen. See existing definitions
 * `{` always gets a new line
 * Enumerations (and their values) and macros are all-upper case snake-case
 * No `using namespace std`
