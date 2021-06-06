@@ -342,6 +342,62 @@ namespace TestHazelnupp
 			return;
 		}
 
+		// Tests that parsing a void as int fails
+		TEST_METHOD(Weird_Load_Conversions_VoidFailsAsInt)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--thisisvoid",
+			});
+
+			// Test section: INT
+			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>([args]
+				{
+					Hazelnupp nupp;
+					nupp.SetCrashOnFail(false);
+
+					nupp.RegisterConstraint(
+						"--thisisvoid",
+						ParamConstraint::TypeSafety(DATA_TYPE::INT)
+					);
+
+					// Exercise
+					nupp.Parse(C_Ify(args));
+
+				}, L"Failed with int");
+
+			return;
+		}
+
+		// Tests that parsing a void as float fails
+		TEST_METHOD(Weird_Load_Conversions_VoidFailsAsFloat)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--thisisvoid",
+				});
+
+			// Test section: FLOAT
+			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>([args]
+				{
+					Hazelnupp nupp;
+					nupp.SetCrashOnFail(false);
+
+					nupp.RegisterConstraint(
+						"--thisisvoid",
+						ParamConstraint::TypeSafety(DATA_TYPE::FLOAT)
+					);
+
+					// Exercise
+					nupp.Parse(C_Ify(args));
+
+				}, L"Failed with float");
+
+			return;
+		}
+
 		// Tests that constraints can be cleared invidivually
 		TEST_METHOD(Can_Clear_Constraints_Individually)
 		{
