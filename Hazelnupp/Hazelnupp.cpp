@@ -65,27 +65,27 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 		if ((!catchHelp) || (!HasParam("--help")))
 			ApplyConstraints();
 	}
-	catch (const HazelnuppConstraintTypeMissmatch& hctm)
+	catch (const HazelnuppConstraintTypeMissmatch& exc)
 	{
 		if (crashOnFail)
 		{
-			std::cout << GenerateDocumentation() << std::endl;
-			std::cerr << "Fatal error: Command-line parameter value-type mismatch at \"" << hctm.What() << "\"!";
+			std::cout << GenerateDocumentation() << std::endl << std::endl;
+			std::cerr << "Parameter error: " << exc.What() << std::endl;
 			quick_exit(-1009);
 		}
 		else
-			throw hctm; // yeet
+			throw exc; // yeet
 	}
-	catch (const HazelnuppConstraintMissingValue& hctm)
+	catch (const HazelnuppConstraintMissingValue& exc)
 	{
 		if (crashOnFail)
 		{
-			std::cout << GenerateDocumentation() << std::endl;
-			std::cerr << "Fatal error: Missing required command-line parameter \"" << hctm.What() << "\"!";
+			std::cout << GenerateDocumentation() << std::endl << std::endl;
+			std::cerr << "Parameter error: " << exc.What() << std::endl;
 			quick_exit(-1010);
 		}
 		else
-			throw hctm; // yeet
+			throw exc; // yeet
 	}
 
 	// Catch --help parameter
@@ -169,28 +169,44 @@ bool Hazelnupp::HasParam(const std::string& key) const
 
 Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint)
 {
+	// This is the raw (unconverted) data type the user provided
+	DATA_TYPE rawInputType;
+
 	// Constraint values
 	const bool constrainType = (constraint != nullptr) && (constraint->constrainType);
 
 	// Void-type
 	if (values.size() == 0)
 	{
+		rawInputType = DATA_TYPE::VOID;
+
 		// Is a list forced via a constraint? If yes, return an empty list
 		if ((constrainType) &&
 			(constraint->wantedType == DATA_TYPE::LIST))
 			return new ListValue();
 
 		// Is a string forced via a constraint? If yes, return an empty string
-		if ((constrainType) &&
+		else if ((constrainType) &&
 			(constraint->wantedType == DATA_TYPE::STRING))
 			return new StringValue("");
+
+		// Is an int or float forced via constraint? If yes, throw an exception
+		else if ((constrainType) &&
+			((constraint->wantedType == DATA_TYPE::INT) ||
+			 (constraint->wantedType == DATA_TYPE::FLOAT)))
+			throw HazelnuppConstraintTypeMissmatch(
+				constraint->key,
+				constraint->wantedType,
+				rawInputType,
+				GetDescription(constraint->key)
+			);
 
 		// Else, just return the void type
 		return new VoidValue;
 	}
 
 	// Force void type by constraint
-	if ((constrainType) &&
+	else if ((constrainType) &&
 		(constraint->wantedType == DATA_TYPE::VOID))
 	{
 		return new VoidValue;
@@ -199,11 +215,18 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	// List-type
 	else if (values.size() > 1)
 	{
+		rawInputType = DATA_TYPE::LIST;
+
 		// Should the type be something other than list?
 		if ((constrainType) &&
 			(constraint->wantedType != DATA_TYPE::LIST))
 		{
-			throw HazelnuppConstraintTypeMissmatch(values[0] + " " + values[1]);
+			throw HazelnuppConstraintTypeMissmatch(
+				constraint->key, 
+				constraint->wantedType,
+				rawInputType,
+				GetDescription(constraint->key)
+			);
 		}
 
 		ListValue* newList = new ListValue();
@@ -222,6 +245,8 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	// String
 	if (!StringTools::IsNumeric(val, true))
 	{
+		rawInputType = DATA_TYPE::STRING;
+
 		// Is the type not supposed to be a string?
 		// void and list are already sorted out
 		if ((constrainType) &&
@@ -237,9 +262,14 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 				tmp = nullptr;
 				return list;
 			}
-			// Else it not possible to convert to a numeric
+			// Else it is not possible to convert to a numeric
 			else
-				throw HazelnuppConstraintTypeMissmatch(val);
+				throw HazelnuppConstraintTypeMissmatch(
+					constraint->key,
+					constraint->wantedType,
+					rawInputType,
+					GetDescription(constraint->key)
+				);
 		}
 
 		return new StringValue(val);
@@ -257,6 +287,8 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	
 	if (StringTools::ParseNumber(val, isInt, num))
 	{
+		rawInputType = isInt ? DATA_TYPE::INT : DATA_TYPE::FLOAT;
+
 		// Is the type constrained?
 		// (only int and float left)
 		if (constrainType)
@@ -458,7 +490,8 @@ std::string Hazelnupp::GenerateDocumentation() const
 			if (pde.description.length() > 0)
 				ss << pde.description;
 
-			ss << std::endl << std::endl;
+			if (&it.second != &(paramInfos.cend().operator--())->second)
+				ss << std::endl << std::endl;
 		}
 	}
 
@@ -492,7 +525,10 @@ void Hazelnupp::ApplyConstraints()
 				// Is it important to have the missing parameter?
 				if (pc.second.required)
 					// Throw an error message then
-					throw HazelnuppConstraintMissingValue(pc.second.key);
+					throw HazelnuppConstraintMissingValue(
+						pc.second.key,
+						GetDescription(pc.second.key)
+				);
 			}
 		}
 

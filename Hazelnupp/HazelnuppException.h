@@ -1,5 +1,8 @@
 #pragma once
 #include <stdexcept>
+#include <string>
+#include <sstream>
+#include "DataType.h"
 
 namespace Hazelnp
 {
@@ -55,6 +58,21 @@ namespace Hazelnp
 	public:
 		HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
 		HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
+		
+		HazelnuppConstraintTypeMissmatch(const std::string& key, const DATA_TYPE requiredType, const DATA_TYPE actualType, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Cannot convert parameter " << key << " to type " << DataTypeToString(requiredType)
+				<< ". You supplied type: " << DataTypeToString(actualType) << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
 	};
 
 	/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
@@ -63,6 +81,18 @@ namespace Hazelnp
 	{
 	public:
 		HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
-		HazelnuppConstraintMissingValue(const std::string& msg) : HazelnuppConstraintException(msg) {};
+		HazelnuppConstraintMissingValue(const std::string& key, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Missing required parameter " << key << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
 	};
 }
