@@ -31,11 +31,12 @@ args.SetCrashOnFail(false);
 4. [Abbreviations](#abbreviations)
 5. [Constraints](#constraints)
 6. [Automatic parameter documentation](#automatic-parameter-documentation)
-7. [More examples?](#more-examples)
-8. [What is not supported?](#what-is-not-supported)
-9. [Further notes](#further-notes)
-10. [Contributing](#contributing)
-11. [LICENSE](#license)
+7. [Descriptive error messages](#descriptive-error-messages)
+8. [More examples?](#more-examples)
+9. [What is not supported?](#what-is-not-supported)
+10. [Further notes](#further-notes)
+11. [Contributing](#contributing)
+12. [LICENSE](#license)
 
 <span id="importing-into-a-project"></span>
 ## Importing into a project
@@ -295,6 +296,34 @@ args.SetBriefDescription("This is the testing application for Hazelnupp.");
 ```
 
 If you want to display this information somewhere else, you can always access it as a string via `args.GenerateDocumentation()`.
+
+<span id="descriptive-error-messages"></span>
+## Descriptive error messages
+Given that you did not disable crash-on-error, Hazelnupps default behaviour on user error
+is to terminate the process with a descriptive error message to stderr.
+
+Here's how they look like:
+
+Type mismatch:
+```
+$ a.out --width "about 3 meters"
+<< --help page gets printed here aswell >>
+
+Parameter error: Cannot convert parameter --width to type FLOAT. You supplied type: VOID.
+--width   => The width of something...
+```
+
+Missing required parameter:
+```
+$ a.out"
+<< --help page gets printed here aswell >>
+
+Parameter error: Missing required parameter --width.
+--width   => The width of something...
+```
+
+This assumes that you've set a description for, in this example, `--width`.
+If a description is not set, the last line will simply be omitted.
 
 <span id="more-examples"></span>
 ## More examples?
