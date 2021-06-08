@@ -1,8 +1,8 @@
 var searchData=
 [
-  ['setbriefdescription_88',['SetBriefDescription',['../classHazelnp_1_1Hazelnupp.html#a037f84b32c7a2420c387dd46445291ac',1,'Hazelnp::Hazelnupp']]],
-  ['setcatchhelp_89',['SetCatchHelp',['../classHazelnp_1_1Hazelnupp.html#a60e0a51cd92014a87e44322158e45872',1,'Hazelnp::Hazelnupp']]],
-  ['setcrashonfail_90',['SetCrashOnFail',['../classHazelnp_1_1Hazelnupp.html#a17845623ca686caa51f3c8254e85551e',1,'Hazelnp::Hazelnupp']]],
+  ['setbriefdescription_88',['SetBriefDescription',['../classHazelnp_1_1CmdArgsInterface.html#a67ba6cb3176884c85dd56fc9084ab66a',1,'Hazelnp::CmdArgsInterface']]],
+  ['setcatchhelp_89',['SetCatchHelp',['../classHazelnp_1_1CmdArgsInterface.html#abf553ed4acabf9e1db357715bc10533c',1,'Hazelnp::CmdArgsInterface']]],
+  ['setcrashonfail_90',['SetCrashOnFail',['../classHazelnp_1_1CmdArgsInterface.html#a16a3a02f77d240d8cf51cd4ee1797113',1,'Hazelnp::CmdArgsInterface']]],
   ['splitstring_91',['SplitString',['../classHazelnp_1_1StringTools.html#a7cd6606ef06170fab363024e457f1f16',1,'Hazelnp::StringTools::SplitString(const std::string &amp;str, const char delimiter)'],['../classHazelnp_1_1StringTools.html#afe626a56fa486afcb0e4c01d3c1ccb35',1,'Hazelnp::StringTools::SplitString(const std::string &amp;str, const std::string &amp;delimiter)']]],
   ['string_92',['STRING',['../namespaceHazelnp.html#a07b61ac22ce9cd97eceebdf9487f803fa63b588d5559f64f89a416e656880b949',1,'Hazelnp']]],
   ['stringtools_93',['StringTools',['../classHazelnp_1_1StringTools.html',1,'Hazelnp']]],

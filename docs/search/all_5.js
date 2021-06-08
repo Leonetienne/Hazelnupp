@@ -1,12 +1,9 @@
 var searchData=
 [
-  ['hasabbreviation_36',['HasAbbreviation',['../classHazelnp_1_1Hazelnupp.html#a46df7d396fb56e30351c9a7308792200',1,'Hazelnp::Hazelnupp']]],
-  ['hasdescription_37',['HasDescription',['../classHazelnp_1_1Hazelnupp.html#aabab94412ff5eecf95b97a4e21eb9cf6',1,'Hazelnp::Hazelnupp']]],
-  ['hasparam_38',['HasParam',['../classHazelnp_1_1Hazelnupp.html#a8b79a79d40420ae748c108c691111040',1,'Hazelnp::Hazelnupp']]],
-  ['hazelnp_39',['Hazelnp',['../namespaceHazelnp.html',1,'']]],
-  ['hazelnupp_40',['Hazelnupp',['../classHazelnp_1_1Hazelnupp.html',1,'Hazelnp::Hazelnupp'],['../structHazelnp_1_1ParamConstraint.html#a0356cbb5056c61cac4a065a59002cb76',1,'Hazelnp::ParamConstraint::Hazelnupp()'],['../classHazelnp_1_1Hazelnupp.html#a20ac0ebcfd4df7f320a7bbcaeed6e54d',1,'Hazelnp::Hazelnupp::Hazelnupp()'],['../classHazelnp_1_1Hazelnupp.html#a6d14c60f03b571f5f794c3549e75e435',1,'Hazelnp::Hazelnupp::Hazelnupp(const int argc, const char *const *argv)']]],
-  ['hazelnupp_2ecpp_41',['Hazelnupp.cpp',['../Hazelnupp_8cpp.html',1,'']]],
-  ['hazelnupp_2eh_42',['Hazelnupp.h',['../Hazelnupp_8h.html',1,'']]],
+  ['hasabbreviation_39',['HasAbbreviation',['../classHazelnp_1_1CmdArgsInterface.html#a58b81709e631cee5f3db3f3f48611fe9',1,'Hazelnp::CmdArgsInterface']]],
+  ['hasdescription_40',['HasDescription',['../classHazelnp_1_1CmdArgsInterface.html#a5003f826ee31c6365bf4b6e8b2c8d9f1',1,'Hazelnp::CmdArgsInterface']]],
+  ['hasparam_41',['HasParam',['../classHazelnp_1_1CmdArgsInterface.html#a3a7fa36fe69ee8bf3b400983a21ecd24',1,'Hazelnp::CmdArgsInterface']]],
+  ['hazelnp_42',['Hazelnp',['../namespaceHazelnp.html',1,'']]],
   ['hazelnupp_2evcxproj_2efilelistabsolute_2etxt_43',['Hazelnupp.vcxproj.FileListAbsolute.txt',['../Debug_2Hazelnupp_8vcxproj_8FileListAbsolute_8txt.html',1,'(Global Namespace)'],['../Release_2Hazelnupp_8vcxproj_8FileListAbsolute_8txt.html',1,'(Global Namespace)']]],
   ['hazelnuppconstraintexception_44',['HazelnuppConstraintException',['../classHazelnp_1_1HazelnuppConstraintException.html',1,'Hazelnp::HazelnuppConstraintException'],['../classHazelnp_1_1HazelnuppConstraintException.html#a4d08002a96bf9b3da3c6e931a51960e9',1,'Hazelnp::HazelnuppConstraintException::HazelnuppConstraintException()'],['../classHazelnp_1_1HazelnuppConstraintException.html#a944f0e6a384e032a762c5892964e1cc0',1,'Hazelnp::HazelnuppConstraintException::HazelnuppConstraintException(const std::string &amp;msg)']]],
   ['hazelnuppconstraintmissingvalue_45',['HazelnuppConstraintMissingValue',['../classHazelnp_1_1HazelnuppConstraintMissingValue.html',1,'Hazelnp::HazelnuppConstraintMissingValue'],['../classHazelnp_1_1HazelnuppConstraintMissingValue.html#aad4a7b5573790ddfbe1a453aef71eb10',1,'Hazelnp::HazelnuppConstraintMissingValue::HazelnuppConstraintMissingValue()'],['../classHazelnp_1_1HazelnuppConstraintMissingValue.html#a192ef8133047beadf8fc9f585d384c04',1,'Hazelnp::HazelnuppConstraintMissingValue::HazelnuppConstraintMissingValue(const std::string &amp;key, const std::string &amp;paramDescription=&quot;&quot;)']]],
