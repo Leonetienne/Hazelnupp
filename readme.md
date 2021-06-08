@@ -1,7 +1,7 @@
 [![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/Brand/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
 
 # [Documentation](https://leonetienne.github.io/Hazelnupp/)
-## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classHazelnupp.html)
+## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classCmdArgsInterface.html)
 
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
@@ -20,7 +20,7 @@ $ a.out -lp 1234
 These examples reference exceptions. These are not enabled by default. The default behaviour for user-fault exceptions is to produce output to `stderr` and kill the process.  
 To enable exceptions, call this method:
 ```cpp
-Hazelnupp args;
+CmdArgsInterface args;
 args.SetCrashOnFail(false);
 ```
 
@@ -86,7 +86,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args(argc, argv);
+	CmdArgsInterface args(argc, argv);
 
 	if (args.HasParam("--force"))
 		// do forced
@@ -104,7 +104,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args(argc, argv);
+	CmdArgsInterface args(argc, argv);
 
 	// Either check via HasParam(), or do a try-catch
 	try
@@ -129,7 +129,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args(argc, argv);
+	CmdArgsInterface args(argc, argv);
 
 	const auto& myList = args["--my-list"].GetList(); // std::vector<Value*>
 	
@@ -153,7 +153,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args;
+	CmdArgsInterface args;
 
 	// Register abbreviations
 	args.RegisterAbbreviation("-f", "--force");
@@ -188,7 +188,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args;
+	CmdArgsInterface args;
 	
 	// Register constraints
 	args.RegisterConstraint("--this-is-required", ParamConstraint::Require()); // This missing throws an exception
@@ -225,7 +225,7 @@ using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp args;
+	CmdArgsInterface args;
 	
 	// Register constraints
 	args.RegisterConstraint("--this-must-be-int", ParamConstraint::TypeSafety(DATA_TYPE::INT));
@@ -257,7 +257,7 @@ What doesn't work is inserting multiple constraints for one key. It will just di
 Hazelnupp does automatically create a parameter documentation, accessible via `--help`.  
 If you want to use `--help` yourself, just turn it off.
 ```cpp
-Hazelnupp args;
+CmdArgsInterface args;
 args.SetCatchHelp(false);
 ```
 
@@ -285,13 +285,13 @@ This is the testing application for Hazelnupp.
 This documentation is automatically fed by any information provided on parameters.  
 You have to set the brief descriptions yourself though.
 ```cpp
-Hazelnupp args;
+CmdArgsInterface args;
 args.RegisterDescription("--force", "Just forces it.");
 ```
 
 Additionally you can provide a brief description of your application to be added right above the parameter list.
 ```cpp
-Hazelnupp args;
+CmdArgsInterface args;
 args.SetBriefDescription("This is the testing application for Hazelnupp.");
 ```
 
