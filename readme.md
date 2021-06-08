@@ -1,7 +1,7 @@
 [![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/Brand/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
 
 # [Documentation](https://leonetienne.github.io/Hazelnupp/)
-## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classCmdArgsInterface.html)
+## [Direct link to docs of the main class](https://leonetienne.github.io/Hazelnupp/classHazelnp_1_1CmdArgsInterface.html)
 
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
