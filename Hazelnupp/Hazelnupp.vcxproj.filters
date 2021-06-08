@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Hazelnupp.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
     <ClCompile Include="Parameter.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
@@ -42,11 +39,11 @@
     <ClCompile Include="StringTools.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="CmdArgsInterface.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Hazelnupp.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
     <ClInclude Include="Parameter.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
@@ -81,6 +78,9 @@
       <Filter>Headerdateien</Filter>
     </ClInclude>
     <ClInclude Include="Placeholders.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="CmdArgsInterface.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

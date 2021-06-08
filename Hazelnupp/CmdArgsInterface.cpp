@@ -1,4 +1,4 @@
-#include "Hazelnupp.h"
+#include "CmdArgsInterface.h"
 #include "VoidValue.h"
 #include "IntValue.h"
 #include "FloatValue.h"
@@ -12,18 +12,18 @@
 
 using namespace Hazelnp;
 
-Hazelnupp::Hazelnupp()
+CmdArgsInterface::CmdArgsInterface()
 {
 	return;
 }
 
-Hazelnupp::Hazelnupp(const int argc, const char* const* argv)
+CmdArgsInterface::CmdArgsInterface(const int argc, const char* const* argv)
 {
 	Parse(argc, argv);
 	return;
 }
 
-Hazelnupp::~Hazelnupp()
+CmdArgsInterface::~CmdArgsInterface()
 {
 	for (auto& it : parameters)
 		delete it.second;
@@ -33,7 +33,7 @@ Hazelnupp::~Hazelnupp()
 	return;
 }
 
-void Hazelnupp::Parse(const int argc, const char* const* argv)
+void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 {
 	try
 	{
@@ -98,7 +98,7 @@ void Hazelnupp::Parse(const int argc, const char* const* argv)
 	return;
 }
 
-std::size_t Hazelnupp::ParseNextParameter(const std::size_t parIndex, Parameter*& out_Par)
+std::size_t CmdArgsInterface::ParseNextParameter(const std::size_t parIndex, Parameter*& out_Par)
 {
 	std::size_t i = parIndex;
 	const std::string key = rawArgs[parIndex];
@@ -131,7 +131,7 @@ std::size_t Hazelnupp::ParseNextParameter(const std::size_t parIndex, Parameter*
 	return i;
 }
 
-void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
+void CmdArgsInterface::PopulateRawArgs(const int argc, const char* const* argv)
 {
 	rawArgs.clear();
 	rawArgs.reserve(argc);
@@ -142,7 +142,7 @@ void Hazelnupp::PopulateRawArgs(const int argc, const char* const* argv)
 	return;
 }
 
-void Hazelnupp::ExpandAbbreviations()
+void CmdArgsInterface::ExpandAbbreviations()
 {
 	// Abort if no abbreviations
 	if (parameterAbreviations.size() == 0)
@@ -162,12 +162,12 @@ void Hazelnupp::ExpandAbbreviations()
 	return;
 }
 
-bool Hazelnupp::HasParam(const std::string& key) const
+bool CmdArgsInterface::HasParam(const std::string& key) const
 {
 	return parameters.find(key) != parameters.end();
 }
 
-Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint)
+Value* CmdArgsInterface::ParseValue(const std::vector<std::string>& values, const ParamConstraint* constraint)
 {
 	// This is the raw (unconverted) data type the user provided
 	DATA_TYPE rawInputType;
@@ -326,40 +326,40 @@ Value* Hazelnupp::ParseValue(const std::vector<std::string>& values, const Param
 	return nullptr;
 }
 
-bool Hazelnupp::GetCrashOnFail() const
+bool CmdArgsInterface::GetCrashOnFail() const
 {
 	return crashOnFail;
 }
 
-void Hazelnupp::SetCatchHelp(bool catchHelp)
+void CmdArgsInterface::SetCatchHelp(bool catchHelp)
 {
 	this->catchHelp = catchHelp;
 	return;
 }
 
-bool Hazelnupp::GetCatchHelp() const
+bool CmdArgsInterface::GetCatchHelp() const
 {
 	return catchHelp;
 }
 
-void Hazelnupp::SetBriefDescription(const std::string& description)
+void CmdArgsInterface::SetBriefDescription(const std::string& description)
 {
 	briefDescription = description;
 	return;
 }
 
-const std::string& Hazelnupp::GetBriefDescription()
+const std::string& CmdArgsInterface::GetBriefDescription()
 {
 	return briefDescription;
 }
 
-void Hazelnp::Hazelnupp::RegisterDescription(const std::string& parameter, const std::string& description)
+void Hazelnp::CmdArgsInterface::RegisterDescription(const std::string& parameter, const std::string& description)
 {
 	parameterDescriptions[parameter] = description;
 	return;
 }
 
-const std::string& Hazelnp::Hazelnupp::GetDescription(const std::string& parameter) const
+const std::string& Hazelnp::CmdArgsInterface::GetDescription(const std::string& parameter) const
 {
 	// Do we already have a description for this parameter?
 	if (!HasDescription(parameter))
@@ -370,25 +370,25 @@ const std::string& Hazelnp::Hazelnupp::GetDescription(const std::string& paramet
 	return parameterDescriptions.find(parameter)->second;
 }
 
-bool Hazelnupp::HasDescription(const std::string& parameter) const
+bool CmdArgsInterface::HasDescription(const std::string& parameter) const
 {
 	return parameterDescriptions.find(parameter) != parameterDescriptions.end();
 }
 
-void Hazelnupp::ClearDescription(const std::string& parameter)
+void CmdArgsInterface::ClearDescription(const std::string& parameter)
 {
 	// This will just do nothing if the entry does not exist
 	parameterDescriptions.erase(parameter);
 	return;
 }
 
-void Hazelnp::Hazelnupp::ClearDescriptions()
+void Hazelnp::CmdArgsInterface::ClearDescriptions()
 {
 	parameterDescriptions.clear();
 	return;
 }
 
-std::string Hazelnupp::GenerateDocumentation() const
+std::string CmdArgsInterface::GenerateDocumentation() const
 {
 	std::stringstream ss;
 
@@ -502,7 +502,7 @@ std::string Hazelnupp::GenerateDocumentation() const
 	return ss.str();
 }
 
-void Hazelnupp::ApplyConstraints()
+void CmdArgsInterface::ApplyConstraints()
 {
 	// Enforce required parameters / default values
 	for (const auto& pc : parameterConstraints)
@@ -539,23 +539,23 @@ void Hazelnupp::ApplyConstraints()
 	return;
 }
 
-ParamConstraint Hazelnupp::GetConstraint(const std::string& parameter) const
+ParamConstraint CmdArgsInterface::GetConstraint(const std::string& parameter) const
 {
 	return parameterConstraints.find(parameter)->second;
 }
 
-void Hazelnupp::ClearConstraint(const std::string& parameter)
+void CmdArgsInterface::ClearConstraint(const std::string& parameter)
 {
 	parameterConstraints.erase(parameter);
 	return;
 }
 
-const std::string& Hazelnupp::GetExecutableName() const
+const std::string& CmdArgsInterface::GetExecutableName() const
 {
 	return executableName;
 }
 
-const Value& Hazelnupp::operator[](const std::string& key) const
+const Value& CmdArgsInterface::operator[](const std::string& key) const
 {
 	// Throw exception if param is unknown
 	if (!HasParam(key))
@@ -564,13 +564,13 @@ const Value& Hazelnupp::operator[](const std::string& key) const
 	return *parameters.find(key)->second->GetValue();
 }
 
-void Hazelnupp::RegisterAbbreviation(const std::string& abbrev, const std::string& target)
+void CmdArgsInterface::RegisterAbbreviation(const std::string& abbrev, const std::string& target)
 {
 	parameterAbreviations.insert(std::pair<std::string, std::string>(abbrev, target));
 	return;
 }
 
-const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
+const std::string& CmdArgsInterface::GetAbbreviation(const std::string& abbrev) const
 {
 	if (!HasAbbreviation(abbrev))
 		return Placeholders::g_emptyString;
@@ -578,43 +578,43 @@ const std::string& Hazelnupp::GetAbbreviation(const std::string& abbrev) const
 	return parameterAbreviations.find(abbrev)->second;
 }
 
-bool Hazelnupp::HasAbbreviation(const std::string& abbrev) const
+bool CmdArgsInterface::HasAbbreviation(const std::string& abbrev) const
 {
 	return parameterAbreviations.find(abbrev) != parameterAbreviations.end();
 }
 
-void Hazelnupp::ClearAbbreviation(const std::string& abbrevation)
+void CmdArgsInterface::ClearAbbreviation(const std::string& abbrevation)
 {
 	parameterAbreviations.erase(abbrevation);
 	return;
 }
 
-void Hazelnupp::ClearAbbreviations()
+void CmdArgsInterface::ClearAbbreviations()
 {
 	parameterAbreviations.clear();
 	return;
 }
 
-void Hazelnupp::RegisterConstraint(const std::string& key, const ParamConstraint& constraint)
+void CmdArgsInterface::RegisterConstraint(const std::string& key, const ParamConstraint& constraint)
 {
 	// Magic syntax, wooo
 	(parameterConstraints[key] = constraint).key = key;
 	return;
 }
 
-void Hazelnupp::ClearConstraints()
+void CmdArgsInterface::ClearConstraints()
 {
 	parameterConstraints.clear();
 	return;
 }
 
-void Hazelnupp::SetCrashOnFail(bool crashOnFail)
+void CmdArgsInterface::SetCrashOnFail(bool crashOnFail)
 {
 	this->crashOnFail = crashOnFail;
 	return;
 }
 
-const ParamConstraint* Hazelnupp::GetConstraintForKey(const std::string& key) const
+const ParamConstraint* CmdArgsInterface::GetConstraintForKey(const std::string& key) const
 {
 	const auto constraint = parameterConstraints.find(key);
 

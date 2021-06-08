@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
 #include "helper.h"
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 #include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -16,16 +16,16 @@ namespace TestHazelnupp
 		TEST_METHOD(Set_Get_Application_Brief)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			std::string text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in quam tincidunt sapien euismod egestas eget vel dolor. Duis non turpis porttitor, convallis velit at.";
 
 			// Exercise
-			nupp.SetBriefDescription(text);
+			cmdArgsI.SetBriefDescription(text);
 
 			// Verify
-			Assert::AreEqual(text, nupp.GetBriefDescription());
+			Assert::AreEqual(text, cmdArgsI.GetBriefDescription());
 
 			return;
 		}
@@ -34,18 +34,18 @@ namespace TestHazelnupp
 		TEST_METHOD(Can_Set_Parameter_Description)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise
-			nupp.RegisterDescription("--force", "Just force it");
-			nupp.RegisterDescription("--lose", "Just lose it");
-			nupp.RegisterDescription("--crazy", "Go crazy");
+			cmdArgsI.RegisterDescription("--force", "Just force it");
+			cmdArgsI.RegisterDescription("--lose", "Just lose it");
+			cmdArgsI.RegisterDescription("--crazy", "Go crazy");
 
 			// Verify
-			Assert::AreEqual(std::string("Just force it"), nupp.GetDescription("--force"));
-			Assert::AreEqual(std::string("Go crazy"), nupp.GetDescription("--crazy"));
-			Assert::AreEqual(std::string("Just lose it"), nupp.GetDescription("--lose"));
+			Assert::AreEqual(std::string("Just force it"), cmdArgsI.GetDescription("--force"));
+			Assert::AreEqual(std::string("Go crazy"), cmdArgsI.GetDescription("--crazy"));
+			Assert::AreEqual(std::string("Just lose it"), cmdArgsI.GetDescription("--lose"));
 
 			return;
 		}
@@ -54,17 +54,17 @@ namespace TestHazelnupp
 		TEST_METHOD(Has_Description)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise, verify
-			Assert::IsFalse(nupp.HasDescription("--force"));
-			Assert::IsFalse(nupp.HasDescription("--main"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--force"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--main"));
 
-			nupp.RegisterDescription("--force", "Just force it");
+			cmdArgsI.RegisterDescription("--force", "Just force it");
 
-			Assert::IsTrue(nupp.HasDescription("--force"));
-			Assert::IsFalse(nupp.HasDescription("--main"));
+			Assert::IsTrue(cmdArgsI.HasDescription("--force"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--main"));
 
 			return;
 		}
@@ -73,16 +73,16 @@ namespace TestHazelnupp
 		TEST_METHOD(No_Description_Is_Empty_String)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise
-			nupp.RegisterDescription("--force", "Just force it");
-			nupp.RegisterDescription("--lose", "Just lose it");
-			nupp.RegisterDescription("--crazy", "Go crazy");
+			cmdArgsI.RegisterDescription("--force", "Just force it");
+			cmdArgsI.RegisterDescription("--lose", "Just lose it");
+			cmdArgsI.RegisterDescription("--crazy", "Go crazy");
 
 			// Verify
-			Assert::AreEqual(std::string(), nupp.GetDescription("--man"));
+			Assert::AreEqual(std::string(), cmdArgsI.GetDescription("--man"));
 
 			return;
 		}
@@ -91,23 +91,23 @@ namespace TestHazelnupp
 		TEST_METHOD(ClearDescription)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise
-			nupp.RegisterDescription("--force", "Just force it");
-			nupp.RegisterDescription("--lose", "Just lose it");
-			nupp.RegisterDescription("--crazy", "Go crazy");
+			cmdArgsI.RegisterDescription("--force", "Just force it");
+			cmdArgsI.RegisterDescription("--lose", "Just lose it");
+			cmdArgsI.RegisterDescription("--crazy", "Go crazy");
 
-			nupp.ClearDescription("--lose");
+			cmdArgsI.ClearDescription("--lose");
 
 			// Verify
 			
 			// These two should still work
-			Assert::AreEqual(std::string("Just force it"), nupp.GetDescription("--force"));
-			Assert::AreEqual(std::string("Go crazy"), nupp.GetDescription("--crazy"));
+			Assert::AreEqual(std::string("Just force it"), cmdArgsI.GetDescription("--force"));
+			Assert::AreEqual(std::string("Go crazy"), cmdArgsI.GetDescription("--crazy"));
 			
-			Assert::IsFalse(nupp.HasDescription("--lose"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--lose"));
 
 			return;
 		}
@@ -116,22 +116,22 @@ namespace TestHazelnupp
 		TEST_METHOD(ClearDescriptions)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise
-			nupp.RegisterDescription("--force", "Just force it");
-			nupp.RegisterDescription("--lose", "Just lose it");
-			nupp.RegisterDescription("--crazy", "Go crazy");
+			cmdArgsI.RegisterDescription("--force", "Just force it");
+			cmdArgsI.RegisterDescription("--lose", "Just lose it");
+			cmdArgsI.RegisterDescription("--crazy", "Go crazy");
 
-			nupp.ClearDescriptions();
+			cmdArgsI.ClearDescriptions();
 
 			// Verify
 
 			// These two should still work
-			Assert::IsFalse(nupp.HasDescription("--force"));
-			Assert::IsFalse(nupp.HasDescription("--crazy"));
-			Assert::IsFalse(nupp.HasDescription("--lose"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--force"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--crazy"));
+			Assert::IsFalse(cmdArgsI.HasDescription("--lose"));
 
 			return;
 		}

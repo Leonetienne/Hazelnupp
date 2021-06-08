@@ -1,31 +1,31 @@
 #include <iostream>
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 
 using namespace Hazelnp;
 
 int main(int argc, char** argv)
 {
-	Hazelnupp nupp;
+	CmdArgsInterface args;
 
-	nupp.SetBriefDescription("This is the testing application for Hazelnupp.");
+	args.SetBriefDescription("This is the testing application for Hazelnupp.");
 
-	nupp.RegisterDescription("--help", "This will display the parameter documentation.");
-	nupp.RegisterDescription("--force", "Just forces it.");
-	nupp.RegisterDescription("--width", "The width of something...");
-	nupp.RegisterDescription("--name", "The names to target");
-	nupp.RegisterDescription("--fruit", "The fruit to use");
+	args.RegisterDescription("--help", "This will display the parameter documentation.");
+	args.RegisterDescription("--force", "Just forces it.");
+	args.RegisterDescription("--width", "The width of something...");
+	args.RegisterDescription("--name", "The names to target");
+	args.RegisterDescription("--fruit", "The fruit to use");
 
-	nupp.RegisterAbbreviation("-f", "--force");
-	nupp.RegisterAbbreviation("-w", "--width");
-	nupp.RegisterAbbreviation("-h", "--height");
-	nupp.RegisterAbbreviation("-d", "--depth");
+	args.RegisterAbbreviation("-f", "--force");
+	args.RegisterAbbreviation("-w", "--width");
+	args.RegisterAbbreviation("-h", "--height");
+	args.RegisterAbbreviation("-d", "--depth");
 
-	nupp.RegisterConstraint("--width", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
-	nupp.RegisterConstraint("--depth", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
-	nupp.RegisterConstraint("--name", ParamConstraint(true, DATA_TYPE::LIST, { "peter", "hannes" }, true));
-	nupp.RegisterConstraint("--fruit", ParamConstraint(true, DATA_TYPE::STRING, {}, true));
+	args.RegisterConstraint("--width", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
+	args.RegisterConstraint("--depth", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
+	args.RegisterConstraint("--name", ParamConstraint(true, DATA_TYPE::LIST, { "peter", "hannes" }, true));
+	args.RegisterConstraint("--fruit", ParamConstraint(true, DATA_TYPE::STRING, {}, true));
 
-	nupp.Parse(argc, argv);
+	args.Parse(argc, argv);
 
 	return 0;
 }

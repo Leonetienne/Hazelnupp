@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
 #include "helper.h"
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 #include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -21,11 +21,11 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::AreEqual(std::string("/my/fake/path/wahoo.out"), nupp.GetExecutableName());
+			Assert::AreEqual(std::string("/my/fake/path/wahoo.out"), cmdArgsI.GetExecutableName());
 
 			return;
 		}
@@ -40,11 +40,11 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--dummy"));
+			Assert::IsTrue(cmdArgsI.HasParam("--dummy"));
 
 			return;
 		}
@@ -59,8 +59,8 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify (no exception)
 
@@ -78,12 +78,12 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--dummy"), L"Failed has-param");
-			Assert::IsTrue(nupp["--dummy"].GetDataType() == DATA_TYPE::VOID, L"Failed type");
+			Assert::IsTrue(cmdArgsI.HasParam("--dummy"), L"Failed has-param");
+			Assert::IsTrue(cmdArgsI["--dummy"].GetDataType() == DATA_TYPE::VOID, L"Failed type");
 
 			return;
 		}
@@ -113,16 +113,16 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--my_string"));
-			Assert::IsTrue(nupp.HasParam("--my_void"));
-			Assert::IsTrue(nupp.HasParam("--my_float"));
-			Assert::IsTrue(nupp.HasParam("--my_int"));
-			Assert::IsTrue(nupp.HasParam("--my_num_list"));
-			Assert::IsTrue(nupp.HasParam("--my_str_list"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_string"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_void"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_float"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_int"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_num_list"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_str_list"));
 
 			return;
 		}
@@ -152,16 +152,16 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::IsTrue(nupp["--my_string"].GetDataType() == DATA_TYPE::STRING);
-			Assert::IsTrue(nupp["--my_void"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--my_float"].GetDataType() == DATA_TYPE::FLOAT);
-			Assert::IsTrue(nupp["--my_int"].GetDataType() == DATA_TYPE::INT);
-			Assert::IsTrue(nupp["--my_num_list"].GetDataType() == DATA_TYPE::LIST);
-			Assert::IsTrue(nupp["--my_str_list"].GetDataType() == DATA_TYPE::LIST);
+			Assert::IsTrue(cmdArgsI["--my_string"].GetDataType() == DATA_TYPE::STRING);
+			Assert::IsTrue(cmdArgsI["--my_void"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--my_float"].GetDataType() == DATA_TYPE::FLOAT);
+			Assert::IsTrue(cmdArgsI["--my_int"].GetDataType() == DATA_TYPE::INT);
+			Assert::IsTrue(cmdArgsI["--my_num_list"].GetDataType() == DATA_TYPE::LIST);
+			Assert::IsTrue(cmdArgsI["--my_str_list"].GetDataType() == DATA_TYPE::LIST);
 
 			return;
 		}
@@ -191,20 +191,20 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			Assert::AreEqual(nupp["--my_string"].GetString(), std::string("billybob"));
-			Assert::AreEqual(nupp["--my_float"].GetFloat32(), -23.199);
-			Assert::AreEqual(nupp["--my_int"].GetInt32(), 199);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[0]->GetInt32(), 1);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[1]->GetInt32(), 2);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[2]->GetInt32(), 3);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[3]->GetInt32(), 4);
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[0]->GetString(), std::string("apple"));
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[1]->GetString(), std::string("banana"));
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[2]->GetString(), std::string("pumpkin"));
+			Assert::AreEqual(cmdArgsI["--my_string"].GetString(), std::string("billybob"));
+			Assert::AreEqual(cmdArgsI["--my_float"].GetFloat32(), -23.199);
+			Assert::AreEqual(cmdArgsI["--my_int"].GetInt32(), 199);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[0]->GetInt32(), 1);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[1]->GetInt32(), 2);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[2]->GetInt32(), 3);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[3]->GetInt32(), 4);
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[0]->GetString(), std::string("apple"));
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[1]->GetString(), std::string("banana"));
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[2]->GetString(), std::string("pumpkin"));
 
 			return;
 		}
@@ -233,15 +233,15 @@ namespace TestHazelnupp
 				"pumpkin",
 			});
 
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise, Verify
 			Assert::ExpectException<HazelnuppInvalidKeyException>(
 				[args]
 				{
-					Hazelnupp nupp(C_Ify(args));
-					nupp["--borrnana"];
+					CmdArgsInterface cmdArgsI(C_Ify(args));
+					cmdArgsI["--borrnana"];
 				}
 			);
 

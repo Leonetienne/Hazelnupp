@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
 #include "helper.h"
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 #include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -23,44 +23,44 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			const Hazelnupp* ptnupp = &nupp;
+			const CmdArgsInterface* ptcmdArgsI = &cmdArgsI;
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt64();
+					(*ptcmdArgsI)["--pud"].GetInt64();
 				}
 			, L"Int64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt32();
+					(*ptcmdArgsI)["--pud"].GetInt32();
 				}
 			, L"Int32");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat64();
+					(*ptcmdArgsI)["--pud"].GetFloat64();
 				}
 			, L"Float64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat32();
+					(*ptcmdArgsI)["--pud"].GetFloat32();
 				}
 			, L"Float32");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetList();
+					(*ptcmdArgsI)["--pud"].GetList();
 				}
 			, L"List");
 
@@ -78,45 +78,45 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			const Hazelnupp* ptnupp = &nupp;
+			const CmdArgsInterface* ptcmdArgsI = &cmdArgsI;
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt64();
+					(*ptcmdArgsI)["--pud"].GetInt64();
 				}
 			, L"Int64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt32();
+					(*ptcmdArgsI)["--pud"].GetInt32();
 				}
 			, L"Int32");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat64();
+					(*ptcmdArgsI)["--pud"].GetFloat64();
 				}
 			, L"Float64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat32();
+					(*ptcmdArgsI)["--pud"].GetFloat32();
 				}
 			, L"Float32");
 
 			// Expect empty string
-			Assert::AreEqual(std::string(), nupp["--pud"].GetString(), L"String");
+			Assert::AreEqual(std::string(), cmdArgsI["--pud"].GetString(), L"String");
 
 			// Expect empty list
-			Assert::AreEqual(std::size_t(0), nupp["--pud"].GetList().size(), L"List");
+			Assert::AreEqual(std::size_t(0), cmdArgsI["--pud"].GetList().size(), L"List");
 
 			return;
 		}
@@ -132,22 +132,22 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			const Hazelnupp* ptnupp = &nupp;
+			const CmdArgsInterface* ptcmdArgsI = &cmdArgsI;
 
-			Assert::AreEqual(39ll, nupp["--pud"].GetInt64(), L"Int64");
-			Assert::AreEqual(39, nupp["--pud"].GetInt32(), L"Int32");
-			Assert::IsTrue(39.0l == nupp["--pud"].GetFloat64(), L"Float64");
-			Assert::AreEqual(39.0, nupp["--pud"].GetFloat32(), L"Float32");
-			Assert::AreEqual(std::string("39"), nupp["--pud"].GetString(), L"String");
+			Assert::AreEqual(39ll, cmdArgsI["--pud"].GetInt64(), L"Int64");
+			Assert::AreEqual(39, cmdArgsI["--pud"].GetInt32(), L"Int32");
+			Assert::IsTrue(39.0l == cmdArgsI["--pud"].GetFloat64(), L"Float64");
+			Assert::AreEqual(39.0, cmdArgsI["--pud"].GetFloat32(), L"Float32");
+			Assert::AreEqual(std::string("39"), cmdArgsI["--pud"].GetString(), L"String");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetList();
+					(*ptcmdArgsI)["--pud"].GetList();
 				}
 			, L"List");
 
@@ -166,22 +166,22 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			const Hazelnupp* ptnupp = &nupp;
+			const CmdArgsInterface* ptcmdArgsI = &cmdArgsI;
 
-			Assert::AreEqual(39ll, nupp["--pud"].GetInt64(), L"Int64");
-			Assert::AreEqual(39, nupp["--pud"].GetInt32(), L"Int32");
-			Assert::IsTrue(39.5l == nupp["--pud"].GetFloat64(), L"Float64");
-			Assert::AreEqual(39.5, nupp["--pud"].GetFloat32(), L"Float32");
-			Assert::AreEqual(std::string("39.5"), nupp["--pud"].GetString(), L"String");
+			Assert::AreEqual(39ll, cmdArgsI["--pud"].GetInt64(), L"Int64");
+			Assert::AreEqual(39, cmdArgsI["--pud"].GetInt32(), L"Int32");
+			Assert::IsTrue(39.5l == cmdArgsI["--pud"].GetFloat64(), L"Float64");
+			Assert::AreEqual(39.5, cmdArgsI["--pud"].GetFloat32(), L"Float32");
+			Assert::AreEqual(std::string("39.5"), cmdArgsI["--pud"].GetString(), L"String");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetList();
+					(*ptcmdArgsI)["--pud"].GetList();
 				}
 			, L"List");
 
@@ -203,44 +203,44 @@ namespace TestHazelnupp
 			});
 
 			// Exercise
-			Hazelnupp nupp(C_Ify(args));
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI(C_Ify(args));
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Verify
-			const Hazelnupp* ptnupp = &nupp;
+			const CmdArgsInterface* ptcmdArgsI = &cmdArgsI;
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt64();
+					(*ptcmdArgsI)["--pud"].GetInt64();
 				}
 			, L"Int64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetInt32();
+					(*ptcmdArgsI)["--pud"].GetInt32();
 				}
 			, L"Int32");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat64();
+					(*ptcmdArgsI)["--pud"].GetFloat64();
 				}
 			, L"Float64");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetFloat32();
+					(*ptcmdArgsI)["--pud"].GetFloat32();
 				}
 			, L"Float32");
 
 			Assert::ExpectException<HazelnuppValueNotConvertibleException>(
-				[ptnupp]
+				[ptcmdArgsI]
 				{
-					(*ptnupp)["--pud"].GetString();
+					(*ptcmdArgsI)["--pud"].GetString();
 				}
 			, L"String");
 

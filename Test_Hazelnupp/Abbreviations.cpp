@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
 #include "helper.h"
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace Hazelnp;
@@ -36,25 +36,25 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--my_string"));
-			Assert::IsTrue(nupp.HasParam("--my_void"));
-			Assert::IsTrue(nupp.HasParam("--my_float"));
-			Assert::IsTrue(nupp.HasParam("--my_int"));
-			Assert::IsTrue(nupp.HasParam("--my_num_list"));
-			Assert::IsTrue(nupp.HasParam("--my_str_list"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_string"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_void"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_float"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_int"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_num_list"));
+			Assert::IsTrue(cmdArgsI.HasParam("--my_str_list"));
 
 			return;
 		}
@@ -84,25 +84,25 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp["--my_string"].GetDataType() == DATA_TYPE::STRING);
-			Assert::IsTrue(nupp["--my_void"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--my_float"].GetDataType() == DATA_TYPE::FLOAT);
-			Assert::IsTrue(nupp["--my_int"].GetDataType() == DATA_TYPE::INT);
-			Assert::IsTrue(nupp["--my_num_list"].GetDataType() == DATA_TYPE::LIST);
-			Assert::IsTrue(nupp["--my_str_list"].GetDataType() == DATA_TYPE::LIST);
+			Assert::IsTrue(cmdArgsI["--my_string"].GetDataType() == DATA_TYPE::STRING);
+			Assert::IsTrue(cmdArgsI["--my_void"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--my_float"].GetDataType() == DATA_TYPE::FLOAT);
+			Assert::IsTrue(cmdArgsI["--my_int"].GetDataType() == DATA_TYPE::INT);
+			Assert::IsTrue(cmdArgsI["--my_num_list"].GetDataType() == DATA_TYPE::LIST);
+			Assert::IsTrue(cmdArgsI["--my_str_list"].GetDataType() == DATA_TYPE::LIST);
 
 			return;
 		}
@@ -132,29 +132,29 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::AreEqual(nupp["--my_string"].GetString(), std::string("billybob"));
-			Assert::AreEqual(nupp["--my_float"].GetFloat32(), -23.199);
-			Assert::AreEqual(nupp["--my_int"].GetInt32(), 199);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[0]->GetInt32(), 1);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[1]->GetInt32(), 2);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[2]->GetInt32(), 3);
-			Assert::AreEqual(nupp["--my_num_list"].GetList()[3]->GetInt32(), 4);
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[0]->GetString(), std::string("apple"));
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[1]->GetString(), std::string("banana"));
-			Assert::AreEqual(nupp["--my_str_list"].GetList()[2]->GetString(), std::string("pumpkin"));
+			Assert::AreEqual(cmdArgsI["--my_string"].GetString(), std::string("billybob"));
+			Assert::AreEqual(cmdArgsI["--my_float"].GetFloat32(), -23.199);
+			Assert::AreEqual(cmdArgsI["--my_int"].GetInt32(), 199);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[0]->GetInt32(), 1);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[1]->GetInt32(), 2);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[2]->GetInt32(), 3);
+			Assert::AreEqual(cmdArgsI["--my_num_list"].GetList()[3]->GetInt32(), 4);
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[0]->GetString(), std::string("apple"));
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[1]->GetString(), std::string("banana"));
+			Assert::AreEqual(cmdArgsI["--my_str_list"].GetList()[2]->GetString(), std::string("pumpkin"));
 
 			return;
 		}
@@ -163,19 +163,19 @@ namespace TestHazelnupp
 		TEST_METHOD(Get_Abbreviation)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
 			// Exercise, verify
-			Assert::AreEqual(std::string("--my_num_list"), nupp.GetAbbreviation("-mnl"));
-			Assert::AreEqual(std::string("--my_void"), nupp.GetAbbreviation("-mv"));
+			Assert::AreEqual(std::string("--my_num_list"), cmdArgsI.GetAbbreviation("-mnl"));
+			Assert::AreEqual(std::string("--my_void"), cmdArgsI.GetAbbreviation("-mv"));
 			
 			return;
 		}
@@ -184,21 +184,21 @@ namespace TestHazelnupp
 		TEST_METHOD(Unknown_Abbrevation_Is_Empty_String)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
 			// Exercise
-			nupp.ClearAbbreviations();
+			cmdArgsI.ClearAbbreviations();
 
 			// Verify
-			Assert::AreEqual(std::string(), nupp.GetAbbreviation("-t"));
+			Assert::AreEqual(std::string(), cmdArgsI.GetAbbreviation("-t"));
 
 			return;
 		}
@@ -207,17 +207,17 @@ namespace TestHazelnupp
 		TEST_METHOD(Has_Abbreviation)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			// Exercise, verify
-			Assert::IsFalse(nupp.HasAbbreviation("-f"));
-			Assert::IsFalse(nupp.HasAbbreviation("-m"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-f"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-m"));
 
-			nupp.RegisterAbbreviation("-f", "--force");
+			cmdArgsI.RegisterAbbreviation("-f", "--force");
 
-			Assert::IsTrue(nupp.HasAbbreviation("-f"));
-			Assert::IsFalse(nupp.HasAbbreviation("-m"));
+			Assert::IsTrue(cmdArgsI.HasAbbreviation("-f"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-m"));
 
 			return;
 		}
@@ -226,28 +226,28 @@ namespace TestHazelnupp
 		TEST_METHOD(Clear_Abbreviation)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms", "--my_string");
-			nupp.RegisterAbbreviation("-mv", "--my_void");
-			nupp.RegisterAbbreviation("-mi", "--my_int");
-			nupp.RegisterAbbreviation("-mf", "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms", "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv", "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi", "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf", "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
 			// Exercise
-			nupp.ClearAbbreviation("-mv");
-			nupp.ClearAbbreviation("-mf");
-			nupp.ClearAbbreviation("-msl");
+			cmdArgsI.ClearAbbreviation("-mv");
+			cmdArgsI.ClearAbbreviation("-mf");
+			cmdArgsI.ClearAbbreviation("-msl");
 
 			// Verify
-			Assert::IsTrue(nupp.HasAbbreviation("-ms"));
-			Assert::IsFalse(nupp.HasAbbreviation("-mv"));
-			Assert::IsTrue(nupp.HasAbbreviation("-mi"));
-			Assert::IsFalse(nupp.HasAbbreviation("-mf"));
-			Assert::IsTrue(nupp.HasAbbreviation("-mnl"));
-			Assert::IsFalse(nupp.HasAbbreviation("-msl"));
+			Assert::IsTrue(cmdArgsI.HasAbbreviation("-ms"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mv"));
+			Assert::IsTrue(cmdArgsI.HasAbbreviation("-mi"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mf"));
+			Assert::IsTrue(cmdArgsI.HasAbbreviation("-mnl"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-msl"));
 
 			return;
 		}
@@ -256,26 +256,26 @@ namespace TestHazelnupp
 		TEST_METHOD(Clear_Abbreviations)
 		{
 			// Setup
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterAbbreviation("-ms" , "--my_string");
-			nupp.RegisterAbbreviation("-mv" , "--my_void");
-			nupp.RegisterAbbreviation("-mi" , "--my_int");
-			nupp.RegisterAbbreviation("-mf" , "--my_float");
-			nupp.RegisterAbbreviation("-mnl", "--my_num_list");
-			nupp.RegisterAbbreviation("-msl", "--my_str_list");
+			cmdArgsI.RegisterAbbreviation("-ms" , "--my_string");
+			cmdArgsI.RegisterAbbreviation("-mv" , "--my_void");
+			cmdArgsI.RegisterAbbreviation("-mi" , "--my_int");
+			cmdArgsI.RegisterAbbreviation("-mf" , "--my_float");
+			cmdArgsI.RegisterAbbreviation("-mnl", "--my_num_list");
+			cmdArgsI.RegisterAbbreviation("-msl", "--my_str_list");
 
 			// Exercise
-			nupp.ClearAbbreviations();
+			cmdArgsI.ClearAbbreviations();
 
 			// Verify
-			Assert::IsFalse(nupp.HasAbbreviation("-ms" ));
-			Assert::IsFalse(nupp.HasAbbreviation("-mv" ));
-			Assert::IsFalse(nupp.HasAbbreviation("-mi" ));
-			Assert::IsFalse(nupp.HasAbbreviation("-mf" ));
-			Assert::IsFalse(nupp.HasAbbreviation("-mnl"));
-			Assert::IsFalse(nupp.HasAbbreviation("-msl"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-ms" ));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mv" ));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mi" ));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mf" ));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-mnl"));
+			Assert::IsFalse(cmdArgsI.HasAbbreviation("-msl"));
 
 			return;
 		}

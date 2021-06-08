@@ -8,13 +8,13 @@ namespace Hazelnp
 {
 	/** The main class to interface with
 	*/
-	class Hazelnupp
+	class CmdArgsInterface
 	{
 	public:
-		Hazelnupp();
-		Hazelnupp(const int argc, const char* const* argv);
+		CmdArgsInterface();
+		CmdArgsInterface(const int argc, const char* const* argv);
 
-		~Hazelnupp();
+		~CmdArgsInterface();
 
 		//! Will parse command line arguments
 		void Parse(const int argc, const char* const* argv);
@@ -67,10 +67,10 @@ namespace Hazelnp
 		//! Gets whether the application crashes on an exception whilst parsing, and prints to stderr.
 		bool GetCrashOnFail() const;
 
-		//! Sets whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		//! Sets whether the CmdArgsInterface should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
 		void SetCatchHelp(bool catchHelp);
 
-		//! Retruns whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		//! Retruns whether the CmdArgsInterface should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
 		bool GetCatchHelp() const;
 
 		//! Sets a brief description of the application to be automatically added to the documentation.
@@ -137,10 +137,10 @@ namespace Hazelnp
 		//! A brief description of the application to be added to the generated documentation. Optional.
 		std::string briefDescription;
 
-		//! If set to true, Hazelnupp will automatically catch the --help parameter, print the parameter documentation to stdout and exit.
+		//! If set to true, CmdArgsInterface will automatically catch the --help parameter, print the parameter documentation to stdout and exit.
 		bool catchHelp = true;
 
-		//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
+		//! If set to true, CmdArgsInterface will crash the application with output to stderr when an exception is thrown whilst parsing.
 		bool crashOnFail = true;
 	};
 }

@@ -1,6 +1,6 @@
 #include "CppUnitTest.h"
 #include "helper.h"
-#include "../Hazelnupp/Hazelnupp.h"
+#include "../Hazelnupp/CmdArgsInterface.h"
 #include "../Hazelnupp/HazelnuppException.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -23,34 +23,34 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint("--elenor-int", ParamConstraint::Require({ "5994" }));
-			nupp.RegisterConstraint("--federich-float", ParamConstraint::Require({ "420.69" }));
-			nupp.RegisterConstraint("--siegbert-string", ParamConstraint::Require({ "banana" }));
-			nupp.RegisterConstraint("--lieber-liste", ParamConstraint::Require({ "banana", "apple", "59" }));
+			cmdArgsI.RegisterConstraint("--elenor-int", ParamConstraint::Require({ "5994" }));
+			cmdArgsI.RegisterConstraint("--federich-float", ParamConstraint::Require({ "420.69" }));
+			cmdArgsI.RegisterConstraint("--siegbert-string", ParamConstraint::Require({ "banana" }));
+			cmdArgsI.RegisterConstraint("--lieber-liste", ParamConstraint::Require({ "banana", "apple", "59" }));
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--elenor-int"));
-			Assert::IsTrue(nupp["--elenor-int"].GetDataType() == DATA_TYPE::INT);
-			Assert::AreEqual(nupp["--elenor-int"].GetInt32(), 5994);
+			Assert::IsTrue(cmdArgsI.HasParam("--elenor-int"));
+			Assert::IsTrue(cmdArgsI["--elenor-int"].GetDataType() == DATA_TYPE::INT);
+			Assert::AreEqual(cmdArgsI["--elenor-int"].GetInt32(), 5994);
 
-			Assert::IsTrue(nupp.HasParam("--federich-float"));
-			Assert::IsTrue(nupp["--federich-float"].GetDataType() == DATA_TYPE::FLOAT);
-			Assert::AreEqual(nupp["--federich-float"].GetFloat32(), 420.69);
+			Assert::IsTrue(cmdArgsI.HasParam("--federich-float"));
+			Assert::IsTrue(cmdArgsI["--federich-float"].GetDataType() == DATA_TYPE::FLOAT);
+			Assert::AreEqual(cmdArgsI["--federich-float"].GetFloat32(), 420.69);
 
-			Assert::IsTrue(nupp.HasParam("--siegbert-string"));
-			Assert::IsTrue(nupp["--siegbert-string"].GetDataType() == DATA_TYPE::STRING);
-			Assert::AreEqual(nupp["--siegbert-string"].GetString(), std::string("banana"));
+			Assert::IsTrue(cmdArgsI.HasParam("--siegbert-string"));
+			Assert::IsTrue(cmdArgsI["--siegbert-string"].GetDataType() == DATA_TYPE::STRING);
+			Assert::AreEqual(cmdArgsI["--siegbert-string"].GetString(), std::string("banana"));
 
-			Assert::IsTrue(nupp.HasParam("--lieber-liste"));
-			Assert::IsTrue(nupp["--lieber-liste"].GetDataType() == DATA_TYPE::LIST);
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[0]->GetString(), std::string("banana"));
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[1]->GetString(), std::string("apple"));
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[2]->GetInt32(), 59);
+			Assert::IsTrue(cmdArgsI.HasParam("--lieber-liste"));
+			Assert::IsTrue(cmdArgsI["--lieber-liste"].GetDataType() == DATA_TYPE::LIST);
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[0]->GetString(), std::string("banana"));
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[1]->GetString(), std::string("apple"));
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[2]->GetInt32(), 59);
 
 			return;
 		}
@@ -75,34 +75,34 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint("--elenor-int", ParamConstraint::Require({ "6871" }));
-			nupp.RegisterConstraint("--federich-float", ParamConstraint::Require({ "-199.44" }));
-			nupp.RegisterConstraint("--siegbert-string", ParamConstraint::Require({ "bornana" }));
-			nupp.RegisterConstraint("--lieber-liste", ParamConstraint::Require({ "bornana", "ollpe", "5" }));
+			cmdArgsI.RegisterConstraint("--elenor-int", ParamConstraint::Require({ "6871" }));
+			cmdArgsI.RegisterConstraint("--federich-float", ParamConstraint::Require({ "-199.44" }));
+			cmdArgsI.RegisterConstraint("--siegbert-string", ParamConstraint::Require({ "bornana" }));
+			cmdArgsI.RegisterConstraint("--lieber-liste", ParamConstraint::Require({ "bornana", "ollpe", "5" }));
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--elenor-int"));
-			Assert::IsTrue(nupp["--elenor-int"].GetDataType() == DATA_TYPE::INT);
-			Assert::AreEqual(nupp["--elenor-int"].GetInt32(), 5994);
+			Assert::IsTrue(cmdArgsI.HasParam("--elenor-int"));
+			Assert::IsTrue(cmdArgsI["--elenor-int"].GetDataType() == DATA_TYPE::INT);
+			Assert::AreEqual(cmdArgsI["--elenor-int"].GetInt32(), 5994);
 
-			Assert::IsTrue(nupp.HasParam("--federich-float"));
-			Assert::IsTrue(nupp["--federich-float"].GetDataType() == DATA_TYPE::FLOAT);
-			Assert::AreEqual(nupp["--federich-float"].GetFloat32(), 420.69);
+			Assert::IsTrue(cmdArgsI.HasParam("--federich-float"));
+			Assert::IsTrue(cmdArgsI["--federich-float"].GetDataType() == DATA_TYPE::FLOAT);
+			Assert::AreEqual(cmdArgsI["--federich-float"].GetFloat32(), 420.69);
 
-			Assert::IsTrue(nupp.HasParam("--siegbert-string"));
-			Assert::IsTrue(nupp["--siegbert-string"].GetDataType() == DATA_TYPE::STRING);
-			Assert::AreEqual(nupp["--siegbert-string"].GetString(), std::string("banana"));
+			Assert::IsTrue(cmdArgsI.HasParam("--siegbert-string"));
+			Assert::IsTrue(cmdArgsI["--siegbert-string"].GetDataType() == DATA_TYPE::STRING);
+			Assert::AreEqual(cmdArgsI["--siegbert-string"].GetString(), std::string("banana"));
 
-			Assert::IsTrue(nupp.HasParam("--lieber-liste"));
-			Assert::IsTrue(nupp["--lieber-liste"].GetDataType() == DATA_TYPE::LIST);
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[0]->GetString(), std::string("banana"));
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[1]->GetString(), std::string("apple"));
-			Assert::AreEqual(nupp["--lieber-liste"].GetList()[2]->GetInt32(), 59);
+			Assert::IsTrue(cmdArgsI.HasParam("--lieber-liste"));
+			Assert::IsTrue(cmdArgsI["--lieber-liste"].GetDataType() == DATA_TYPE::LIST);
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[0]->GetString(), std::string("banana"));
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[1]->GetString(), std::string("apple"));
+			Assert::AreEqual(cmdArgsI["--lieber-liste"].GetList()[2]->GetInt32(), 59);
 
 			return;
 		}
@@ -129,41 +129,41 @@ namespace TestHazelnupp
 				});
 
 			// Exercise
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint("--num-apples", ParamConstraint::TypeSafety(DATA_TYPE::INT));
-			nupp.RegisterConstraint("--table-height", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
-			nupp.RegisterConstraint("--license-plate", ParamConstraint::TypeSafety(DATA_TYPE::STRING));
-			nupp.RegisterConstraint("--fav-fruits", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
-			nupp.RegisterConstraint("--indices", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
-			nupp.RegisterConstraint("--force", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--num-apples", ParamConstraint::TypeSafety(DATA_TYPE::INT));
+			cmdArgsI.RegisterConstraint("--table-height", ParamConstraint::TypeSafety(DATA_TYPE::FLOAT));
+			cmdArgsI.RegisterConstraint("--license-plate", ParamConstraint::TypeSafety(DATA_TYPE::STRING));
+			cmdArgsI.RegisterConstraint("--fav-fruits", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
+			cmdArgsI.RegisterConstraint("--indices", ParamConstraint::TypeSafety(DATA_TYPE::LIST));
+			cmdArgsI.RegisterConstraint("--force", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
 
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp.HasParam("--num-apples"));
-			Assert::IsTrue(nupp["--num-apples"].GetDataType() == DATA_TYPE::INT);
-			Assert::AreEqual(nupp["--num-apples"].GetInt32(), 39);
+			Assert::IsTrue(cmdArgsI.HasParam("--num-apples"));
+			Assert::IsTrue(cmdArgsI["--num-apples"].GetDataType() == DATA_TYPE::INT);
+			Assert::AreEqual(cmdArgsI["--num-apples"].GetInt32(), 39);
 
-			Assert::IsTrue(nupp.HasParam("--table-height"));
-			Assert::IsTrue(nupp["--table-height"].GetDataType() == DATA_TYPE::FLOAT);
-			Assert::AreEqual(nupp["--table-height"].GetFloat32(), 400.0);
+			Assert::IsTrue(cmdArgsI.HasParam("--table-height"));
+			Assert::IsTrue(cmdArgsI["--table-height"].GetDataType() == DATA_TYPE::FLOAT);
+			Assert::AreEqual(cmdArgsI["--table-height"].GetFloat32(), 400.0);
 
-			Assert::IsTrue(nupp.HasParam("--license-plate"));
-			Assert::IsTrue(nupp["--license-plate"].GetDataType() == DATA_TYPE::STRING);
-			Assert::AreEqual(nupp["--license-plate"].GetString(), std::string("193273"));
+			Assert::IsTrue(cmdArgsI.HasParam("--license-plate"));
+			Assert::IsTrue(cmdArgsI["--license-plate"].GetDataType() == DATA_TYPE::STRING);
+			Assert::AreEqual(cmdArgsI["--license-plate"].GetString(), std::string("193273"));
 
-			Assert::IsTrue(nupp.HasParam("--fav-fruits"));
-			Assert::IsTrue(nupp["--fav-fruits"].GetDataType() == DATA_TYPE::LIST);
-			Assert::AreEqual(nupp["--fav-fruits"].GetList()[0]->GetString(), std::string("apple"));
+			Assert::IsTrue(cmdArgsI.HasParam("--fav-fruits"));
+			Assert::IsTrue(cmdArgsI["--fav-fruits"].GetDataType() == DATA_TYPE::LIST);
+			Assert::AreEqual(cmdArgsI["--fav-fruits"].GetList()[0]->GetString(), std::string("apple"));
 
-			Assert::IsTrue(nupp.HasParam("--indices"));
-			Assert::IsTrue(nupp["--indices"].GetDataType() == DATA_TYPE::LIST);
-			Assert::AreEqual(nupp["--indices"].GetList()[0]->GetInt32(), 9);
+			Assert::IsTrue(cmdArgsI.HasParam("--indices"));
+			Assert::IsTrue(cmdArgsI["--indices"].GetDataType() == DATA_TYPE::LIST);
+			Assert::AreEqual(cmdArgsI["--indices"].GetList()[0]->GetInt32(), 9);
 
-			Assert::IsTrue(nupp.HasParam("--force"));
-			Assert::IsTrue(nupp["--force"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI.HasParam("--force"));
+			Assert::IsTrue(cmdArgsI["--force"].GetDataType() == DATA_TYPE::VOID);
 
 			return;
 		}
@@ -189,15 +189,15 @@ namespace TestHazelnupp
 			Assert::ExpectException<HazelnuppConstraintMissingValue>(
 				[args]
 				{
-					Hazelnupp nupp;
-					nupp.SetCrashOnFail(false);
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
 
-					nupp.RegisterConstraint(
+					cmdArgsI.RegisterConstraint(
 						"--elenor-int",
 						ParamConstraint::Require()
 					);
 
-					nupp.Parse(C_Ify(args));
+					cmdArgsI.Parse(C_Ify(args));
 				}
 				);
 
@@ -227,15 +227,15 @@ namespace TestHazelnupp
 			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>(
 				[args]
 				{
-					Hazelnupp nupp;
-					nupp.SetCrashOnFail(false);
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
 
-					nupp.RegisterConstraint(
+					cmdArgsI.RegisterConstraint(
 						"--elenor-int",
 						ParamConstraint::TypeSafety(DATA_TYPE::INT)
 					);
 
-					nupp.Parse(C_Ify(args));
+					cmdArgsI.Parse(C_Ify(args));
 				}
 				);
 
@@ -261,25 +261,25 @@ namespace TestHazelnupp
 				"baz"
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint("--void1", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
-			nupp.RegisterConstraint("--void2", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
-			nupp.RegisterConstraint("--void3", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
-			nupp.RegisterConstraint("--void4", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
-			nupp.RegisterConstraint("--void5", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--void1", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--void2", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--void3", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--void4", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
+			cmdArgsI.RegisterConstraint("--void5", ParamConstraint::TypeSafety(DATA_TYPE::VOID));
 
 
 			// Exercise
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp["--void1"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--void2"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--void3"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--void4"].GetDataType() == DATA_TYPE::VOID);
-			Assert::IsTrue(nupp["--void5"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--void1"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--void2"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--void3"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--void4"].GetDataType() == DATA_TYPE::VOID);
+			Assert::IsTrue(cmdArgsI["--void5"].GetDataType() == DATA_TYPE::VOID);
 
 			return;
 		}
@@ -294,21 +294,21 @@ namespace TestHazelnupp
 				"--empty-list",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--empty-list",
 				ParamConstraint::TypeSafety(DATA_TYPE::LIST)
 			);
 
 
 			// Exercise
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp["--empty-list"].GetDataType() == DATA_TYPE::LIST, L"Wrong datatype");
-			Assert::AreEqual(std::size_t(0), nupp["--empty-list"].GetList().size(), L"Wrong size");
+			Assert::IsTrue(cmdArgsI["--empty-list"].GetDataType() == DATA_TYPE::LIST, L"Wrong datatype");
+			Assert::AreEqual(std::size_t(0), cmdArgsI["--empty-list"].GetList().size(), L"Wrong size");
 
 			return;
 		}
@@ -323,21 +323,21 @@ namespace TestHazelnupp
 				"--empty-string",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--empty-string",
 				ParamConstraint::TypeSafety(DATA_TYPE::STRING)
 			);
 
 
 			// Exercise
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Verify
-			Assert::IsTrue(nupp["--empty-string"].GetDataType() == DATA_TYPE::STRING, L"Wrong datatype");
-			Assert::AreEqual(std::size_t(0), nupp["--empty-string"].GetString().length(), L"Wrong size");
+			Assert::IsTrue(cmdArgsI["--empty-string"].GetDataType() == DATA_TYPE::STRING, L"Wrong datatype");
+			Assert::AreEqual(std::size_t(0), cmdArgsI["--empty-string"].GetString().length(), L"Wrong size");
 
 			return;
 		}
@@ -354,16 +354,16 @@ namespace TestHazelnupp
 			// Test section: INT
 			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>([args]
 				{
-					Hazelnupp nupp;
-					nupp.SetCrashOnFail(false);
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
 
-					nupp.RegisterConstraint(
+					cmdArgsI.RegisterConstraint(
 						"--thisisvoid",
 						ParamConstraint::TypeSafety(DATA_TYPE::INT)
 					);
 
 					// Exercise
-					nupp.Parse(C_Ify(args));
+					cmdArgsI.Parse(C_Ify(args));
 
 				}, L"Failed with int");
 
@@ -382,16 +382,16 @@ namespace TestHazelnupp
 			// Test section: FLOAT
 			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>([args]
 				{
-					Hazelnupp nupp;
-					nupp.SetCrashOnFail(false);
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
 
-					nupp.RegisterConstraint(
+					cmdArgsI.RegisterConstraint(
 						"--thisisvoid",
 						ParamConstraint::TypeSafety(DATA_TYPE::FLOAT)
 					);
 
 					// Exercise
-					nupp.Parse(C_Ify(args));
+					cmdArgsI.Parse(C_Ify(args));
 
 				}, L"Failed with float");
 
@@ -408,30 +408,30 @@ namespace TestHazelnupp
 				"--empty-list",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--default-val",
 				ParamConstraint::Require({ "32" }, true)
 			);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--not-there",
 				ParamConstraint::Require({}, true)
 			);
 
 			// Exercise
-			nupp.ClearConstraint("--not-there");
+			cmdArgsI.ClearConstraint("--not-there");
 
 
 			// Verify
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			// Also verifies that parse does not throw an exception for --not-there
 
-			Assert::IsTrue(nupp.HasParam("--default-val"), L"Default value is missing");
-			Assert::AreEqual(32, nupp["--default-val"].GetInt32(), L"Default value has wrong value");
+			Assert::IsTrue(cmdArgsI.HasParam("--default-val"), L"Default value is missing");
+			Assert::AreEqual(32, cmdArgsI["--default-val"].GetInt32(), L"Default value has wrong value");
 
 			return;
 		}
@@ -446,19 +446,19 @@ namespace TestHazelnupp
 				"--empty-list",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--not-there",
 				ParamConstraint::Require({}, true)
 			);
 
 			// Exercise
-			nupp.ClearConstraints();
+			cmdArgsI.ClearConstraints();
 
 			// Verify
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			return;
 		}
@@ -473,22 +473,22 @@ namespace TestHazelnupp
 				"--empty-list",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--not-there",
 				ParamConstraint::Require({}, true)
 			);
 
 			//Exercise
-			nupp.RegisterConstraint(
+			cmdArgsI.RegisterConstraint(
 				"--not-there",
 				ParamConstraint::Require({}, false)
 			);
 
 			// Verify
-			nupp.Parse(C_Ify(args));
+			cmdArgsI.Parse(C_Ify(args));
 
 			return;
 		}
@@ -503,18 +503,18 @@ namespace TestHazelnupp
 				"--empty-list",
 				});
 
-			Hazelnupp nupp;
-			nupp.SetCrashOnFail(false);
+			CmdArgsInterface cmdArgsI;
+			cmdArgsI.SetCrashOnFail(false);
 
 			ParamConstraint dftvalConst_expected =
 				ParamConstraint::Require({ "32" }, true);
 
-			nupp.RegisterConstraint("--default-val", dftvalConst_expected);
-			nupp.RegisterConstraint("--not-there", ParamConstraint::Require({}, true));
-			nupp.RegisterConstraint("--another-one", ParamConstraint::Require({ "bites" }, true));
+			cmdArgsI.RegisterConstraint("--default-val", dftvalConst_expected);
+			cmdArgsI.RegisterConstraint("--not-there", ParamConstraint::Require({}, true));
+			cmdArgsI.RegisterConstraint("--another-one", ParamConstraint::Require({ "bites" }, true));
 
 			// Exercise
-			ParamConstraint dftvalConst = nupp.GetConstraint("--default-val");
+			ParamConstraint dftvalConst = cmdArgsI.GetConstraint("--default-val");
 
 			// Verify
 			Assert::IsTrue(dftvalConst_expected.required == dftvalConst.required, L"required");

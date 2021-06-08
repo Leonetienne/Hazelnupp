@@ -64,6 +64,6 @@ namespace Hazelnp
 		//! This value is automatically set by Hazelnupp.
 		std::string key;
 
-		friend class Hazelnupp;
+		friend class CmdArgsInterface;
 	};
 }

@@ -140,7 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="FloatValue.cpp" />
-    <ClCompile Include="Hazelnupp.cpp" />
+    <ClCompile Include="CmdArgsInterface.cpp" />
     <ClCompile Include="IntValue.cpp" />
     <ClCompile Include="ListValue.cpp" />
     <ClCompile Include="Parameter.cpp" />
@@ -151,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FloatValue.h" />
-    <ClInclude Include="Hazelnupp.h" />
+    <ClInclude Include="CmdArgsInterface.h" />
     <ClInclude Include="HazelnuppException.h" />
     <ClInclude Include="IntValue.h" />
     <ClInclude Include="ListValue.h" />
