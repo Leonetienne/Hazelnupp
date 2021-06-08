@@ -1,47 +1,5 @@
 #pragma once
 
-/*** ../Hazelnupp/StringTools.h ***/
-
-#include <string>
-#include <sstream>
-#include <vector>
-#include <cmath>
-
-namespace Hazelnp
-{
-	/** Internal helper class. Feel free to use it tho.
-	*/
-	class StringTools
-	{
-	public:
-		//! Will return wether or not a given char is in a string
-		static bool Contains(const std::string& str, const char c);
-
-		//! Will replace a part of a string with another string
-		static std::string Replace(const std::string& str, const char find, const std::string& subst);
-
-		//! Will replace a part of a string with another string
-		static std::string Replace(const std::string& str, const std::string& find, const std::string& subst);
-
-		//! Will return true if the given string consists only of digits (including signage)
-		static bool IsNumeric(const std::string& str, const bool allowDecimalPoint = false);
-
-		//! Will convert the number in str to a number.  
-		//! Returns wether or not the operation was successful.  
-		//! Also returns wether the number is an integer, or floating point. If int, cast out_number to int.
-		static bool ParseNumber(const std::string& str, bool& out_isInt, long double& out_number);
-
-		//! Will split a string by a delimiter char. The delimiter will be excluded!
-		static std::vector<std::string> SplitString(const std::string& str, const char delimiter);
-
-		//! Will split a string by a delimiter string. The delimiter will be excluded!
-		static std::vector<std::string> SplitString(const std::string& str, const std::string& delimiter);
-
-		//! Will make a string all lower-case
-		static std::string ToLower(const std::string& str);
-	};
-}
-
 /*** ../Hazelnupp/Placeholders.h ***/
 
 #include <string>
@@ -94,76 +52,6 @@ namespace Hazelnp
 
 		return "";
 	}
-}
-
-/*** ../Hazelnupp/ParamConstraint.h ***/
-
-#include <string>
-#include <vector>
-
-namespace Hazelnp
-{
-	struct ParamConstraint
-	{
-	public:
-		//! Empty constructor
-		ParamConstraint() = default;
-
-		//! Constructs a require constraint.  
-		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
-		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
-		{
-			ParamConstraint pc;
-			pc.defaultValue = defaultValue;
-			pc.required = required;
-
-			return pc;
-		}
-
-		//! Constructs a type-safety constraint
-		static ParamConstraint TypeSafety(DATA_TYPE requiredType, bool constrainType = true)
-		{
-			ParamConstraint pc;
-			pc.constrainType = constrainType;
-			pc.requiredType = requiredType;
-
-			return pc;
-		}
-
-		//! Whole constructor
-		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
-			:
-			constrainType{ constrainType },
-			requiredType{ requiredType },
-			defaultValue{ defaultValue },
-			required{ required }
-		{
-			return;
-		}
-
-		//! Should this parameter be forced to be of a certain type?  
-		//! Remember to set `constrainTo` to the wanted type
-		bool constrainType = false;
-
-		//! Constrain the parameter to this value. Requires `constrainType` to be set to true.
-		DATA_TYPE requiredType = DATA_TYPE::VOID;
-
-		//! The default value for this parameter.  
-		//! Gets applied if this parameter was not given.  
-		//! Think of this like a list of parameters. Like {"--width", "800"}
-		std::vector<std::string> defaultValue;
-
-		//! If set to true, and no default value set,
-		//! an error will be produced if this parameter is not supplied by the user.
-		bool required = false;
-
-	private:
-		//! The parameter this constraint is for.
-		//! This value is automatically set by Hazelnupp.
-		std::string key;
-
-		friend class Hazelnupp;
-	};
 }
 
 /*** ../Hazelnupp/HazelnuppException.h ***/
@@ -262,6 +150,76 @@ namespace Hazelnp
 			message = ss.str();
 			return;
 		};
+	};
+}
+
+/*** ../Hazelnupp/ParamConstraint.h ***/
+
+#include <string>
+#include <vector>
+
+namespace Hazelnp
+{
+	struct ParamConstraint
+	{
+	public:
+		//! Empty constructor
+		ParamConstraint() = default;
+
+		//! Constructs a require constraint.  
+		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
+		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
+		{
+			ParamConstraint pc;
+			pc.defaultValue = defaultValue;
+			pc.required = required;
+
+			return pc;
+		}
+
+		//! Constructs a type-safety constraint
+		static ParamConstraint TypeSafety(DATA_TYPE requiredType, bool constrainType = true)
+		{
+			ParamConstraint pc;
+			pc.constrainType = constrainType;
+			pc.requiredType = requiredType;
+
+			return pc;
+		}
+
+		//! Whole constructor
+		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
+			:
+			constrainType{ constrainType },
+			requiredType{ requiredType },
+			defaultValue{ defaultValue },
+			required{ required }
+		{
+			return;
+		}
+
+		//! Should this parameter be forced to be of a certain type?  
+		//! Remember to set `constrainTo` to the wanted type
+		bool constrainType = false;
+
+		//! Constrain the parameter to this value. Requires `constrainType` to be set to true.
+		DATA_TYPE requiredType = DATA_TYPE::VOID;
+
+		//! The default value for this parameter.  
+		//! Gets applied if this parameter was not given.  
+		//! Think of this like a list of parameters. Like {"--width", "800"}
+		std::vector<std::string> defaultValue;
+
+		//! If set to true, and no default value set,
+		//! an error will be produced if this parameter is not supplied by the user.
+		bool required = false;
+
+	private:
+		//! The parameter this constraint is for.
+		//! This value is automatically set by Hazelnupp.
+		std::string key;
+
+		friend class CmdArgsInterface;
 	};
 }
 
@@ -411,6 +369,53 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/FloatValue.h ***/
+
+#include <ostream>
+
+namespace Hazelnp
+{
+	/** Specializations for floating point values (uses long double)
+	*/
+	class FloatValue : public Value
+	{
+	public:
+		FloatValue(const long double& value);
+		~FloatValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will return the raw value
+		const long double& GetValue() const;
+
+		operator long double() const;
+		operator double() const;
+
+		//! Will return the data as a long long int
+		long long int GetInt64() const override;
+		//! Will return the data as an int
+		int GetInt32() const override;
+
+		//! Will return the data as a long double
+		long double GetFloat64() const override;
+		//! Will return the data as a double
+		double GetFloat32() const override;
+
+		//! Will return the data as a string
+		std::string GetString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		long double value;
+	};
+}
+
 /*** ../Hazelnupp/IntValue.h ***/
 
 
@@ -458,6 +463,43 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/VoidValue.h ***/
+
+
+namespace Hazelnp
+{
+	/** Specializations for void values. These house no value whatsoever, but only communicate information by merely existing.
+	*/
+	class VoidValue : public Value
+	{
+	public:
+		VoidValue();
+		~VoidValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long long int GetInt64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		int GetInt32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long double GetFloat64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		double GetFloat32() const override;
+
+		//! Returns an empty string
+		std::string GetString() const override;
+
+		//! Returns an empty list
+		const std::vector<Value*>& GetList() const;
+	};
+}
+
 /*** ../Hazelnupp/Parameter.h ***/
 
 #include <string>
@@ -488,7 +530,49 @@ namespace Hazelnp
 	};
 }
 
-/*** ../Hazelnupp/Hazelnupp.h ***/
+/*** ../Hazelnupp/StringTools.h ***/
+
+#include <string>
+#include <sstream>
+#include <vector>
+#include <cmath>
+
+namespace Hazelnp
+{
+	/** Internal helper class. Feel free to use it tho.
+	*/
+	class StringTools
+	{
+	public:
+		//! Will return wether or not a given char is in a string
+		static bool Contains(const std::string& str, const char c);
+
+		//! Will replace a part of a string with another string
+		static std::string Replace(const std::string& str, const char find, const std::string& subst);
+
+		//! Will replace a part of a string with another string
+		static std::string Replace(const std::string& str, const std::string& find, const std::string& subst);
+
+		//! Will return true if the given string consists only of digits (including signage)
+		static bool IsNumeric(const std::string& str, const bool allowDecimalPoint = false);
+
+		//! Will convert the number in str to a number.  
+		//! Returns wether or not the operation was successful.  
+		//! Also returns wether the number is an integer, or floating point. If int, cast out_number to int.
+		static bool ParseNumber(const std::string& str, bool& out_isInt, long double& out_number);
+
+		//! Will split a string by a delimiter char. The delimiter will be excluded!
+		static std::vector<std::string> SplitString(const std::string& str, const char delimiter);
+
+		//! Will split a string by a delimiter string. The delimiter will be excluded!
+		static std::vector<std::string> SplitString(const std::string& str, const std::string& delimiter);
+
+		//! Will make a string all lower-case
+		static std::string ToLower(const std::string& str);
+	};
+}
+
+/*** ../Hazelnupp/CmdArgsInterface.h ***/
 
 #include <unordered_map>
 #include <vector>
@@ -497,13 +581,13 @@ namespace Hazelnp
 {
 	/** The main class to interface with
 	*/
-	class Hazelnupp
+	class CmdArgsInterface
 	{
 	public:
-		Hazelnupp();
-		Hazelnupp(const int argc, const char* const* argv);
+		CmdArgsInterface();
+		CmdArgsInterface(const int argc, const char* const* argv);
 
-		~Hazelnupp();
+		~CmdArgsInterface();
 
 		//! Will parse command line arguments
 		void Parse(const int argc, const char* const* argv);
@@ -556,10 +640,10 @@ namespace Hazelnp
 		//! Gets whether the application crashes on an exception whilst parsing, and prints to stderr.
 		bool GetCrashOnFail() const;
 
-		//! Sets whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		//! Sets whether the CmdArgsInterface should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
 		void SetCatchHelp(bool catchHelp);
 
-		//! Retruns whether the Hazelnupp should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
+		//! Retruns whether the CmdArgsInterface should automatically catch the --help parameter, print the parameter documentation to stdout, and exit or not.
 		bool GetCatchHelp() const;
 
 		//! Sets a brief description of the application to be automatically added to the documentation.
@@ -626,94 +710,10 @@ namespace Hazelnp
 		//! A brief description of the application to be added to the generated documentation. Optional.
 		std::string briefDescription;
 
-		//! If set to true, Hazelnupp will automatically catch the --help parameter, print the parameter documentation to stdout and exit.
+		//! If set to true, CmdArgsInterface will automatically catch the --help parameter, print the parameter documentation to stdout and exit.
 		bool catchHelp = true;
 
-		//! If set to true, Hazelnupp will crash the application with output to stderr when an exception is thrown whilst parsing.
+		//! If set to true, CmdArgsInterface will crash the application with output to stderr when an exception is thrown whilst parsing.
 		bool crashOnFail = true;
-	};
-}
-
-/*** ../Hazelnupp/VoidValue.h ***/
-
-
-namespace Hazelnp
-{
-	/** Specializations for void values. These house no value whatsoever, but only communicate information by merely existing.
-	*/
-	class VoidValue : public Value
-	{
-	public:
-		VoidValue();
-		~VoidValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long long int GetInt64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		int GetInt32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long double GetFloat64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		double GetFloat32() const override;
-
-		//! Returns an empty string
-		std::string GetString() const override;
-
-		//! Returns an empty list
-		const std::vector<Value*>& GetList() const;
-	};
-}
-
-/*** ../Hazelnupp/FloatValue.h ***/
-
-#include <ostream>
-
-namespace Hazelnp
-{
-	/** Specializations for floating point values (uses long double)
-	*/
-	class FloatValue : public Value
-	{
-	public:
-		FloatValue(const long double& value);
-		~FloatValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will return the raw value
-		const long double& GetValue() const;
-
-		operator long double() const;
-		operator double() const;
-
-		//! Will return the data as a long long int
-		long long int GetInt64() const override;
-		//! Will return the data as an int
-		int GetInt32() const override;
-
-		//! Will return the data as a long double
-		long double GetFloat64() const override;
-		//! Will return the data as a double
-		double GetFloat32() const override;
-
-		//! Will return the data as a string
-		std::string GetString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		long double value;
 	};
 }
