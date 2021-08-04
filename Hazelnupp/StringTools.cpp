@@ -2,7 +2,7 @@
 
 using namespace Hazelnp;
 
-bool StringTools::Contains(const std::string& str, const char c)
+bool Internal::StringTools::Contains(const std::string& str, const char c)
 {
     for (const char& i : str)
         if (i == c)
@@ -11,7 +11,7 @@ bool StringTools::Contains(const std::string& str, const char c)
     return false;
 }
 
-std::string StringTools::Replace(const std::string& str, const char find, const std::string& subst)
+std::string Internal::StringTools::Replace(const std::string& str, const char find, const std::string& subst)
 {
     std::stringstream ss;
 
@@ -24,7 +24,7 @@ std::string StringTools::Replace(const std::string& str, const char find, const 
     return ss.str();
 }
 
-std::string StringTools::Replace(const std::string& str, const std::string& find, const std::string& subst)
+std::string Internal::StringTools::Replace(const std::string& str, const std::string& find, const std::string& subst)
 {
     if (find.length() == 0) return str;
 
@@ -53,7 +53,7 @@ std::string StringTools::Replace(const std::string& str, const std::string& find
 }
 
 
-bool StringTools::IsNumeric(const std::string& str, const bool allowDecimalPoint)
+bool Internal::StringTools::IsNumeric(const std::string& str, const bool allowDecimalPoint)
 {
     if (str.length() == 0) return false;
 
@@ -79,7 +79,7 @@ bool StringTools::IsNumeric(const std::string& str, const bool allowDecimalPoint
     return digitCount > 0;
 }
 
-bool StringTools::ParseNumber(const std::string& str, bool& out_isInt, long double& out_number)
+bool Internal::StringTools::ParseNumber(const std::string& str, bool& out_isInt, long double& out_number)
 {
     bool isDecimal = false;
 
@@ -122,14 +122,14 @@ bool StringTools::ParseNumber(const std::string& str, bool& out_isInt, long doub
     return true;
 }
 
-std::vector<std::string> StringTools::SplitString(const std::string& str, const char delimiter)
+std::vector<std::string> Internal::StringTools::SplitString(const std::string& str, const char delimiter)
 {
     if (str.length() == 0) return std::vector<std::string>();
 
     return SplitString(str, delimiter);
 }
 
-std::vector<std::string> StringTools::SplitString(const std::string& str, const std::string& delimiter)
+std::vector<std::string> Internal::StringTools::SplitString(const std::string& str, const std::string& delimiter)
 {
     if (str.length() == 0) return std::vector<std::string>();
 
@@ -170,7 +170,7 @@ std::vector<std::string> StringTools::SplitString(const std::string& str, const 
     return parts;
 }
 
-std::string StringTools::ToLower(const std::string& str)
+std::string Internal::StringTools::ToLower(const std::string& str)
 {
     std::stringstream ss;
     for (std::size_t i = 0; i < str.length(); i++)

@@ -243,7 +243,7 @@ Value* CmdArgsInterface::ParseValue(const std::vector<std::string>& values, cons
 	const std::string& val = values[0];
 	
 	// String
-	if (!StringTools::IsNumeric(val, true))
+	if (!Internal::StringTools::IsNumeric(val, true))
 	{
 		rawInputType = DATA_TYPE::STRING;
 
@@ -285,7 +285,7 @@ Value* CmdArgsInterface::ParseValue(const std::vector<std::string>& values, cons
 	bool isInt;
 	long double num;
 	
-	if (StringTools::ParseNumber(val, isInt, num))
+	if (Internal::StringTools::ParseNumber(val, isInt, num))
 	{
 		rawInputType = isInt ? DATA_TYPE::INT : DATA_TYPE::FLOAT;
 
