@@ -10,5 +10,5 @@ var searchData=
   ['cmdargsinterface_2ecpp_8',['CmdArgsInterface.cpp',['../CmdArgsInterface_8cpp.html',1,'']]],
   ['cmdargsinterface_2eh_9',['CmdArgsInterface.h',['../CmdArgsInterface_8h.html',1,'']]],
   ['constraintype_10',['constrainType',['../structHazelnp_1_1ParamConstraint.html#a88a4a4c215723259c71853992d09acac',1,'Hazelnp::ParamConstraint']]],
-  ['contains_11',['Contains',['../classHazelnp_1_1StringTools.html#aec1abd8b22146c7a9ebeb6a94d6af5ee',1,'Hazelnp::StringTools']]]
+  ['contains_11',['Contains',['../classHazelnp_1_1Internal_1_1StringTools.html#a4f1ff9fb44995407ea45b8c7c67ffeb6',1,'Hazelnp::Internal::StringTools']]]
 ];
