@@ -4,6 +4,8 @@
 #include <unordered_map>
 #include <vector>
 
+#include "Version.h"
+
 namespace Hazelnp
 {
 	/** The main class to interface with
@@ -48,7 +50,7 @@ namespace Hazelnp
 
 		//! Will register a constraint for a parameter.
 		//! IMPORTANT: Any parameter can only have ONE constraint. Applying a new one will overwrite the old one!
-		//! Construct the ParamConstraint struct yourself to combine Require and TypeSafety! You can also use the ParamConstraint constructor!
+		//! Construct the ParamConstraint struct yourself to combine Require, TypeSafety and Incompatibilities! You can also use the ParamConstraint constructor!
 		void RegisterConstraint(const std::string& key, const ParamConstraint& constraint);
 
 		//! Will return the constraint information for a specific parameter

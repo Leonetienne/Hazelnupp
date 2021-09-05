@@ -95,4 +95,21 @@ namespace Hazelnp
 			return;
 		};
 	};
+
+	/** Gets thrown when a parameter constrained to be incompatible with other parameters gets supplied alongside at least one of those incompatible ones
+	*/
+	class HazelnuppConstraintIncompatibleParameters : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintIncompatibleParameters() : HazelnuppConstraintException() {};
+		HazelnuppConstraintIncompatibleParameters(const std::string& key1, const std::string& key2)
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Parameter \"" << key1 << "\" is NOT compatible with parameter \"" << key2 << "\"!";
+
+			message = ss.str();
+			return;
+		};
+	};
 }

@@ -524,5 +524,157 @@ namespace TestHazelnupp
 
 			return;
 		}
+
+		// Tests that an HazelnuppConstraintIncompatibleParameters gets raised if a required parameter
+		// is incompatible with another parameter passed alongside
+		// This test will use the single-string-to-initializer-list proxy method
+		TEST_METHOD(Exception_Constraint_Incompatible_Parameters_ProxyMethod)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--make-background-glow",
+				"--make-background-transparent",
+			});
+
+			Assert::ExpectException<HazelnuppConstraintIncompatibleParameters>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--make-background-glow",
+						ParamConstraint::Incompatibility("--make-background-transparent")
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+				);
+
+			return;
+		}
+
+		// Tests that an HazelnuppConstraintIncompatibleParameters gets raised if a required parameter
+		// is incompatible with another parameter passed alongside
+		TEST_METHOD(Exception_Constraint_Incompatible_Parameters)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--make-background-glow",
+				"--make-background-transparent",
+			});
+
+			Assert::ExpectException<HazelnuppConstraintIncompatibleParameters>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--make-background-glow",
+						ParamConstraint::Incompatibility({"--make-background-transparent"})
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+				);
+
+			return;
+		}
+
+		// Tests that an HazelnuppConstraintIncompatibleParameters gets raised if a required parameter
+		// is incompatible with another parameter passed alongside
+		// This test will register multiple incompatibilities
+		TEST_METHOD(Exception_Constraint_Incompatible_Parameters_Multiple_Incompatibilities)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--make-background-blue",
+				"--make-background-transparent",
+				"--make-background-glow",
+				"--make-background-green",
+			});
+
+			Assert::ExpectException<HazelnuppConstraintIncompatibleParameters>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--make-background-glow",
+						ParamConstraint::Incompatibility({
+							"--make-background-transparent",
+							"--make-background-green",
+							"--make-background-blue",
+							})
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+				);
+
+			return;
+		}
+
+		// Tests that an HazelnuppConstraintIncompatibleParameters is NOT raised, if incompatible parameters
+		// are NOT supplied
+		TEST_METHOD(Constraint_Incompatible_Parameters_Are_Not_Incompatible)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--make-background-glow",
+				"--set-food-delicious",
+			});
+
+			{
+				CmdArgsInterface cmdArgsI;
+				cmdArgsI.SetCrashOnFail(false);
+
+				cmdArgsI.RegisterConstraint(
+					"--make-background-glow",
+					ParamConstraint::Incompatibility({ "--make-background-transparent" })
+				);
+
+				cmdArgsI.RegisterConstraint(
+					"--set-food-delicious",
+					ParamConstraint::Incompatibility({ "--set-food-disgusting" })
+				);
+
+				cmdArgsI.Parse(C_Ify(args));
+			}
+
+			return;
+		}
+
+		// Tests that an HazelnuppConstraintIncompatibleParameters is NOT raised, if the incompatible
+		// paremter IS supplied, but not the one attached to the constraint
+		TEST_METHOD(Constraint_Incompatible_Parameters_Are_Not_Incompatible_Constrained_Parameter_Not_Passed)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--make-background-transparent",
+				"--set-food-delicious",
+				});
+
+			{
+				CmdArgsInterface cmdArgsI;
+				cmdArgsI.SetCrashOnFail(false);
+
+				cmdArgsI.RegisterConstraint(
+					"--make-background-glow",
+					ParamConstraint::Incompatibility({ "--make-background-transparent" })
+				);
+
+				cmdArgsI.Parse(C_Ify(args));
+			}
+
+			return;
+		}
 	};
 }

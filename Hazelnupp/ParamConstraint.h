@@ -13,7 +13,7 @@ namespace Hazelnp
 
 		//! Constructs a require constraint.  
 		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
-		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
+		static ParamConstraint Require(const std::initializer_list<std::string>& defaultValue = {}, bool required = true)
 		{
 			ParamConstraint pc;
 			pc.defaultValue = defaultValue;
@@ -32,13 +32,35 @@ namespace Hazelnp
 			return pc;
 		}
 
+		//! Constructs an incompatibility constraint. 
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together
+		static ParamConstraint Incompatibility(const std::initializer_list<std::string>& incompatibleParameters)
+		{
+			ParamConstraint pc;
+			pc.incompatibleParameters = incompatibleParameters;
+
+			return pc;
+		}
+
+		//! Constructs an incompatibility constraint. 
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together.
+		//! Syntactical-sugar proxy method that will convert the lonely string to an initializer list for you :3
+		static ParamConstraint Incompatibility(const std::string& incompatibleParameters)
+		{
+			ParamConstraint pc;
+			pc.incompatibleParameters = { incompatibleParameters };
+
+			return pc;
+		}
+
 		//! Whole constructor
-		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::initializer_list<std::string>& defaultValue, bool required, const std::initializer_list<std::string>& incompatibleParameters)
 			:
 			constrainType{ constrainType },
 			requiredType{ requiredType },
 			defaultValue{ defaultValue },
-			required{ required }
+			required{ required },
+			incompatibleParameters{incompatibleParameters}
 		{
 			return;
 		}
@@ -58,6 +80,9 @@ namespace Hazelnp
 		//! If set to true, and no default value set,
 		//! an error will be produced if this parameter is not supplied by the user.
 		bool required = false;
+
+		//! Parameters that are incompatible with this parameter
+		std::vector<std::string> incompatibleParameters;
 
 	private:
 		//! The parameter this constraint is for.
