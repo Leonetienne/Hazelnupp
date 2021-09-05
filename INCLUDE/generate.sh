@@ -1,6 +1,6 @@
 # Build the include files
 echo "Building the include files..."
-echo ../Hazelnupp/*.cpp | sed 's/\.\.\/Hazelnupp\/main\.cpp//g' | xargs deggl -o Hazelnupp -i
+deggl -i ../Hazelnupp/*.cpp -o Hazelnupp
 
 # Verify that they compile cleanly
 echo "Verifying that they compile"
