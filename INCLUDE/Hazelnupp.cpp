@@ -434,6 +434,7 @@ std::string CmdArgsInterface::GenerateDocumentation() const
 		bool required = false;
 		bool typeIsForced = false;
 		std::string defaultVal;
+		std::string incompatibilities;
 	};
 	std::unordered_map<std::string, ParamDocEntry> paramInfos;
 
@@ -473,19 +474,33 @@ std::string CmdArgsInterface::GenerateDocumentation() const
 		cached.typeIsForced = it.second.constrainType;
 		cached.type = DataTypeToString(it.second.requiredType);
 		
-		std::stringstream defaultValueSs;
+		// Build default-value string
+		std::stringstream vec2str_ss;
 		for (const std::string& s : it.second.defaultValue)
 		{
-			defaultValueSs << '\'' << s << '\'';
+			vec2str_ss << '\'' << s << '\'';
 
 			// Add a space if we are not at the last entry
 			if ((void*)&s != (void*)&it.second.defaultValue.back())
-				defaultValueSs << " ";
+				vec2str_ss << " ";
 		}
-		cached.defaultVal = defaultValueSs.str();
+		cached.defaultVal = vec2str_ss.str();
+
+
+		// Build incompatibilities string
+		vec2str_ss.str("");
+		for (const std::string& s : it.second.incompatibleParameters)
+		{
+			vec2str_ss << s;
+
+			// Add a comma-space if we are not at the last entry
+			if ((void*)&s != (void*)&it.second.incompatibleParameters.back())
+				vec2str_ss << ", ";
+		}
+		cached.incompatibilities = vec2str_ss.str();
 	}
 
-	// Now generate the documentatino body
+	// Now generate the documentation body
 	if (paramInfos.size() > 0)
 	{
 		ss << std::endl 
@@ -511,6 +526,10 @@ std::string CmdArgsInterface::GenerateDocumentation() const
 			// Put default value
 			if (pde.defaultVal.length() > 0)
 				ss << "default=[" << pde.defaultVal << "]   ";
+
+			// Put incompatibilities
+			if (pde.incompatibilities.length() > 0)
+				ss << "incompatibilities=[" << pde.incompatibilities << "]   ";
 
 			// Put required tag, but only if no default value
 			if ((pde.required) && (pde.defaultVal.length() == 0))
