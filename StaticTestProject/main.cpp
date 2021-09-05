@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	args.RegisterConstraint("--name", ParamConstraint(true, DATA_TYPE::LIST, { "peter", "hannes" }, true, {}));
 	args.RegisterConstraint("--fruit", ParamConstraint(true, DATA_TYPE::STRING, {}, true, {}));
 
-	args.RegisterConstraint("--make-food-delicious", ParamConstraint::Incompatibility("--make-food-disgusting"));
+	args.RegisterConstraint("--make-food-delicious", ParamConstraint::Incompatibility({ "--make-food-disgusting" , "--foo"}));
 
 	args.Parse(argc, argv);
 

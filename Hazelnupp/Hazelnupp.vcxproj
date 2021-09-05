@@ -162,6 +162,7 @@
     <ClInclude Include="StringTools.h" />
     <ClInclude Include="StringValue.h" />
     <ClInclude Include="Value.h" />
+    <ClInclude Include="Version.h" />
     <ClInclude Include="VoidValue.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
