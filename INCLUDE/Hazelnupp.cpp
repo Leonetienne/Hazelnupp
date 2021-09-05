@@ -40,6 +40,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 
 		executableName = std::string(rawArgs[0]);
 
+		// Read and parse all parameters
 		std::size_t i = 1;
 		while (i < rawArgs.size())
 		{
@@ -60,13 +61,13 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		if ((!catchHelp) || (!HasParam("--help")))
 			ApplyConstraints();
 	}
-	catch (const HazelnuppConstraintTypeMissmatch& exc)
+	catch (const HazelnuppConstraintIncompatibleParameters& exc)
 	{
 		if (crashOnFail)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1009);
+			quick_exit(-1000);
 		}
 		else
 			throw exc; // yeet
@@ -77,7 +78,40 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1010);
+			quick_exit(-1001);
+		}
+		else
+			throw exc; // yeet
+	}
+	catch (const HazelnuppConstraintTypeMissmatch& exc)
+	{
+		if (crashOnFail)
+		{
+			std::cout << GenerateDocumentation() << std::endl << std::endl;
+			std::cerr << "Parameter error: " << exc.What() << std::endl;
+			quick_exit(-1002);
+		}
+		else
+			throw exc; // yeet
+	}
+	catch (const HazelnuppConstraintException& exc)
+	{
+		if (crashOnFail)
+		{
+			std::cout << GenerateDocumentation() << std::endl << std::endl;
+			std::cerr << "Parameter error: " << exc.What() << std::endl;
+			quick_exit(-1003);
+		}
+		else
+			throw exc; // yeet
+	}
+	catch (const HazelnuppException& exc)
+	{
+		if (crashOnFail)
+		{
+			std::cout << GenerateDocumentation() << std::endl << std::endl;
+			std::cerr << "Parameter error: " << exc.What() << std::endl;
+			quick_exit(-1004);
 		}
 		else
 			throw exc; // yeet
@@ -508,7 +542,6 @@ void CmdArgsInterface::ApplyConstraints()
 			if (pc.second.defaultValue.size() > 0)
 			{
 				// Then create it now, by its default value
-
 				Value* tmp = ParseValue(pc.second.defaultValue, &pc.second);
 				parameters.insert(std::pair<std::string, Parameter*>(
 					pc.second.key,
@@ -529,6 +562,19 @@ void CmdArgsInterface::ApplyConstraints()
 						GetDescription(pc.second.key)
 				);
 			}
+		}
+		// The parameter in question IS supplied
+		else
+		{
+			// Enforce parameter incompatibility
+
+			// Is ANY parameter present listed as incompatible with our current one?
+			for (const std::string& incompatibility : pc.second.incompatibleParameters)
+				for (const std::pair<std::string, Parameter*>& otherParam : parameters)
+				{
+					if (otherParam.first == incompatibility)
+						throw HazelnuppConstraintIncompatibleParameters(pc.second.key, incompatibility);
+				}
 		}
 
 	return;

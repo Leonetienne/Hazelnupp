@@ -1,18 +1,5 @@
 #pragma once
 
-/*** ../Hazelnupp/Placeholders.h ***/
-
-#include <string>
-
-namespace Hazelnp
-{
-	namespace Placeholders
-	{
-		//! The only purpose of this is to provide the ability to return an empty string as an error for std::string& methods.
-		static const std::string g_emptyString;
-	}
-}
-
 /*** ../Hazelnupp/StringTools.h ***/
 
 #include <string>
@@ -59,6 +46,23 @@ namespace Hazelnp
 }
 
 
+/*** ../Hazelnupp/Version.h ***/
+
+#define HAZELNUPP_VERSION (1.1)
+
+/*** ../Hazelnupp/Placeholders.h ***/
+
+#include <string>
+
+namespace Hazelnp
+{
+	namespace Placeholders
+	{
+		//! The only purpose of this is to provide the ability to return an empty string as an error for std::string& methods.
+		static const std::string g_emptyString;
+	}
+}
+
 /*** ../Hazelnupp/DataType.h ***/
 
 #include <string>
@@ -100,105 +104,6 @@ namespace Hazelnp
 	}
 }
 
-/*** ../Hazelnupp/HazelnuppException.h ***/
-
-#include <stdexcept>
-#include <string>
-#include <sstream>
-
-namespace Hazelnp
-{
-	/** Generic hazelnupp exception
-	*/
-	class HazelnuppException : public std::exception
-	{
-	public:
-		HazelnuppException() {};
-		HazelnuppException(const std::string& msg) : message{ msg } {};
-
-		//! Will return an error message
-		const std::string& What() const
-		{
-			return message;
-		}
-
-	protected:
-		std::string message;
-	};
-
-	/** Gets thrown when an non-existent key gets dereferenced
-	*/
-	class HazelnuppInvalidKeyException : public HazelnuppException
-	{
-	public:
-		HazelnuppInvalidKeyException() : HazelnuppException() {};
-		HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible
-	*/
-	class HazelnuppValueNotConvertibleException : public HazelnuppException
-	{
-	public:
-		HazelnuppValueNotConvertibleException() : HazelnuppException() {};
-		HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown something bad happens because of parameter constraints
-	*/
-	class HazelnuppConstraintException : public HazelnuppException
-	{
-	public:
-		HazelnuppConstraintException() : HazelnuppException() {};
-		HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it
-	*/
-	class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
-	{
-	public:
-		HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
-		HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
-		
-		HazelnuppConstraintTypeMissmatch(const std::string& key, const DATA_TYPE requiredType, const DATA_TYPE actualType, const std::string& paramDescription = "")
-		{
-			// Generate descriptive error message
-			std::stringstream ss;
-			ss << "Cannot convert parameter " << key << " to type " << DataTypeToString(requiredType)
-				<< ". You supplied type: " << DataTypeToString(actualType) << ".";
-
-			// Add the parameter description, if provided
-			if (paramDescription.length() > 0)
-				ss << std::endl << key << "   => " << paramDescription;
-
-			message = ss.str();
-			return;
-		};
-	};
-
-	/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
-	*/
-	class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
-	{
-	public:
-		HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
-		HazelnuppConstraintMissingValue(const std::string& key, const std::string& paramDescription = "")
-		{
-			// Generate descriptive error message
-			std::stringstream ss;
-			ss << "Missing required parameter " << key << ".";
-
-			// Add the parameter description, if provided
-			if (paramDescription.length() > 0)
-				ss << std::endl << key << "   => " << paramDescription;
-
-			message = ss.str();
-			return;
-		};
-	};
-}
-
 /*** ../Hazelnupp/ParamConstraint.h ***/
 
 #include <string>
@@ -214,7 +119,7 @@ namespace Hazelnp
 
 		//! Constructs a require constraint.  
 		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
-		static ParamConstraint Require(const std::vector<std::string>& defaultValue = {}, bool required = true)
+		static ParamConstraint Require(const std::initializer_list<std::string>& defaultValue = {}, bool required = true)
 		{
 			ParamConstraint pc;
 			pc.defaultValue = defaultValue;
@@ -233,13 +138,35 @@ namespace Hazelnp
 			return pc;
 		}
 
+		//! Constructs an incompatibility constraint. 
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together
+		static ParamConstraint Incompatibility(const std::initializer_list<std::string>& incompatibleParameters)
+		{
+			ParamConstraint pc;
+			pc.incompatibleParameters = incompatibleParameters;
+
+			return pc;
+		}
+
+		//! Constructs an incompatibility constraint. 
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together.
+		//! Syntactical-sugar proxy method that will convert the lonely string to an initializer list for you :3
+		static ParamConstraint Incompatibility(const std::string& incompatibleParameters)
+		{
+			ParamConstraint pc;
+			pc.incompatibleParameters = { incompatibleParameters };
+
+			return pc;
+		}
+
 		//! Whole constructor
-		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::vector<std::string>& defaultValue, bool required)
+		ParamConstraint(bool constrainType, DATA_TYPE requiredType, const std::initializer_list<std::string>& defaultValue, bool required, const std::initializer_list<std::string>& incompatibleParameters)
 			:
 			constrainType{ constrainType },
 			requiredType{ requiredType },
 			defaultValue{ defaultValue },
-			required{ required }
+			required{ required },
+			incompatibleParameters{incompatibleParameters}
 		{
 			return;
 		}
@@ -259,6 +186,9 @@ namespace Hazelnp
 		//! If set to true, and no default value set,
 		//! an error will be produced if this parameter is not supplied by the user.
 		bool required = false;
+
+		//! Parameters that are incompatible with this parameter
+		std::vector<std::string> incompatibleParameters;
 
 	private:
 		//! The parameter this constraint is for.
@@ -369,52 +299,6 @@ namespace Hazelnp
 	};
 }
 
-/*** ../Hazelnupp/StringValue.h ***/
-
-#include <string>
-
-namespace Hazelnp
-{
-	/** Specializations for string values (uses std::string)
-	*/
-	class StringValue : public Value
-	{
-	public:
-		StringValue(const std::string& value);
-		~StringValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will return the raw value
-		const std::string& GetValue() const;
-
-		operator std::string() const;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long long int GetInt64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		int GetInt32() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		long double GetFloat64() const override;
-		//! Throws HazelnuppValueNotConvertibleException
-		double GetFloat32() const override;
-
-		//! Will return this value as a string
-		std::string GetString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		std::string value;
-	};
-}
-
 /*** ../Hazelnupp/FloatValue.h ***/
 
 #include <ostream>
@@ -509,6 +393,52 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/StringValue.h ***/
+
+#include <string>
+
+namespace Hazelnp
+{
+	/** Specializations for string values (uses std::string)
+	*/
+	class StringValue : public Value
+	{
+	public:
+		StringValue(const std::string& value);
+		~StringValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will return the raw value
+		const std::string& GetValue() const;
+
+		operator std::string() const;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long long int GetInt64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		int GetInt32() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		long double GetFloat64() const override;
+		//! Throws HazelnuppValueNotConvertibleException
+		double GetFloat32() const override;
+
+		//! Will return this value as a string
+		std::string GetString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		std::string value;
+	};
+}
+
 /*** ../Hazelnupp/VoidValue.h ***/
 
 
@@ -576,10 +506,127 @@ namespace Hazelnp
 	};
 }
 
+/*** ../Hazelnupp/HazelnuppException.h ***/
+
+#include <stdexcept>
+#include <string>
+#include <sstream>
+
+namespace Hazelnp
+{
+	/** Generic hazelnupp exception
+	*/
+	class HazelnuppException : public std::exception
+	{
+	public:
+		HazelnuppException() {};
+		HazelnuppException(const std::string& msg) : message{ msg } {};
+
+		//! Will return an error message
+		const std::string& What() const
+		{
+			return message;
+		}
+
+	protected:
+		std::string message;
+	};
+
+	/** Gets thrown when an non-existent key gets dereferenced
+	*/
+	class HazelnuppInvalidKeyException : public HazelnuppException
+	{
+	public:
+		HazelnuppInvalidKeyException() : HazelnuppException() {};
+		HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible
+	*/
+	class HazelnuppValueNotConvertibleException : public HazelnuppException
+	{
+	public:
+		HazelnuppValueNotConvertibleException() : HazelnuppException() {};
+		HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown something bad happens because of parameter constraints
+	*/
+	class HazelnuppConstraintException : public HazelnuppException
+	{
+	public:
+		HazelnuppConstraintException() : HazelnuppException() {};
+		HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it
+	*/
+	class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
+		HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
+		
+		HazelnuppConstraintTypeMissmatch(const std::string& key, const DATA_TYPE requiredType, const DATA_TYPE actualType, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Cannot convert parameter " << key << " to type " << DataTypeToString(requiredType)
+				<< ". You supplied type: " << DataTypeToString(actualType) << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
+	};
+
+	/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
+	*/
+	class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
+		HazelnuppConstraintMissingValue(const std::string& key, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Missing required parameter " << key << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
+	};
+
+	/** Gets thrown when a parameter constrained to be incompatible with other parameters gets supplied alongside at least one of those incompatible ones
+	*/
+	class HazelnuppConstraintIncompatibleParameters : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintIncompatibleParameters() : HazelnuppConstraintException() {};
+		HazelnuppConstraintIncompatibleParameters(const std::string& key1, const std::string& key2)
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Parameter \"" << key1 << "\" is NOT compatible with parameter \"" << key2 << "\"!";
+
+			message = ss.str();
+			return;
+		};
+	};
+}
+
 /*** ../Hazelnupp/CmdArgsInterface.h ***/
 
 #include <unordered_map>
 #include <vector>
+
 
 namespace Hazelnp
 {
@@ -625,7 +672,7 @@ namespace Hazelnp
 
 		//! Will register a constraint for a parameter.
 		//! IMPORTANT: Any parameter can only have ONE constraint. Applying a new one will overwrite the old one!
-		//! Construct the ParamConstraint struct yourself to combine Require and TypeSafety! You can also use the ParamConstraint constructor!
+		//! Construct the ParamConstraint struct yourself to combine Require, TypeSafety and Incompatibilities! You can also use the ParamConstraint constructor!
 		void RegisterConstraint(const std::string& key, const ParamConstraint& constraint);
 
 		//! Will return the constraint information for a specific parameter
