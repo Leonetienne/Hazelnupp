@@ -283,7 +283,7 @@ args.RegisterConstraint(
 	"--width",
 	ParamConstraint::Require()             // Make this parameter mandatory
 	.AddTypeSafety(DATA_TYPE::FLOAT)       // Force this param to be a float
-	.AddIncompatibility({ "--antiwidth" }) // Make this param incompatible with '--antiwidth'
+	.AddIncompatibilities({ "--antiwidth" }) // Make this param incompatible with '--antiwidth'
 );
 ```
 

@@ -695,7 +695,7 @@ namespace TestHazelnupp
 						"--width",
 						ParamConstraint::Require()
 						.AddTypeSafety(DATA_TYPE::FLOAT)
-						.AddIncompatibility({ "--antiwidth" })
+						.AddIncompatibilities({ "--antiwidth" })
 					);
 
 					cmdArgsI.Parse(C_Ify(args));
@@ -725,7 +725,7 @@ namespace TestHazelnupp
 						"--width",
 						ParamConstraint::TypeSafety(DATA_TYPE::FLOAT)
 						.AddRequire()
-						.AddIncompatibility({ "--antiwidth" })
+						.AddIncompatibilities({ "--antiwidth" })
 					);
 
 					cmdArgsI.Parse(C_Ify(args));
@@ -784,7 +784,7 @@ namespace TestHazelnupp
 					"--width",
 					ParamConstraint::Require()
 					.AddTypeSafety(DATA_TYPE::FLOAT)
-					.AddIncompatibility({ "--antiwidth" })
+					.AddIncompatibilities({ "--antiwidth" })
 				);
 
 				cmdArgsI.Parse(C_Ify(args));

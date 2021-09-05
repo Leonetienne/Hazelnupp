@@ -78,10 +78,20 @@ namespace Hazelnp
 		//! Daisychain-method. Will add a the "incompatiblity" aspect.  
 		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together.
 		//! Syntactical-sugar proxy method that will convert the lonely string to an initializer list for you :3
-		ParamConstraint AddIncompatibility(const std::string& incompatibleParameters)
+		ParamConstraint AddIncompatibilities(const std::string& incompatibleParameters)
 		{
 			ParamConstraint pc = *this;
 			pc.incompatibleParameters = { incompatibleParameters };
+
+			return pc;
+		}
+
+		//! Daisychain-method. Will add a the "incompatiblity" aspect.  
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together.
+		ParamConstraint AddIncompatibilities(const std::initializer_list<std::string>& incompatibleParameters)
+		{
+			ParamConstraint pc = *this;
+			pc.incompatibleParameters = incompatibleParameters;
 
 			return pc;
 		}
