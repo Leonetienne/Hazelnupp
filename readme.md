@@ -275,17 +275,17 @@ int main(int argc, char** argv)
 ```
 
 ---
-Note that you can also combine these two constraint-types by populating the struct yourself:
+Keep in mind that you can only register ONE constraint for each parameter!
+Adding another one will just overwrite the prior one.
+However, one constraint can do all three "types" at once if you daisychain them:
 ```cpp
-ParamConstraint pc;
-pc.constrainType = true;
-pc.requiredType = DATA_TYPE::STRING;
-pc.defaultValue = {}; // no default value
-pc.required = true;
-
-args.RegisterConstraint("--my-key", pc);
+args.RegisterConstraint(
+	"--width",
+	ParamConstraint::Require()             // Make this parameter mandatory
+	.AddTypeSafety(DATA_TYPE::FLOAT)       // Force this param to be a float
+	.AddIncompatibility({ "--antiwidth" }) // Make this param incompatible with '--antiwidth'
+);
 ```
-What doesn't work is inserting multiple constraints for one key. It will just discard the older one. But that's okay because one can describe all possible constraints for a single key in **one** struct.
 
 <span id="automatic-parameter-documentation"></span>
 ## Automatic parameter documentation

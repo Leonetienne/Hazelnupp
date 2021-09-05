@@ -22,10 +22,32 @@ namespace Hazelnp
 			return pc;
 		}
 
+		//! Daisychain-method. Will add a the "required-argument" aspect.  
+		//! Think of the default value like of a list ofparameters. Like {"--width", "800"}
+		ParamConstraint AddRequire(const std::initializer_list<std::string>& defaultValue = {}, bool required = true)
+		{
+			ParamConstraint pc = *this;
+			pc.defaultValue = defaultValue;
+			pc.required = required;
+
+			return pc;
+		}
+
 		//! Constructs a type-safety constraint
 		static ParamConstraint TypeSafety(DATA_TYPE requiredType, bool constrainType = true)
 		{
 			ParamConstraint pc;
+			pc.constrainType = constrainType;
+			pc.requiredType = requiredType;
+
+			return pc;
+		}
+
+		//! Daisychain-method. Will add a the "type-safety" aspect.  
+		//! Constructs a type-safety constraint
+		ParamConstraint AddTypeSafety(DATA_TYPE requiredType, bool constrainType = true)
+		{
+			ParamConstraint pc = *this;
 			pc.constrainType = constrainType;
 			pc.requiredType = requiredType;
 
@@ -48,6 +70,17 @@ namespace Hazelnp
 		static ParamConstraint Incompatibility(const std::string& incompatibleParameters)
 		{
 			ParamConstraint pc;
+			pc.incompatibleParameters = { incompatibleParameters };
+
+			return pc;
+		}
+
+		//! Daisychain-method. Will add a the "incompatiblity" aspect.  
+		//! This means, that the following parameters are NOT compatible with this one and will throw an error if passed together.
+		//! Syntactical-sugar proxy method that will convert the lonely string to an initializer list for you :3
+		ParamConstraint AddIncompatibility(const std::string& incompatibleParameters)
+		{
+			ParamConstraint pc = *this;
 			pc.incompatibleParameters = { incompatibleParameters };
 
 			return pc;

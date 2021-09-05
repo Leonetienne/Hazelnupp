@@ -1,2 +1,2 @@
 #pragma once
-#define HAZELNUPP_VERSION (1.11)
+#define HAZELNUPP_VERSION (1.12)

@@ -676,5 +676,121 @@ namespace TestHazelnupp
 
 			return;
 		}
+
+		// Tests that daisychained construction of constraints works. Tests for the require constraint to work
+		TEST_METHOD(Daisychained_Construction_Test_Require)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+			});
+
+			Assert::ExpectException<HazelnuppConstraintMissingValue>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--width",
+						ParamConstraint::Require()
+						.AddTypeSafety(DATA_TYPE::FLOAT)
+						.AddIncompatibility({ "--antiwidth" })
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+			);
+
+			return;
+		}
+
+		// Tests that daisychained construction of constraints works. Tests for the type safety constraint to work
+		TEST_METHOD(Daisychained_Construction_Test_TypeSafety)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--width",
+				"alejandro"
+			});
+
+			Assert::ExpectException<HazelnuppConstraintTypeMissmatch>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--width",
+						ParamConstraint::TypeSafety(DATA_TYPE::FLOAT)
+						.AddRequire()
+						.AddIncompatibility({ "--antiwidth" })
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+				);
+
+			return;
+		}
+
+		// Tests that daisychained construction of constraints works. Tests for the incompatibility constraint to work
+		TEST_METHOD(Daisychained_Construction_Test_Incompatibility)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--width",
+				"8930",
+				"--antiwidth"
+			});
+
+			Assert::ExpectException<HazelnuppConstraintIncompatibleParameters>(
+				[args]
+				{
+					CmdArgsInterface cmdArgsI;
+					cmdArgsI.SetCrashOnFail(false);
+
+					cmdArgsI.RegisterConstraint(
+						"--width",
+						ParamConstraint::Incompatibility({ "--antiwidth" })
+						.AddTypeSafety(DATA_TYPE::FLOAT)
+						.AddRequire()
+					);
+
+					cmdArgsI.Parse(C_Ify(args));
+				}
+			);
+
+			return;
+		}
+
+		// Tests that daisychained construction of constraints works. Tests for the command to pass, because all constraints should be respected
+		TEST_METHOD(Daisychained_Construction_Test_AllOkay)
+		{
+			// Setup
+			ArgList args({
+				"/my/fake/path/wahoo.out",
+				"--width",
+				"8930"
+			});
+
+			{
+				CmdArgsInterface cmdArgsI;
+				cmdArgsI.SetCrashOnFail(false);
+
+				cmdArgsI.RegisterConstraint(
+					"--width",
+					ParamConstraint::Require()
+					.AddTypeSafety(DATA_TYPE::FLOAT)
+					.AddIncompatibility({ "--antiwidth" })
+				);
+
+				cmdArgsI.Parse(C_Ify(args));
+			}
+
+			return;
+		}
 	};
 }
