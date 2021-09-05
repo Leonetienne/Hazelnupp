@@ -174,12 +174,12 @@ int main(int argc, char** argv)
 ## Constraints
 > That's all cool and stuff, but this looks like a **LOT** of error-checking and not elegant at all! How would i *actually* use this?
 
-For exactly this reason, there are constraints. With this, you can control what the data looks like! Constraints serve two main purposes:
+For exactly this reason, there are constraints. With this, you can control what your data looks like! Constraints serve three main purposes:
 
 ### Requiring data
 With `ParamConstraint::Require()` you can declare that a paramater must either always be present, or provide a default value.  
 * If a parameter is not present, but has a default value, it will be automatically created.
-* If a parameter is not present, and has no default value, an exception will be thrown.
+* If a parameter is not present, and has no default value, the process will terminate with a descriptive error message.
 
 Minimal working example:
 ```cpp
@@ -203,9 +203,9 @@ int main(int argc, char** argv)
 
 ### Type safety
 With type safety you can always be certain that you are working with the correct type!  
-By creating a type-constraint you force Hazelnupp to use a certain type.  
+By creating a type-constraint, you force Hazelnupp to use a certain type.  
 If a supplied type does not match, but is convertible, it will be converted.  
-If it is not convertible, an exception will be thrown.
+If it is not convertible, the process will terminate with a descriptive error message.
 
 These conversions are:
 * int -> [float, string, list, void]
@@ -238,6 +238,41 @@ int main(int argc, char** argv)
 ```
 If `--this-must-be-int` would be passed as a float, it would be converted to int.
 If it was passed, for example, as a string, it would throw an exception.
+
+### Parameter incompatibilities
+With parameter incompatibilities you can declare that certain parameters are just incompatible.  
+If they get passed together, the process will terminate with a descriptive error message.
+
+Minimal working example:
+```cpp
+#include "Hazelnupp.h"
+using namespace Hazelnp;
+
+int main(int argc, char** argv)
+{
+	CmdArgsInterface args;
+	
+	// Register constraints
+
+	// Register a single incompatibility
+	args.RegisterConstraint("--be-vegan", ParamConstraint::Incompatibility("--be-carnivore"));
+
+	// OR register a whole bunch of incompatibilities
+	args.RegisterConstraint("--be-vegan", ParamConstraint::Incompatibility({
+		"--be-carnivore",
+		"--like-meat",
+		"--buy-meat",
+		"--grill-meat",
+		"--eat-meat"
+	}));
+
+	
+	// Parse
+	args.Parse(argc, argv);
+
+	return 0;
+}
+```
 
 ---
 Note that you can also combine these two constraint-types by populating the struct yourself:
