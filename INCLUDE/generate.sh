@@ -1,6 +1,6 @@
 # Build the include files
 echo "Building the include files..."
-./deggl -i ../Hazelnupp/*.cpp -o Hazelnupp
+./deggl -i ../Hazelnupp/*.cpp --license-file ../license.txt -o Hazelnupp
 
 # Verify that they compile cleanly
 echo "Verifying that they compile"

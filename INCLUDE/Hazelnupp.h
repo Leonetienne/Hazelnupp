@@ -1,9 +1,15 @@
-#pragma once
+/*
+* Copyright (c) 2021, Leon Etienne
+* 
+* Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+* 
+* Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
+* Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
+* 
+* THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
 
-/*** ./../Hazelnupp/Version.h ***/
-
 #pragma once
-#define HAZELNUPP_VERSION (1.122)
 
 /*** ./../Hazelnupp/DataType.h ***/
 
@@ -186,6 +192,123 @@ namespace Hazelnp
 	};
 }
 
+/*** ./../Hazelnupp/HazelnuppException.h ***/
+
+#pragma once
+#include <stdexcept>
+#include <string>
+#include <sstream>
+
+namespace Hazelnp
+{
+	/** Generic hazelnupp exception
+	*/
+	class HazelnuppException : public std::exception
+	{
+	public:
+		HazelnuppException() {};
+		HazelnuppException(const std::string& msg) : message{ msg } {};
+
+		//! Will return an error message
+		const std::string& What() const
+		{
+			return message;
+		}
+
+	protected:
+		std::string message;
+	};
+
+	/** Gets thrown when an non-existent key gets dereferenced
+	*/
+	class HazelnuppInvalidKeyException : public HazelnuppException
+	{
+	public:
+		HazelnuppInvalidKeyException() : HazelnuppException() {};
+		HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible
+	*/
+	class HazelnuppValueNotConvertibleException : public HazelnuppException
+	{
+	public:
+		HazelnuppValueNotConvertibleException() : HazelnuppException() {};
+		HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown something bad happens because of parameter constraints
+	*/
+	class HazelnuppConstraintException : public HazelnuppException
+	{
+	public:
+		HazelnuppConstraintException() : HazelnuppException() {};
+		HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
+	};
+
+	/** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it
+	*/
+	class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
+		HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
+		
+		HazelnuppConstraintTypeMissmatch(const std::string& key, const DATA_TYPE requiredType, const DATA_TYPE actualType, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Cannot convert parameter " << key << " to type " << DataTypeToString(requiredType)
+				<< ". You supplied type: " << DataTypeToString(actualType) << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
+	};
+
+	/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
+	*/
+	class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
+		HazelnuppConstraintMissingValue(const std::string& key, const std::string& paramDescription = "")
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Missing required parameter " << key << ".";
+
+			// Add the parameter description, if provided
+			if (paramDescription.length() > 0)
+				ss << std::endl << key << "   => " << paramDescription;
+
+			message = ss.str();
+			return;
+		};
+	};
+
+	/** Gets thrown when a parameter constrained to be incompatible with other parameters gets supplied alongside at least one of those incompatible ones
+	*/
+	class HazelnuppConstraintIncompatibleParameters : public HazelnuppConstraintException
+	{
+	public:
+		HazelnuppConstraintIncompatibleParameters() : HazelnuppConstraintException() {};
+		HazelnuppConstraintIncompatibleParameters(const std::string& key1, const std::string& key2)
+		{
+			// Generate descriptive error message
+			std::stringstream ss;
+			ss << "Parameter \"" << key1 << "\" is NOT compatible with parameter \"" << key2 << "\"!";
+
+			message = ss.str();
+			return;
+		};
+	};
+}
+
 /*** ./../Hazelnupp/Value.h ***/
 
 #pragma once
@@ -268,6 +391,107 @@ namespace Hazelnp
 		Hazelnp::Value* value;
 	};
 }
+
+/*** ./../Hazelnupp/IntValue.h ***/
+
+#pragma once
+
+namespace Hazelnp
+{
+	/** Specializations for integer values (uses long long int)
+	*/
+	class IntValue : public Value
+	{
+	public:
+		IntValue(const long long int& value);
+		~IntValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will return the raw value
+		const long long int& GetValue() const;
+
+		operator long long int() const;
+		operator int() const;
+
+
+		//! Will return the data as a long long int
+		long long int GetInt64() const override;
+		//! Will return the data as an int
+		int GetInt32() const override;
+
+		//! Will return the data as a long double
+		long double GetFloat64() const override;
+		//! Will return the data as a double
+		double GetFloat32() const override;
+
+		//! Will return the data as a string
+		std::string GetString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		long long int value;
+	};
+}
+
+/*** ./../Hazelnupp/FloatValue.h ***/
+
+#pragma once
+#include <ostream>
+
+namespace Hazelnp
+{
+	/** Specializations for floating point values (uses long double)
+	*/
+	class FloatValue : public Value
+	{
+	public:
+		FloatValue(const long double& value);
+		~FloatValue() override {};
+
+		//! Will return a deeopopy of this object
+		Value* Deepcopy() const override;
+
+		//! Will return a string suitable for an std::ostream;
+		std::string GetAsOsString() const override;
+
+		//! Will return the raw value
+		const long double& GetValue() const;
+
+		operator long double() const;
+		operator double() const;
+
+		//! Will return the data as a long long int
+		long long int GetInt64() const override;
+		//! Will return the data as an int
+		int GetInt32() const override;
+
+		//! Will return the data as a long double
+		long double GetFloat64() const override;
+		//! Will return the data as a double
+		double GetFloat32() const override;
+
+		//! Will return the data as a string
+		std::string GetString() const override;
+
+		//! Throws HazelnuppValueNotConvertibleException
+		const std::vector<Value*>& GetList() const override;
+
+	private:
+		long double value;
+	};
+}
+
+/*** ./../Hazelnupp/Version.h ***/
+
+#pragma once
+#define HAZELNUPP_VERSION (1.122)
 
 /*** ./../Hazelnupp/CmdArgsInterface.h ***/
 
@@ -464,6 +688,53 @@ namespace Hazelnp
 	};
 }
 
+/*** ./../Hazelnupp/StringTools.h ***/
+
+#pragma once
+#include <string>
+#include <sstream>
+#include <vector>
+#include <cmath>
+
+namespace Hazelnp
+{
+	namespace Internal
+	{
+		/** Internal helper class. Feel free to use it tho.
+		*/
+		class StringTools
+		{
+		public:
+			//! Will return wether or not a given char is in a string
+			static bool Contains(const std::string& str, const char c);
+
+			//! Will replace a part of a string with another string
+			static std::string Replace(const std::string& str, const char find, const std::string& subst);
+
+			//! Will replace a part of a string with another string
+			static std::string Replace(const std::string& str, const std::string& find, const std::string& subst);
+
+			//! Will return true if the given string consists only of digits (including signage)
+			static bool IsNumeric(const std::string& str, const bool allowDecimalPoint = false);
+
+			//! Will convert the number in str to a number.  
+			//! Returns wether or not the operation was successful.  
+			//! Also returns wether the number is an integer, or floating point. If int, cast out_number to int.
+			static bool ParseNumber(const std::string& str, bool& out_isInt, long double& out_number);
+
+			//! Will split a string by a delimiter char. The delimiter will be excluded!
+			static std::vector<std::string> SplitString(const std::string& str, const char delimiter);
+
+			//! Will split a string by a delimiter string. The delimiter will be excluded!
+			static std::vector<std::string> SplitString(const std::string& str, const std::string& delimiter);
+
+			//! Will make a string all lower-case
+			static std::string ToLower(const std::string& str);
+		};
+	}
+}
+
+
 /*** ./../Hazelnupp/VoidValue.h ***/
 
 #pragma once
@@ -499,102 +770,6 @@ namespace Hazelnp
 
 		//! Returns an empty list
 		const std::vector<Value*>& GetList() const override;
-	};
-}
-
-/*** ./../Hazelnupp/IntValue.h ***/
-
-#pragma once
-
-namespace Hazelnp
-{
-	/** Specializations for integer values (uses long long int)
-	*/
-	class IntValue : public Value
-	{
-	public:
-		IntValue(const long long int& value);
-		~IntValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will return the raw value
-		const long long int& GetValue() const;
-
-		operator long long int() const;
-		operator int() const;
-
-
-		//! Will return the data as a long long int
-		long long int GetInt64() const override;
-		//! Will return the data as an int
-		int GetInt32() const override;
-
-		//! Will return the data as a long double
-		long double GetFloat64() const override;
-		//! Will return the data as a double
-		double GetFloat32() const override;
-
-		//! Will return the data as a string
-		std::string GetString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		long long int value;
-	};
-}
-
-/*** ./../Hazelnupp/FloatValue.h ***/
-
-#pragma once
-#include <ostream>
-
-namespace Hazelnp
-{
-	/** Specializations for floating point values (uses long double)
-	*/
-	class FloatValue : public Value
-	{
-	public:
-		FloatValue(const long double& value);
-		~FloatValue() override {};
-
-		//! Will return a deeopopy of this object
-		Value* Deepcopy() const override;
-
-		//! Will return a string suitable for an std::ostream;
-		std::string GetAsOsString() const override;
-
-		//! Will return the raw value
-		const long double& GetValue() const;
-
-		operator long double() const;
-		operator double() const;
-
-		//! Will return the data as a long long int
-		long long int GetInt64() const override;
-		//! Will return the data as an int
-		int GetInt32() const override;
-
-		//! Will return the data as a long double
-		long double GetFloat64() const override;
-		//! Will return the data as a double
-		double GetFloat32() const override;
-
-		//! Will return the data as a string
-		std::string GetString() const override;
-
-		//! Throws HazelnuppValueNotConvertibleException
-		const std::vector<Value*>& GetList() const override;
-
-	private:
-		long double value;
 	};
 }
 
@@ -645,170 +820,6 @@ namespace Hazelnp
 
 	private:
 		std::vector<Value*> value;
-	};
-}
-
-/*** ./../Hazelnupp/StringTools.h ***/
-
-#pragma once
-#include <string>
-#include <sstream>
-#include <vector>
-#include <cmath>
-
-namespace Hazelnp
-{
-	namespace Internal
-	{
-		/** Internal helper class. Feel free to use it tho.
-		*/
-		class StringTools
-		{
-		public:
-			//! Will return wether or not a given char is in a string
-			static bool Contains(const std::string& str, const char c);
-
-			//! Will replace a part of a string with another string
-			static std::string Replace(const std::string& str, const char find, const std::string& subst);
-
-			//! Will replace a part of a string with another string
-			static std::string Replace(const std::string& str, const std::string& find, const std::string& subst);
-
-			//! Will return true if the given string consists only of digits (including signage)
-			static bool IsNumeric(const std::string& str, const bool allowDecimalPoint = false);
-
-			//! Will convert the number in str to a number.  
-			//! Returns wether or not the operation was successful.  
-			//! Also returns wether the number is an integer, or floating point. If int, cast out_number to int.
-			static bool ParseNumber(const std::string& str, bool& out_isInt, long double& out_number);
-
-			//! Will split a string by a delimiter char. The delimiter will be excluded!
-			static std::vector<std::string> SplitString(const std::string& str, const char delimiter);
-
-			//! Will split a string by a delimiter string. The delimiter will be excluded!
-			static std::vector<std::string> SplitString(const std::string& str, const std::string& delimiter);
-
-			//! Will make a string all lower-case
-			static std::string ToLower(const std::string& str);
-		};
-	}
-}
-
-
-/*** ./../Hazelnupp/HazelnuppException.h ***/
-
-#pragma once
-#include <stdexcept>
-#include <string>
-#include <sstream>
-
-namespace Hazelnp
-{
-	/** Generic hazelnupp exception
-	*/
-	class HazelnuppException : public std::exception
-	{
-	public:
-		HazelnuppException() {};
-		HazelnuppException(const std::string& msg) : message{ msg } {};
-
-		//! Will return an error message
-		const std::string& What() const
-		{
-			return message;
-		}
-
-	protected:
-		std::string message;
-	};
-
-	/** Gets thrown when an non-existent key gets dereferenced
-	*/
-	class HazelnuppInvalidKeyException : public HazelnuppException
-	{
-	public:
-		HazelnuppInvalidKeyException() : HazelnuppException() {};
-		HazelnuppInvalidKeyException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown when an attempt is made to retrieve the wrong data type from a value, when the value not convertible
-	*/
-	class HazelnuppValueNotConvertibleException : public HazelnuppException
-	{
-	public:
-		HazelnuppValueNotConvertibleException() : HazelnuppException() {};
-		HazelnuppValueNotConvertibleException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown something bad happens because of parameter constraints
-	*/
-	class HazelnuppConstraintException : public HazelnuppException
-	{
-	public:
-		HazelnuppConstraintException() : HazelnuppException() {};
-		HazelnuppConstraintException(const std::string& msg) : HazelnuppException(msg) {};
-	};
-
-	/** Gets thrown when a parameter is of a type that does not match the required type, and is not convertible to it
-	*/
-	class HazelnuppConstraintTypeMissmatch : public HazelnuppConstraintException
-	{
-	public:
-		HazelnuppConstraintTypeMissmatch() : HazelnuppConstraintException() {};
-		HazelnuppConstraintTypeMissmatch(const std::string& msg) : HazelnuppConstraintException(msg) {};
-		
-		HazelnuppConstraintTypeMissmatch(const std::string& key, const DATA_TYPE requiredType, const DATA_TYPE actualType, const std::string& paramDescription = "")
-		{
-			// Generate descriptive error message
-			std::stringstream ss;
-			ss << "Cannot convert parameter " << key << " to type " << DataTypeToString(requiredType)
-				<< ". You supplied type: " << DataTypeToString(actualType) << ".";
-
-			// Add the parameter description, if provided
-			if (paramDescription.length() > 0)
-				ss << std::endl << key << "   => " << paramDescription;
-
-			message = ss.str();
-			return;
-		};
-	};
-
-	/** Gets thrown when a parameter constrained to be required is not provided, and has no default value set
-	*/
-	class HazelnuppConstraintMissingValue : public HazelnuppConstraintException
-	{
-	public:
-		HazelnuppConstraintMissingValue() : HazelnuppConstraintException() {};
-		HazelnuppConstraintMissingValue(const std::string& key, const std::string& paramDescription = "")
-		{
-			// Generate descriptive error message
-			std::stringstream ss;
-			ss << "Missing required parameter " << key << ".";
-
-			// Add the parameter description, if provided
-			if (paramDescription.length() > 0)
-				ss << std::endl << key << "   => " << paramDescription;
-
-			message = ss.str();
-			return;
-		};
-	};
-
-	/** Gets thrown when a parameter constrained to be incompatible with other parameters gets supplied alongside at least one of those incompatible ones
-	*/
-	class HazelnuppConstraintIncompatibleParameters : public HazelnuppConstraintException
-	{
-	public:
-		HazelnuppConstraintIncompatibleParameters() : HazelnuppConstraintException() {};
-		HazelnuppConstraintIncompatibleParameters(const std::string& key1, const std::string& key2)
-		{
-			// Generate descriptive error message
-			std::stringstream ss;
-			ss << "Parameter \"" << key1 << "\" is NOT compatible with parameter \"" << key2 << "\"!";
-
-			message = ss.str();
-			return;
-		};
 	};
 }
 
