@@ -31,6 +31,6 @@ namespace Hazelnp
 		std::string GetString() const override;
 
 		//! Returns an empty list
-		const std::vector<Value*>& GetList() const;
+		const std::vector<Value*>& GetList() const override;
 	};
 }

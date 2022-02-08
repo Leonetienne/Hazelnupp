@@ -72,7 +72,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1000);
+			exit(-1000);
 		}
 		else
 			throw exc; // yeet
@@ -83,7 +83,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1001);
+			exit(-1001);
 		}
 		else
 			throw exc; // yeet
@@ -94,7 +94,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1002);
+			exit(-1002);
 		}
 		else
 			throw exc; // yeet
@@ -105,7 +105,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1003);
+			exit(-1003);
 		}
 		else
 			throw exc; // yeet
@@ -116,7 +116,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 		{
 			std::cout << GenerateDocumentation() << std::endl << std::endl;
 			std::cerr << "Parameter error: " << exc.What() << std::endl;
-			quick_exit(-1004);
+			exit(-1004);
 		}
 		else
 			throw exc; // yeet
@@ -126,7 +126,7 @@ void CmdArgsInterface::Parse(const int argc, const char* const* argv)
 	if ((catchHelp) && (HasParam("--help")))
 	{
 		std::cout << GenerateDocumentation() << std::endl;
-		quick_exit(0);
+		exit(0);
 	}
 
 	return;
@@ -594,7 +594,7 @@ void CmdArgsInterface::ApplyConstraints()
 
 			// Is ANY parameter present listed as incompatible with our current one?
 			for (const std::string& incompatibility : pc.second.incompatibleParameters)
-				for (const std::pair<std::string, Parameter*>& otherParam : parameters)
+				for (const auto& otherParam : parameters)
 				{
 					if (otherParam.first == incompatibility)
 						throw HazelnuppConstraintIncompatibleParameters(pc.second.key, incompatibility);
