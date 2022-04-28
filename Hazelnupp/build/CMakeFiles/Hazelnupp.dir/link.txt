@@ -1,0 +1,2 @@
+/usr/bin/ar qc libHazelnupp.a CMakeFiles/Hazelnupp.dir/src/CmdArgsInterface.cpp.o CMakeFiles/Hazelnupp.dir/src/FloatValue.cpp.o CMakeFiles/Hazelnupp.dir/src/IntValue.cpp.o CMakeFiles/Hazelnupp.dir/src/ListValue.cpp.o CMakeFiles/Hazelnupp.dir/src/Parameter.cpp.o CMakeFiles/Hazelnupp.dir/src/StringTools.cpp.o CMakeFiles/Hazelnupp.dir/src/StringValue.cpp.o CMakeFiles/Hazelnupp.dir/src/Value.cpp.o CMakeFiles/Hazelnupp.dir/src/VoidValue.cpp.o
+/usr/bin/ranlib libHazelnupp.a

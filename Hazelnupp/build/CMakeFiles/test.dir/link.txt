@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/test.dir/test/Abbreviations.cpp.o CMakeFiles/test.dir/test/Basics.cpp.o CMakeFiles/test.dir/test/Constraints.cpp.o CMakeFiles/test.dir/test/Conversion.cpp.o CMakeFiles/test.dir/test/Descriptions.cpp.o CMakeFiles/test.dir/test/main.cpp.o -o test  libHazelnupp.a 
