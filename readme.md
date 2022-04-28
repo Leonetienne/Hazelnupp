@@ -336,7 +336,7 @@ Type mismatch:
 $ a.out --width "about 3 meters"
 << --help page gets printed here aswell >>
 
-Parameter error: Cannot convert parameter --width to type FLOAT. You supplied type: VOID.
+Parameter error: Cannot convert parameter --width to type FLOAT. You supplied type: STRING.
 --width   => The width of something...
 ```
 
