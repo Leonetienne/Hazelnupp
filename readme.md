@@ -391,16 +391,14 @@ Feel free to submit a PR if you think you improved it in any way :)
 ## Contributing
 If you want to contribute, feel free to fork the repository, and submit a pull request.  
 Bugfixes and tests are almost certain to be accepted, features should be agreed upon and come with tests.  
-Just create an issue with the tag `feature request`. Don't forget to update the UML (`Hazelnupp.vpp`)! The (free) modelling software used is [Visual Paradigm](https://www.visual-paradigm.com).  
-  
-Any code added must match the existing style!
+Just create an issue with the tag `feature request`.Any code added should match the existing style:
+
 * Objects begin with a lowercase initial
 * Classifiers and Functions/Methods begin with an uppercase initial
 * Classifiers are camel-case
 * Classifiers get documented via `/** */` for doxygen. See existing classifiers
 * Members (methods and objects) get documented via `//!` for doxygen. See existing definitions
-* `{` always gets a new line
-* Enumerations (and their values) and macros are all-upper case snake-case
+* Enumerations (and their values) and macros are all-upper.case snake-case
 * No `using namespace std`
 * Do `using namespace Hazelnp` in cpp files. Don't do `Hazelnp::` if possible
 * Files outside the project (like STL) have to be included with `#include <>`. Not `""`
