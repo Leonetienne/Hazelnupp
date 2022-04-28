@@ -1,4 +1,4 @@
-[![Hazelnupp](https://raw.githubusercontent.com/Leonetienne/Hazelnupp/master/Brand/nupp.png)](https://github.com/Leonetienne/Hazelnupp)
+[![Hazelnupp](https://gitea.leonetienne.de/leonetienne/Hazelnupp/raw/branch/master/Brand/nupp.png)](https://gitea.leonetienne.de/leonetienne/Hazelnupp)
 
 # [Documentation](http://hazelnupp.rtfm.etiennes.de)
 ## [Direct link to docs of the main class](http://hazelnupp.rtfm.etiennes.de/classHazelnp_1_1CmdArgsInterface.html)
@@ -25,7 +25,6 @@ args.SetCrashOnFail(false);
 ```
 
 ## Index
-1. [Importing into a project](#importing-into-a-project)
 2. [What's the concept?](#whats-the-concept)
 3. [Minimal working example](#minimal-working-example)
 4. [Abbreviations](#abbreviations)
@@ -37,13 +36,6 @@ args.SetCrashOnFail(false);
 10. [Further notes](#further-notes)
 11. [Contributing](#contributing)
 12. [LICENSE](#license)
-
-<span id="importing-into-a-project"></span>
-## Importing into a project
-> How do i actually import this into my existing project?
-
-Super easily! Just grab the latest files (2) from [/INCLUDE](https://github.com/Leonetienne/Hazelnupp/tree/master/INCLUDE) and put them into your project!
-You may have to add the .cpp to your compile list, but most IDEs should do this automatically.
 
 <span id="whats-the-concept"></span>
 ## What's the concept?
@@ -362,7 +354,7 @@ If a description is not set, the last line will simply be omitted.
 
 <span id="more-examples"></span>
 ## More examples?
-Check out the [tests](https://github.com/Leonetienne/Hazelnupp/tree/master/Test_Hazelnupp)! They may help you out!  
+Check out the [tests](https://gitea.leonetienne.de/leonetienne/Hazelnupp/src/branch/master/Hazelnupp/test)! They may help you out!  
 Also make sure to check out the [doxygen docs](http://hazelnupp.rtfm.etiennes.de)!
 
 <span id="what-is-not-supported"></span>
