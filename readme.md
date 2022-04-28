@@ -25,17 +25,17 @@ args.SetCrashOnFail(false);
 ```
 
 ## Index
-2. [What's the concept?](#whats-the-concept)
-3. [Minimal working example](#minimal-working-example)
-4. [Abbreviations](#abbreviations)
-5. [Constraints](#constraints)
-6. [Automatic parameter documentation](#automatic-parameter-documentation)
-7. [Descriptive error messages](#descriptive-error-messages)
-8. [More examples?](#more-examples)
-9. [What is not supported?](#what-is-not-supported)
-10. [Further notes](#further-notes)
-11. [Contributing](#contributing)
-12. [LICENSE](#license)
+1. [What's the concept?](#whats-the-concept)
+2. [Minimal working example](#minimal-working-example)
+3. [Abbreviations](#abbreviations)
+4. [Constraints](#constraints)
+5. [Automatic parameter documentation](#automatic-parameter-documentation)
+6. [Descriptive error messages](#descriptive-error-messages)
+7. [More examples?](#more-examples)
+8. [What is not supported?](#what-is-not-supported)
+9. [Further notes](#further-notes)
+10. [Contributing](#contributing)
+11. [LICENSE](#license)
 
 <span id="whats-the-concept"></span>
 ## What's the concept?
