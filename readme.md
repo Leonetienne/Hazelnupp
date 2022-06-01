@@ -1,7 +1,7 @@
 [![Hazelnupp](https://gitea.leonetienne.de/leonetienne/Hazelnupp/raw/branch/master/Brand/nupp.png)](https://gitea.leonetienne.de/leonetienne/Hazelnupp)
 
-# [Documentation](http://hazelnupp.rtfm.etiennes.de)
-## [Direct link to docs of the main class](http://hazelnupp.rtfm.etiennes.de/classHazelnp_1_1CmdArgsInterface.html)
+# [Documentation](https://hazelnupp.rtfm.leonetienne.de)
+## [Direct link to docs of the main class](https://hazelnupp.rtfm.leonetienne.de/classHazelnp_1_1CmdArgsInterface.html)
 
 # Hazelnupp
 is a simple, easy to use command line parameter parser.  
@@ -355,7 +355,7 @@ If a description is not set, the last line will simply be omitted.
 <span id="more-examples"></span>
 ## More examples?
 Check out the [tests](https://gitea.leonetienne.de/leonetienne/Hazelnupp/src/branch/master/Hazelnupp/test)! They may help you out!  
-Also make sure to check out the [doxygen docs](http://hazelnupp.rtfm.etiennes.de)!
+Also make sure to check out the [doxygen docs](https://hazelnupp.rtfm.leonetienne.de)!
 
 <span id="what-is-not-supported"></span>
 ## What is not supported?
