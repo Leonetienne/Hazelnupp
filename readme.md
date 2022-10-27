@@ -1,3 +1,5 @@
+[![Build Status](https://drone.leonetienne.de/api/badges/leonetienne/Hazelnupp/status.svg)](https://drone.leonetienne.de/leonetienne/Hazelnupp)
+
 [![Hazelnupp](https://gitea.leonetienne.de/leonetienne/Hazelnupp/raw/branch/master/Brand/nupp.png)](https://gitea.leonetienne.de/leonetienne/Hazelnupp)
 
 # [Documentation](https://hazelnupp.rtfm.leonetienne.de)
