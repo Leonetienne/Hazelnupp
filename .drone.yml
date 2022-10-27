@@ -1,0 +1,57 @@
+kind: pipeline
+type: kubernetes
+name: cicd-pipeline
+
+steps:
+  - name: Build docs
+    image: ubuntu
+    commands:
+        - apt-get update
+        - >-
+          apt-get
+          install
+          make
+          doxygen
+          graphviz
+          -y
+        - cd "Hazelnupp/doxygen"
+        - make
+       
+  - name: Deploy docs to production
+    image: ubuntu
+    environment:
+      SSH_PRIV:
+        from_secret: ssh-priv
+      SSH_PUB:
+        from_secret: ssh-pub
+      KNOWN_HOSTS:
+        from_secret: known-hosts # this is just $(ssh-keyscan -p 2222 leonetienne.de)
+    commands:
+      - apt-get update
+      - >-
+        apt-get
+        install
+        openssh-client
+        rsync
+        -y
+      - eval "$(ssh-agent -s)"
+      - mkdir -p ~/.ssh
+      - echo "$SSH_PRIV" > ~/.ssh/id_ed25519
+      - echo "$SSH_PUB" > ~/.ssh/id_ed25519.pub
+      - echo "$KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - chmod 600 ~/.ssh/id_ed25519
+      - chmod 644 ~/.ssh/id_ed25519.pub
+      - chmod 644 ~/.ssh/known_hosts
+      - ssh-add
+      - cd "Hazelnupp/doxygen"
+      - >-
+        rsync
+        -avz
+        --recursive
+        --delete
+        --delete-excluded
+        -e
+        "ssh -o IdentitiesOnly=yes -p 2222"
+        ./build/
+        doxygen-hazelnupp@leonetienne.de:app
+
